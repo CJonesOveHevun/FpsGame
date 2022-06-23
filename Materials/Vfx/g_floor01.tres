@@ -1,0 +1,21 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 136.9
+persistence = 0.354
+lacunarity = 2.76
+
+[sub_resource type="NoiseTexture" id=2]
+width = 50
+height = 50
+seamless = true
+noise = SubResource( 1 )
+
+[resource]
+flags_vertex_lighting = true
+flags_world_triplanar = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_specular_mode = 3
+albedo_color = Color( 0.443137, 0.411765, 0.384314, 1 )
+albedo_texture = SubResource( 2 )

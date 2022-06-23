@@ -1,0 +1,15 @@
+[gd_resource type="ArrayMesh" format=2]
+
+[resource]
+lightmap_size_hint = Vector2( 322, 322 )
+surfaces/0 = {
+"aabb": AABB( -1, 0, -1, 2.00001, 1e-05, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 127, 127, 64, 0, 60, 0, 60, 252, 59, 252, 59, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 127, 127, 64, 0, 0, 0, 60, 92, 22, 252, 59, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 127, 127, 64, 0, 60, 0, 0, 252, 59, 92, 22, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 0, 127, 127, 64, 0, 0, 0, 0, 92, 22, 92, 22 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 2, 0 ),
+"blend_shape_data": [  ],
+"format": 2194743,
+"index_count": 6,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}

@@ -1,0 +1,75 @@
+[gd_resource type="VisualShader" load_steps=5 format=2]
+
+[sub_resource type="VisualShaderNodeColorUniform" id=1]
+output_port_for_preview = 0
+uniform_name = "Color"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=3]
+uniform_name = "Specular"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=4]
+uniform_name = "Roughness"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=5]
+uniform_name = "Metallic"
+
+[resource]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode diffuse_toon, specular_toon, world_vertex_coords, vertex_lighting;
+
+uniform vec4 Color : hint_color;
+uniform float Metallic;
+uniform float Roughness;
+uniform float Specular;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ColorUniform:2
+	vec3 n_out2p0 = Color.rgb;
+	float n_out2p1 = Color.a;
+
+// ScalarUniform:6
+	float n_out6p0 = Metallic;
+
+// ScalarUniform:5
+	float n_out5p0 = Roughness;
+
+// ScalarUniform:4
+	float n_out4p0 = Specular;
+
+// Output:0
+	ALBEDO = n_out2p0;
+	METALLIC = n_out6p0;
+	ROUGHNESS = n_out5p0;
+	SPECULAR = n_out4p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+modes/diffuse = 4
+modes/specular = 3
+flags/vertex_lighting = true
+flags/world_vertex_coords = true
+nodes/vertex/0/position = Vector2( 660, 0 )
+nodes/fragment/0/position = Vector2( 700, 40 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( 500, -60 )
+nodes/fragment/4/node = SubResource( 3 )
+nodes/fragment/4/position = Vector2( 500, 280 )
+nodes/fragment/5/node = SubResource( 4 )
+nodes/fragment/5/position = Vector2( 500, 220 )
+nodes/fragment/6/node = SubResource( 5 )
+nodes/fragment/6/position = Vector2( 500, 160 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0, 4, 0, 0, 4, 5, 0, 0, 3, 6, 0, 0, 2 )
+nodes/light/0/position = Vector2( 540, 100 )
