@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/Vfx/wood02.tres" type="Material" id=1]
+[ext_resource path="res://Materials/Models/cube_arraymesh.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://Materials/Vfx/wood01.tres" type="Material" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.6876, 0.881327, 0.729692 )
+
+[node name="wooden_dresser" type="StaticBody" groups=["lod"]]
+
+[node name="base" type="MeshInstance" parent="."]
+transform = Transform( 0.35, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.351673, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="drawer" type="MeshInstance" parent="base"]
+transform = Transform( 0.8, 0, 0, 0, 0.3, 0, 0, 0, 0.7, 0, 2.18357, 1.70423 )
+use_in_baked_light = true
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="drawer2" type="MeshInstance" parent="base"]
+transform = Transform( 0.8, 0, 0, 0, 0.3, 0, 0, 0, 0.7, 0, -1.6763, 1.70423 )
+use_in_baked_light = true
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="leg1" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.2, 0, 0, 0, 0.15, -1.42569, 0.133125, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="leg2" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.2, 0, 0, 0, 0.15, 1.57431, 0.133125, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0757412, 0.152468, 0 )
+shape = SubResource( 1 )
+
+[node name="VisibilityEnabler" type="VisibilityEnabler" parent="."]
+aabb = AABB( -1.72774, -1.06476, -1, 3.45548, 2.12952, 2 )

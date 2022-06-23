@@ -1,0 +1,255 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/shop.gd" type="Script" id=1]
+
+[node name="shop" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.592157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="bg"]
+self_modulate = Color( 1, 1, 1, 0.890196 )
+anchor_top = 0.053
+anchor_right = 1.0
+anchor_bottom = 0.053
+margin_top = -31.8
+margin_bottom = 32.2
+
+[node name="Panel2" type="Panel" parent="bg"]
+self_modulate = Color( 1, 1, 1, 0.890196 )
+anchor_top = 0.947
+anchor_right = 1.0
+anchor_bottom = 0.947
+margin_top = -32.2
+margin_bottom = 31.8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg2" type="Panel" parent="bg"]
+self_modulate = Color( 1, 1, 1, 0.819608 )
+anchor_left = 0.75
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = 96.0
+margin_right = 192.0
+margin_bottom = -88.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 0.053
+anchor_right = 1.0
+anchor_bottom = 0.053
+margin_top = -31.8
+margin_right = -768.0
+margin_bottom = 32.2
+text = "SHOP"
+align = 1
+valign = 1
+
+[node name="b_back" type="Button" parent="."]
+anchor_left = 0.875
+anchor_top = 0.053
+anchor_right = 1.0
+anchor_bottom = 0.053
+margin_left = -6.10352e-05
+margin_top = -31.8
+margin_bottom = 32.2
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="weaponslist" type="ScrollContainer" parent="."]
+anchor_left = 0.75
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = 96.0
+margin_right = 192.0
+margin_bottom = -88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="weaponslist"]
+margin_right = 384.0
+margin_bottom = 416.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="hg" type="Control" parent="weaponslist/VBoxContainer"]
+visible = false
+margin_right = 384.0
+
+[node name="glock17" type="Button" parent="weaponslist/VBoxContainer/hg"]
+margin_right = 384.0
+margin_bottom = 24.0
+text = "Glock17"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="revolver" type="Button" parent="weaponslist/VBoxContainer/hg"]
+margin_top = 24.0
+margin_right = 384.0
+margin_bottom = 48.0
+text = "Revolver"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="smg" type="Control" parent="weaponslist/VBoxContainer"]
+visible = false
+margin_right = 384.0
+
+[node name="uzi" type="Button" parent="weaponslist/VBoxContainer/smg"]
+margin_right = 384.0
+margin_bottom = 24.0
+text = "Uzi"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vector" type="Button" parent="weaponslist/VBoxContainer/smg"]
+margin_top = 24.0
+margin_right = 384.0
+margin_bottom = 48.0
+text = "Vector"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sg" type="Control" parent="weaponslist/VBoxContainer"]
+visible = false
+margin_right = 384.0
+
+[node name="sawedoff" type="Button" parent="weaponslist/VBoxContainer/sg"]
+margin_right = 384.0
+margin_bottom = 24.0
+text = "Sawedoff"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wm1897" type="Button" parent="weaponslist/VBoxContainer/sg"]
+margin_top = 24.0
+margin_right = 384.0
+margin_bottom = 48.0
+text = "Wm1897"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ar" type="Control" parent="weaponslist/VBoxContainer"]
+visible = false
+margin_right = 384.0
+
+[node name="Ak47" type="Button" parent="weaponslist/VBoxContainer/ar"]
+margin_right = 384.0
+margin_bottom = 24.0
+text = "Ak47"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="category" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sg" type="Button" parent="category"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 336.0
+margin_top = 128.0
+margin_right = 440.0
+margin_bottom = 156.0
+text = "Shotguns"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Smg" type="Button" parent="category"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 192.0
+margin_top = 128.0
+margin_right = 312.0
+margin_bottom = 156.0
+text = "Submachineguns"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hg" type="Button" parent="category"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 128.0
+margin_right = 168.0
+margin_bottom = 156.0
+text = "Handguns"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ar" type="Button" parent="category"]
+anchor_top = 1.2
+anchor_bottom = 1.2
+margin_left = 64.0
+margin_top = 184.0
+margin_right = 168.0
+margin_bottom = 208.0
+text = "Assault Rifles"
+
+[node name="price_lbl" type="Label" parent="."]
+anchor_top = 0.947
+anchor_right = 1.0
+anchor_bottom = 0.947
+margin_left = 800.0
+margin_top = -16.2
+margin_right = -24.0
+margin_bottom = 23.8
+text = "Price:"
+align = 1
+valign = 1
+
+[node name="buy_b" type="Button" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.56
+anchor_right = 0.5
+anchor_bottom = 0.56
+margin_left = -56.0
+margin_top = -32.0
+margin_right = 56.0
+margin_bottom = 32.0
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="b_back" to="." method="_on_b_back_pressed"]
+[connection signal="pressed" from="buy_b" to="." method="_on_buy_b_pressed"]

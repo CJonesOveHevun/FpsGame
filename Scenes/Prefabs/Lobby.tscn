@@ -1,0 +1,195 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Lobby.gd" type="Script" id=1]
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg_panel" type="Panel" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 1, 1, 1, 0.670588 )
+anchor_right = 1.008
+anchor_bottom = 1.0
+margin_right = -8.19202
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container_panel" type="Panel" parent="bg_panel"]
+anchor_left = 0.117
+anchor_right = 0.117
+anchor_bottom = 1.0
+margin_left = -63.808
+margin_top = 88.0
+margin_right = 64.192
+margin_bottom = -80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plr_container" type="VBoxContainer" parent="."]
+anchor_left = 0.117
+anchor_right = 0.117
+anchor_bottom = 1.0
+margin_left = -47.808
+margin_top = 96.0
+margin_right = 48.192
+margin_bottom = -88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.107
+margin_left = -256.0
+margin_top = 32.0
+margin_right = 256.0
+margin_bottom = 31.8
+text = "Player Lobby
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menu_button" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -64.0
+margin_right = 176.0
+margin_bottom = -32.0
+text = "< Menu"
+
+[node name="interval" type="Timer" parent="."]
+autostart = true
+
+[node name="ready_button" type="Button" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -176.0
+margin_top = -64.0
+margin_right = -64.0
+margin_bottom = -28.0
+text = "Ready"
+
+[node name="lobby_countdown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="ready_label" type="Label" parent="."]
+anchor_left = 0.703
+anchor_top = 0.227
+anchor_right = 1.0
+anchor_bottom = 0.227
+margin_left = 0.12793
+margin_top = -8.20001
+margin_right = -112.0
+margin_bottom = 7.79999
+text = "Players Ready:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="modeOption" type="OptionButton" parent="."]
+anchor_left = 0.695
+anchor_top = 0.343
+anchor_right = 1.0
+anchor_bottom = 0.343
+margin_left = 0.319946
+margin_top = -13.8
+margin_right = -72.0
+margin_bottom = 14.2
+disabled = true
+text = "DEATHMATCH"
+items = [ "DEATHMATCH", null, false, 0, null, "TEAMMATCH", null, false, 1, null, "SNIPER", null, false, 2, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start_b" type="Button" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -272.0
+margin_top = -64.0
+margin_right = -184.0
+margin_bottom = -24.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="map_name" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -8.0
+margin_right = 80.0
+margin_bottom = -112.0
+text = "Cargo"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="maps_container" type="ScrollContainer" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.647
+anchor_right = 1.0
+anchor_bottom = 0.647
+margin_left = -320.0
+margin_top = -132.2
+margin_right = -64.0
+margin_bottom = 131.8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="deathmatch_maps" type="Control" parent="maps_container"]
+
+[node name="cargo" type="Button" parent="maps_container/deathmatch_maps"]
+margin_right = 256.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Cargo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mansion" type="Button" parent="maps_container/deathmatch_maps"]
+margin_top = 24.0
+margin_right = 256.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+text = "Mansion"
+
+[node name="Office" type="Button" parent="maps_container/deathmatch_maps"]
+margin_top = 48.0
+margin_right = 256.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+text = "Urban"
+
+[connection signal="pressed" from="menu_button" to="." method="_on_menu_button_pressed"]
+[connection signal="timeout" from="interval" to="." method="_on_interval_timeout"]
+[connection signal="pressed" from="ready_button" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="start_b" to="." method="_on_start_b_pressed"]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Networks/network_setup.gd" type="Script" id=1]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Base" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.013
+margin_bottom = 0.200012
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="host_b" type="Button" parent="Base"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -200.0
+margin_right = 280.0
+margin_bottom = -160.0
+text = "Create a lobby"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="join_b" type="Button" parent="Base"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -152.0
+margin_right = 280.0
+margin_bottom = -112.0
+text = "Join a lobby"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="training_b" type="Button" parent="Base"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -104.0
+margin_right = 280.0
+margin_bottom = -64.0
+text = "Training Mode"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="RichTextLabel" parent="Base"]
+anchor_top = 0.273
+anchor_bottom = 0.273
+margin_left = 56.0
+margin_top = -69.984
+margin_right = 133.0
+margin_bottom = -55.984
+rect_scale = Vector2( 8.399, 10 )
+mouse_filter = 2
+text = "FPS Game
+"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ip_label" type="Label" parent="Base"]
+anchor_top = 0.987
+anchor_right = 1.0
+anchor_bottom = 0.987
+margin_left = 8.0
+margin_top = -32.096
+margin_right = -8.0
+margin_bottom = -0.0960083
+text = "ip_address"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="baseplate" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.83481, 0 )
+use_collision = true
+width = 12.03
+height = 0.815
+depth = 10.997
+
+[connection signal="pressed" from="Base/host_b" to="." method="_on_lobby_created"]
+[connection signal="pressed" from="Base/join_b" to="." method="_on_browser_opened"]
+[connection signal="pressed" from="Base/training_b" to="." method="_on_training_b_pressed"]
