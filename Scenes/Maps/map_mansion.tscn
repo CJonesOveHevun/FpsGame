@@ -1,0 +1,2964 @@
+[gd_scene load_steps=162 format=2]
+
+[ext_resource path="res://Materials/Vfx/water2.tres" type="Shader" id=1]
+[ext_resource path="res://addons/lod/lod_spatial.gd" type="Script" id=2]
+[ext_resource path="res://Materials/Vfx/common.tres" type="Shader" id=3]
+[ext_resource path="res://Materials/Models/cube_arraymesh.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://Materials/Models/plane_arraymesh.tres" type="ArrayMesh" id=5]
+[ext_resource path="res://Materials/Vfx/g_concrete02.tres" type="Material" id=6]
+[ext_resource path="res://Scenes/Maps/map_mansion_data/map_mansion.lmbake" type="BakedLightmapData" id=7]
+[ext_resource path="res://Scenes/Props/potted_plant1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Materials/Models/prism_slope_arraymesh.tres" type="ArrayMesh" id=9]
+[ext_resource path="res://Scenes/Props/wooden_table.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Props/sofav1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Materials/Vfx/building_c2.tres" type="Material" id=12]
+[ext_resource path="res://Materials/Vfx/wood02.tres" type="Material" id=13]
+[ext_resource path="res://Scenes/Props/wooden_dresser.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Props/storage_rack.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Props/bookshelf.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=17]
+[ext_resource path="res://Materials/Vfx/shingled_roof1.tres" type="Material" id=18]
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 3 )
+shader_param/Color = Color( 0.34902, 0.596078, 0.156863, 1 )
+shader_param/Metallic = null
+shader_param/Roughness = 1.0
+shader_param/Specular = null
+
+[sub_resource type="ArrayMesh" id=17]
+lightmap_size_hint = Vector2( 554, 394 )
+surfaces/0 = {
+"aabb": AABB( -4.5, -4.5, -4.5, 9, 9.00001, 9.00001 ),
+"array_data": PoolByteArray( 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 127, 64, 149, 104, 71, 255, 0, 0, 0, 0, 254, 59, 253, 59, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 127, 64, 149, 104, 71, 255, 85, 53, 0, 0, 97, 57, 253, 59, 0, 0, 144, 192, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 127, 64, 149, 104, 71, 255, 0, 0, 0, 56, 254, 59, 80, 56, 0, 0, 144, 64, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 127, 64, 149, 104, 71, 255, 85, 53, 0, 56, 97, 57, 80, 56, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 144, 192, 127, 127, 129, 64, 204, 185, 170, 255, 85, 57, 0, 0, 100, 19, 107, 59, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 144, 192, 127, 127, 129, 64, 149, 104, 71, 255, 0, 60, 0, 0, 61, 53, 107, 59, 0, 0, 144, 64, 0, 0, 144, 192, 0, 0, 144, 192, 127, 127, 129, 64, 245, 243, 240, 255, 85, 57, 0, 56, 100, 19, 126, 55, 0, 0, 144, 192, 0, 0, 144, 192, 0, 0, 144, 192, 127, 127, 129, 64, 171, 136, 114, 255, 0, 60, 0, 56, 61, 53, 126, 55, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 144, 64, 127, 0, 127, 127, 149, 104, 71, 255, 85, 53, 0, 0, 100, 19, 94, 55, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 144, 192, 127, 0, 127, 127, 204, 185, 170, 255, 85, 57, 0, 0, 100, 19, 50, 21, 0, 0, 144, 64, 0, 0, 144, 192, 0, 0, 144, 64, 127, 0, 127, 127, 149, 104, 71, 255, 85, 53, 0, 56, 61, 53, 94, 55, 0, 0, 144, 64, 0, 0, 144, 192, 0, 0, 144, 192, 127, 0, 127, 127, 245, 243, 240, 255, 85, 57, 0, 56, 61, 53, 50, 21, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 144, 192, 129, 0, 0, 63, 149, 104, 71, 255, 0, 0, 0, 56, 84, 53, 149, 59, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 144, 64, 129, 0, 0, 63, 149, 104, 71, 255, 85, 53, 0, 56, 71, 57, 149, 59, 0, 0, 144, 192, 0, 0, 144, 192, 0, 0, 144, 192, 129, 0, 0, 63, 171, 136, 114, 255, 0, 0, 0, 60, 84, 53, 209, 55, 0, 0, 144, 192, 0, 0, 144, 192, 0, 0, 144, 64, 129, 0, 0, 63, 149, 104, 71, 255, 85, 53, 0, 60, 71, 57, 209, 55, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 144, 64, 0, 127, 129, 64, 149, 104, 71, 255, 85, 53, 0, 56, 239, 59, 44, 56, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 144, 64, 0, 127, 129, 64, 149, 104, 71, 255, 85, 57, 0, 56, 82, 57, 44, 56, 0, 0, 144, 64, 0, 0, 144, 64, 0, 0, 144, 192, 0, 127, 129, 64, 204, 185, 170, 255, 85, 53, 0, 60, 239, 59, 245, 43, 0, 0, 144, 192, 0, 0, 144, 64, 0, 0, 144, 192, 0, 127, 129, 64, 149, 104, 71, 255, 85, 57, 0, 60, 82, 57, 245, 43, 0, 0, 144, 192, 0, 0, 144, 192, 0, 0, 144, 64, 0, 129, 127, 64, 149, 104, 71, 255, 85, 57, 0, 56, 71, 57, 178, 55, 0, 0, 144, 64, 0, 0, 144, 192, 0, 0, 144, 64, 0, 129, 127, 64, 149, 104, 71, 255, 0, 60, 0, 56, 71, 57, 133, 37, 0, 0, 144, 192, 0, 0, 144, 192, 0, 0, 144, 192, 0, 129, 127, 64, 171, 136, 114, 255, 85, 57, 0, 60, 84, 53, 178, 55, 0, 0, 144, 64, 0, 0, 144, 192, 0, 0, 144, 192, 0, 129, 127, 64, 245, 243, 240, 255, 0, 60, 0, 60, 84, 53, 133, 37 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 2, 0, 4, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 8, 0, 9, 0, 10, 0, 9, 0, 11, 0, 10, 0, 12, 0, 13, 0, 14, 0, 13, 0, 15, 0, 14, 0, 16, 0, 17, 0, 18, 0, 17, 0, 19, 0, 18, 0, 20, 0, 21, 0, 22, 0, 21, 0, 23, 0, 22, 0 ),
+"blend_shape_data": [  ],
+"format": 2194751,
+"index_count": 36,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="PlaneMesh" id=9]
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.282353, 0.431373, 0.635294, 1 )
+shader_param/specular = 1.0
+shader_param/metallic = null
+shader_param/proximity_fade_distance = 1.0
+shader_param/roughness = 0.0
+shader_param/point_size = null
+shader_param/clearcoat = 1.0
+shader_param/clearcoat_gloss = 0.707
+shader_param/uv1_scale = null
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/Color = Color( 0.541176, 0.14902, 0.0941176, 1 )
+shader_param/Metallic = null
+shader_param/Roughness = 1.0
+shader_param/Specular = 0.7
+
+[sub_resource type="ShaderMaterial" id=35]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/Color = Color( 0.0470588, 0.227451, 0.0745098, 1 )
+shader_param/Metallic = null
+shader_param/Roughness = 1.0
+shader_param/Specular = 0.5
+
+[sub_resource type="ConcavePolygonShape" id=7]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[sub_resource type="ConvexPolygonShape" id=16]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=19]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=22]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=23]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=24]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=25]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=26]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=32]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConcavePolygonShape" id=33]
+data = PoolVector3Array( -4.5, 4.5, 4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5, -4.5, -4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, 4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5, 4.5, -4.5, -4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, 4.5, -4.5, -4.5, 4.5, -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, -4.5, 4.5, -4.5, 4.5, 4.5, -4.5, -4.5, -4.5, 4.5, 4.5, -4.5, 4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, -4.5 )
+
+[sub_resource type="BoxShape" id=34]
+extents = Vector3( 0.001, 10, 4 )
+
+[sub_resource type="ConvexPolygonShape" id=36]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=37]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=38]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=39]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=40]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=41]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=42]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=43]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=44]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=45]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=46]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=47]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=48]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=49]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=50]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=51]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=52]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=53]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=54]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=55]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=56]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=57]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=58]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=59]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=60]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=61]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=62]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=63]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=64]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=65]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=66]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=67]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=68]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=69]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=70]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=71]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=72]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=73]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=74]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=75]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=76]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=77]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=78]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=79]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=80]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=81]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=82]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=83]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=84]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=85]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=86]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=87]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=88]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=89]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=90]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=91]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=92]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=93]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=94]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=95]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=96]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=97]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=98]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=99]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=100]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=101]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=102]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=103]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=104]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=105]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=106]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=107]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=108]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=109]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=110]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=111]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=112]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=113]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=114]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=115]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=116]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=117]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=118]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=119]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=120]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=121]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=122]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=123]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=124]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=125]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=126]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=127]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=128]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=129]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=130]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=131]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=132]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=133]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=134]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=135]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=136]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=137]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=138]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=139]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=140]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=141]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=142]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=143]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=144]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=145]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=146]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=147]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=148]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=149]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="ConvexPolygonShape" id=150]
+points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
+
+[sub_resource type="BoxShape" id=159]
+extents = Vector3( 2.428, 10.423, 0.381795 )
+
+[sub_resource type="ProceduralSky" id=11]
+sky_top_color = Color( 0.521569, 1, 0.956863, 1 )
+sky_horizon_color = Color( 0.839216, 0.980392, 0.909804, 1 )
+sky_energy = 1.27
+ground_bottom_color = Color( 0.145098, 0.427451, 0.14902, 1 )
+ground_horizon_color = Color( 0.709804, 0.788235, 1, 1 )
+sun_latitude = 113.06
+
+[sub_resource type="Environment" id=12]
+background_mode = 2
+background_sky = SubResource( 11 )
+background_energy = 1.35
+ambient_light_color = Color( 0.407843, 0.364706, 0.501961, 1 )
+ambient_light_energy = 1.12
+fog_enabled = true
+fog_color = Color( 1, 0.905882, 0.815686, 0.376471 )
+fog_sun_color = Color( 1, 0.847059, 0.537255, 1 )
+fog_sun_amount = 0.97
+fog_depth_begin = 18.2
+fog_depth_end = 154.1
+fog_depth_curve = 0.840896
+fog_height_enabled = true
+fog_height_max = -733.3
+fog_height_curve = 0.732042
+tonemap_mode = 3
+auto_exposure_scale = 0.81
+auto_exposure_min_luma = 0.23
+auto_exposure_max_luma = 2.15
+ssao_quality = 0
+glow_intensity = 0.53
+glow_strength = 0.08
+
+[sub_resource type="OccluderShapeSphere" id=151]
+spheres = [ Plane( -10.835, 11.711, 71.482, 1.906 ), Plane( 9.263, 11.421, 71.458, 1.431 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=152]
+spheres = [ Plane( 9.53674e-07, -2.99716, 0, 1.60568 ), Plane( 9.53674e-07, 0.002841, 0, 1.6 ), Plane( 9.53674e-07, 3.00284, 0, 1.6 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=153]
+spheres = [ Plane( 0, 0, 0, 4 ), Plane( -3, 0, 0, 5 ), Plane( -6, 0, 0, 5 ), Plane( -9, 0, 0, 5 ), Plane( -19, 0, 0, 5 ), Plane( -29, 0, 0, 5 ), Plane( 5, 0, 0, 2 ), Plane( -38, 0, -2, 6 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=154]
+spheres = [ Plane( 0, 2, 0, 4 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=155]
+spheres = [ Plane( 0, 0, 0, 2 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=158]
+spheres = [ Plane( -38.7858, -0.305429, 31.746, 2.44516 ), Plane( -38.4716, -0.283626, -6.02049, 2.56961 ), Plane( 36.5704, -0.71208, 17.1584, 2.78277 ), Plane( 35.6669, -0.588298, 70.0991, 2.36927 ), Plane( -38.3487, -1.05524, 70.2908, 2.43613 ), Plane( -11.0473, -2.19134, 87.5866, 1.97201 ), Plane( 9.88319, -3.09868, 88.2968, 2.09281 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=157]
+spheres = [ Plane( 0, 0, 0, 3 ), Plane( -8, 0, 0, 3 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=156]
+spheres = [ Plane( 0, 1, 0, 2 ) ]
+
+[node name="map_mansion" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
+
+[node name="floors" type="Spatial" parent="."]
+script = ExtResource( 2 )
+lod_0_max_distance = 64.0
+lod_1_max_distance = 120.0
+lod_2_max_distance = 150.0
+
+[node name="grass-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 4, 0, -0.110357, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 14 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="fountain_wall-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, -4, -1, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 5
+}
+
+[node name="fountain_wall2-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 4, -1, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 6
+}
+
+[node name="fountain_wall3-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( -4.37114e-09, 0, 1, 0, 0.2, 0, -0.1, 0, -4.37114e-08, 0, -1, -4 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 7
+}
+
+[node name="fountain_wall4-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( -4.37114e-09, 0, 1, 0, 0.2, 0, -0.1, 0, -4.37114e-08, 0, -1, 4 )
+use_in_baked_light = true
+mesh = SubResource( 17 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 8
+}
+
+[node name="water-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 0, -0.36733, 0 )
+use_in_baked_light = true
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
+__meta__ = {
+"_vol_id": 9
+}
+
+[node name="fountain_wall5-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 1.9, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, -1, 8 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 10
+}
+
+[node name="fountain_wall7-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( -8.30516e-08, 0, 0.1, 0, 0.3, 0, -1.9, 0, -4.37114e-09, 8, -1, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 11,
+"apply_volumetrics": false
+}
+
+[node name="fountain_wall8-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( -8.30516e-08, 0, 0.1, 0, 0.3, 0, -1.9, 0, -4.37114e-09, -8, -1, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 12,
+"apply_volumetrics": false
+}
+
+[node name="fountain_wall6-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 1.9, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, -1, -8 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 13,
+"apply_volumetrics": false
+}
+
+[node name="plane10-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0, 24 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 14
+}
+
+[node name="plane2-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 16, 0, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 15
+}
+
+[node name="plane9-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 16, 0, 32 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 14 )
+__meta__ = {
+"_vol_id": 16
+}
+
+[node name="plane21-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, -16, 0, 32 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 14 )
+__meta__ = {
+"_vol_id": 17,
+"apply_volumetrics": false
+}
+
+[node name="plane22-lod1" type="MeshInstance" parent="floors"]
+transform = Transform( 124, 0, 0, 0, 1, 0, 0, 0, 24, 0, 0, -96 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 14 )
+__meta__ = {
+"_vol_id": 18
+}
+
+[node name="plane23-lod1" type="MeshInstance" parent="floors"]
+transform = Transform( 124, 0, 0, 0, 1, 0, 0, 0, 24, 0, 0, 128 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 14 )
+__meta__ = {
+"_vol_id": 19
+}
+
+[node name="plane24-lod1" type="MeshInstance" parent="floors"]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 88, -96, 0, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 14 )
+__meta__ = {
+"_vol_id": 20
+}
+
+[node name="plane25-lod1" type="MeshInstance" parent="floors"]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 88, 96, 0, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 14 )
+__meta__ = {
+"_vol_id": 21
+}
+
+[node name="plane3-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 16, 0, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 22
+}
+
+[node name="plane4-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 16, 0, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 23
+}
+
+[node name="plane5-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 24,
+"apply_volumetrics": false
+}
+
+[node name="plane26-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 16, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0, -56 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 25
+}
+
+[node name="plane6-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, -16, 0, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 26
+}
+
+[node name="plane7-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, -16, 0, 0 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 27
+}
+
+[node name="plane8-lod0" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, -16, 0, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 28
+}
+
+[node name="plane10" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 48, -32, 0, 24 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 29,
+"apply_volumetrics": false
+}
+
+[node name="plane12" type="MeshInstance" parent="floors"]
+transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 48, 32, 0, 24 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 30,
+"apply_volumetrics": false
+}
+
+[node name="plane11" type="MeshInstance" parent="floors"]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 24, 0, 0, 64 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 31,
+"apply_volumetrics": false
+}
+
+[node name="plane14" type="MeshInstance" parent="floors"]
+transform = Transform( 16, 0, 0, 0, 1, 0, 0, 0, 56, -56, 0, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 32
+}
+
+[node name="plane15" type="MeshInstance" parent="floors"]
+transform = Transform( 16, 0, 0, 0, 1, 0, 0, 0, 56, 56, 0, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 33
+}
+
+[node name="plane16" type="MeshInstance" parent="floors"]
+transform = Transform( 72, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, 96 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 34
+}
+
+[node name="plane17" type="MeshInstance" parent="floors"]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 8, 48, 0, 80 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 35
+}
+
+[node name="plane18" type="MeshInstance" parent="floors"]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 8, -48, 0, 80 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 36
+}
+
+[node name="plane19" type="MeshInstance" parent="floors"]
+transform = Transform( 28, 0, 0, 0, 1, 0, 0, 0, 16, -44, 0, -56 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 37
+}
+
+[node name="plane20" type="MeshInstance" parent="floors"]
+transform = Transform( 28, 0, 0, 0, 1, 0, 0, 0, 16, 44, 0, -56 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 13 )
+__meta__ = {
+"_vol_id": 38
+}
+
+[node name="plane13" type="MeshInstance" parent="floors"]
+transform = Transform( 40, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, -32 )
+use_in_baked_light = true
+mesh = ExtResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 6 )
+__meta__ = {
+"_vol_id": 39,
+"apply_volumetrics": false
+}
+
+[node name="floor2_floors" type="Spatial" parent="floors"]
+
+[node name="floor2_1" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
+transform = Transform( 16, 0, 0, 0, 0.1, 0, 0, 0, 3.5, 0, 8, -56 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="floor2_2" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
+transform = Transform( 15.7, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 8, 94 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="floor2_5" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
+transform = Transform( 4.2, 0, 0, 0, 0.1, 0, 0, 0, 1.4, 0, 8, 79 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="floor2_3" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
+transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 14, 56, 8, 22 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="floor2_4" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
+transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 14, -56, 8, 22 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="stair-lod1" type="MeshInstance" parent="floors"]
+transform = Transform( 2.27753, 0.0412373, 0, -1.03093, 0.0911015, 0, 0, 0, 1.4, -30.1124, 3.46123, 79 )
+mesh = ExtResource( 4 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="stair2-lod1" type="MeshInstance" parent="floors"]
+transform = Transform( -2.27753, -0.0412373, -1.22392e-07, -1.03093, 0.0911015, 0, 1.99108e-07, 3.60508e-09, -1.4, 30.083, 3.46123, 79 )
+mesh = ExtResource( 4 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 13 )
+
+[node name="Gate" type="MeshInstance" parent="floors"]
+transform = Transform( 2.2, 0, 0, 0, 0.9, 0, 0, 0, 0.1, 0, 3, -72 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 13 )
+
+[node name="collsion_stairs-lod1" type="CSGBox" parent="floors"]
+transform = Transform( 3.63543, 0.417106, 0, -1.66842, 0.908858, 0, 0, 0, 4, -29.3196, 3.17331, 79.8508 )
+use_collision = true
+width = 6.0
+height = 0.579114
+depth = 2.68181
+
+[node name="collsion_stairs2-lod1" type="CSGBox" parent="floors"]
+transform = Transform( -3.63543, -0.417106, -3.49691e-07, -1.66842, 0.908858, 0, 3.1782e-07, 3.64645e-08, -4, 29.3973, 3.17331, 79.8508 )
+use_collision = true
+width = 6.0
+height = 0.579114
+depth = 2.68181
+
+[node name="walls" type="Spatial" parent="."]
+
+[node name="external_walls" type="Spatial" parent="walls"]
+
+[node name="wall1" type="MeshInstance" parent="walls/external_walls"]
+transform = Transform( 0.3, 0, 0, 0, 2, 0, 0, 0, 16, 72, 8, -2 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 40
+}
+
+[node name="wall2" type="MeshInstance" parent="walls/external_walls"]
+transform = Transform( 0.3, 0, 0, 0, 2, 0, 0, 0, 16, -72, 8, -2 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 41
+}
+
+[node name="wall3" type="MeshInstance" parent="walls/external_walls"]
+transform = Transform( 16, 0, 0, 0, 2, 0, 0, 0, 0.2, 0, 8, 104 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 42
+}
+
+[node name="wall4" type="MeshInstance" parent="walls/external_walls"]
+transform = Transform( 7, 0, 0, 0, 2, 0, 0, 0, 0.3, 41, 8, -73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 43
+}
+
+[node name="wall5" type="MeshInstance" parent="walls/external_walls"]
+transform = Transform( 7, 0, 0, 0, 2, 0, 0, 0, 0.3, -41, 8, -73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 44
+}
+
+[node name="wall14" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 6.4, 0, 0, 0, 1, 0, 0, 0, 0.3, -43, 4, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 45,
+"apply_volumetrics": false
+}
+
+[node name="wall23" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3.1, 0, 0, 0, 1, 0, 0, 0, 0.3, -28, 13, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 45,
+"apply_volumetrics": false
+}
+
+[node name="wall15" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3.2, 0, 0, 0, 2, 0, 0, 0, 0.3, 29, 9, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 46
+}
+
+[node name="wall24" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3.3, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0, 8, -39.4514 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 46
+}
+
+[node name="wall25" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3.3, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0, 8, -72.4514 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 46
+}
+
+[node name="wall16" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 0.3, 32, 8, 73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 47
+}
+
+[node name="wall17" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 0.3, -32, 8, 73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 48
+}
+
+[node name="wall22" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 4.1, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 8, 73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 48
+}
+
+[node name="wall26" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 4.1, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 16, 73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 48
+}
+
+[node name="wall27" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 3.5, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1, 16, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 48
+}
+
+[node name="wall18" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -3.49691e-07, 0, -0.3, 0, 1, 0, 8, 0, -1.31134e-08, -40, 4, 18 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall20" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -5.46392e-07, 0, -0.1, 0, 0.2, 0, 12.5, 0, -4.37114e-09, -39, 9, 16 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall21" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -5.46392e-07, 0, -0.1, 0, 0.2, 0, 12.5, 0, -4.37114e-09, 38, 9, 15 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall45" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, -72, 8, 87 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall77" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, -72, 15, 87 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall78" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, 72, 15, 87 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall46" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, 72, 8, 87 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall39" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, -16, 3, -44 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall40" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, -16, 3, -68 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall41" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, 16, 3, -68 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall42" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, 16, 3, -45 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall43" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, 24, 3, 99 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall44" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, -24, 3, 99 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 49
+}
+
+[node name="wall19" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -3.49691e-07, 0, -0.3, 0, 1, 0, 8, 0, -1.31134e-08, 39, 4, 17 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall47" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.74846e-07, 0, -0.2, 0, 1, 0, 4, 0, -8.74228e-09, 57, 3, 56 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.09278e-07, 0, -0.2, 0, 1, 0, 2.5, 0, -8.74228e-09, 51, 13, 63 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall62" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.30516e-08, 0, -0.2, 0, 1, 0, 1.9, 0, -8.74228e-09, 51, 13, 39 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall65" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, -0.2, 0, 1, 0, 2, 0, -8.74228e-09, 51, 13, -5 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall70" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, -0.2, 0, 1, 0, 2, 0, -8.74228e-09, 38, 13, -30 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall71" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, 38, 13, 68 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall83" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, 10, 13, 81 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall84" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, -11, 13, 81 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall74" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, 38, 13, 17 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall72" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, 68 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall75" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, 31 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall76" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, -7 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall73" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, -34 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall66" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-07, 0, -0.2, 0, 1, 0, 5, 0, -8.74228e-09, 51, 13, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall67" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, -51, 13, -28 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall79" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, -20, 13, -48 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall80" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, -20, 13, -65 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall81" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, 20, 13, -65 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall82" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, 20, 13, -48 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall68" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, -51, 13, 2 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall69" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-07, 0, -0.2, 0, 1, 0, 5, 0, -8.74228e-09, -51, 13, 41 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall53" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.74846e-07, 0, -0.2, 0, 1, 0, 4, 0, -8.74228e-09, -54, 3, 56 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall56" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, -56, 3, 12 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall48" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, -0.2, 0, 1, 0, 2, 0, -8.74228e-09, 57, 3, 25 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall49" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, 57, 3, -1 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall50" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, 64, 3, -14 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall51" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, 64, 3, 25 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall52" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, 64, 3, 68 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall54" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, -63, 3, 69 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall55" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, -49, 3, 30 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall57" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, -65, 3, 7 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall58" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.6, 0, 1, 0, 0.2, 0, -6.99382e-08, -48, 3, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall59" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.4, 0, 1, 0, 0.2, 0, -6.11959e-08, -65, 3, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall60" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1, 0, 1, 0, 0.2, 0, -4.37114e-08, 44, 3, -14 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall63" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1, 0, 1, 0, 0.2, 0, -4.37114e-08, 44, 3, 30 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall64" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1, 0, 1, 0, 0.2, 0, -4.37114e-08, 44, 3, 52 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.4, 0, 1, 0, 0.2, 0, -6.11959e-08, 66, 3, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod2" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -0.4, 0, 1.1, 0, 0.2, 0, -1.74846e-08, 53, 12, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod3" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -0.4, 0, 1.1, 0, 0.2, 0, -1.74846e-08, 70, 12, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod4" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -5.66937e-08, 0, -2.2, 0, 1, 0, 1.297, 0, -9.61651e-08, 61, 13, -2 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod5" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, 61, 13, 31 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod6" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, 61, 13, 69 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod7" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, -58, 13, 63 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod8" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, -61, 13, 10 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall61-lod9" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -5.20166e-08, 0, -2.2, 0, 1, 0, 1.19, 0, -9.61651e-08, -61, 13, -36 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall62-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-09, 0, -1.4, 0, 1, 0, 0.2, 0, -6.11959e-08, 49, 3, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 50
+}
+
+[node name="wall21-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 39, 4, 63 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 51
+}
+
+[node name="wall22-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -40, 4, 63 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 52
+}
+
+[node name="wall23-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -40, 4, -25 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 53
+}
+
+[node name="wall23-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, -40, 8, -28 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 53
+}
+
+[node name="wall23-lod2" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, -40, 8, 62 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 53
+}
+
+[node name="wall23-lod3" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, 39, 8, 62 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 53
+}
+
+[node name="wall23-lod4" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, 39, 8, -28 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 53
+}
+
+[node name="wall29-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -31, 3.64358, -25 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 54
+}
+
+[node name="wall30-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -31, 3.64358, -7 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 55
+}
+
+[node name="wall31-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -31, 3.64358, 30 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 56
+}
+
+[node name="wall32-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 32, 4, 31 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 57
+}
+
+[node name="wall33-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 32, 4, -7 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 58
+}
+
+[node name="wall34-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 32, 4, -25 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, 20, 15, -56 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod2" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, -20, 15, -56 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod3" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, -51, 15, -13 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod4" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, -51, 15, 17 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod5" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, 51, 15, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod6" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.52215e-08, 0, -0.2, 0, 0.35, 0, 0.577, 0, -8.74228e-09, 51, 15, 50 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod7" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 0.577, 0, 0, 0, 0.35, 0, 0, 0, 0.2, -69, 15, 63 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod8" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -2.52215e-08, 0, 0.2, 0, 0.35, 0, -0.577, 0, -8.74228e-09, -56, 6, 28 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod9" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -0.577, 0, -1.74846e-08, 0, 0.35, 0, 5.04429e-08, 0, -0.2, -57, 6, -16 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod10" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -0.577, 0, -1.74846e-08, 0, 0.35, 0, 5.04429e-08, 0, -0.2, 58, 6, -40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod11" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 7.56644e-08, 0, -0.2, 0, 0.35, 0, 0.577, 0, 2.62268e-08, 57, 6, 14 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall34-lod12" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 7.56644e-08, 0, -0.2, 0, 0.35, 0, 0.577, 0, 2.62268e-08, 57, 6, 36 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 59
+}
+
+[node name="wall24-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -40, 4, -33 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 60
+}
+
+[node name="wall25-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 39, 4, -33 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 61
+}
+
+[node name="wall26-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 39, 4, -25 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 62
+}
+
+[node name="wall27-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, -11, 8, 73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 63
+}
+
+[node name="wall35-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, -11, 8, 88 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 64
+}
+
+[node name="wall38-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, -11, 8, 101 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 65
+}
+
+[node name="wall28-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, 10, 8, 73 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 66
+}
+
+[node name="wall36-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, 10, 8, 88 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 67
+}
+
+[node name="wall37-lod1" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, 10, 8, 101 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 68
+}
+
+[node name="wall6-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, -15, 1, -24 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 69
+}
+
+[node name="wall7-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 15, 1, -24 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 70,
+"apply_volumetrics": false
+}
+
+[node name="wall8-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 15, 1, 40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 71
+}
+
+[node name="wall9-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, -15, 1, 40 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 72
+}
+
+[node name="wall20-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( 4, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, 1, 57 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 73
+}
+
+[node name="wall10-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, -24, 1, 31 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 74
+}
+
+[node name="wall11-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, -24, 1, -15 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 75
+}
+
+[node name="wall12-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, 24, 1, -15 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 76
+}
+
+[node name="wall13-lod0" type="MeshInstance" parent="walls" groups=["lod"]]
+transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, 24, 1, 31 )
+use_in_baked_light = true
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 12 )
+__meta__ = {
+"_vol_id": 77
+}
+
+[node name="roofs" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16 )
+script = ExtResource( 2 )
+lod_0_max_distance = 82.0
+lod_1_max_distance = 142.5
+lod_2_max_distance = 180.1
+
+[node name="roof1-lod0" type="MeshInstance" parent="roofs"]
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 56, -34, 9, -1 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="roof2-lod0" type="MeshInstance" parent="roofs"]
+transform = Transform( -5, 0, -4.89568e-06, 0, 1, 0, 4.37114e-07, 0, -56, 33, 9, -1 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="roof3-lod0" type="MeshInstance" parent="roofs"]
+transform = Transform( -2.18557e-07, 0, 38.5, 0, 1, 0, -5, 0, -1.68289e-06, 0, 9, 51 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="3rd_floor_roof" type="Spatial" parent="roofs"]
+
+[node name="MeshInstance" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( 16, 0, 0, 0, 0.1, 0, 0, 0, 4, 0, 17, 72 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 13 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( 16, 0, 0, 0, 0.1, 0, 0, 0, 4, 0, 17, -75 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 13 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 12.5, -56, 17, -2 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 13 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 12.5, 55, 17, -2 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 13 )
+
+[node name="top_roof" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( 20, 0, 0, 0, 5, 0, 0, 0, 90, -55, 22, -2 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="top_roof2" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( -8.74228e-07, 0, -90, 0, 5, 0, 20, 0, -3.93402e-06, -2, 22, -70 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="top_roof3" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( -20, 0, 7.86805e-06, 0, 5, 0, -1.74846e-06, 0, -90, 55, 22, 1 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="top_roof4" type="MeshInstance" parent="roofs/3rd_floor_roof"]
+transform = Transform( 2.62268e-06, 0, 90, 0, 5, 0, -20, 0, 1.18021e-05, 1, 22, 72 )
+use_in_baked_light = true
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 18 )
+
+[node name="props" type="Spatial" parent="."]
+script = ExtResource( 2 )
+lod_0_max_distance = 41.0
+lod_1_max_distance = 150.0
+lod_2_max_distance = 200.0
+
+[node name="potted_plants-lod1" type="Spatial" parent="props"]
+
+[node name="potted_plant1" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0.640648, -14 )
+
+[node name="potted_plant2" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0.640648, 28 )
+
+[node name="potted_plant3" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0.640648, 30 )
+
+[node name="potted_plant4" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0.640648, 33 )
+
+[node name="potted_plant5" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0.640648, 76 )
+
+[node name="potted_plant6" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0.640648, 76 )
+
+[node name="potted_plant7" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0.640648, 71 )
+
+[node name="potted_plant8" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0.640648, 65 )
+
+[node name="potted_plant9" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0.640648, 23 )
+
+[node name="potted_plant10" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0.640648, 27 )
+
+[node name="potted_plant11" parent="props/potted_plants-lod1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0.640648, -12 )
+
+[node name="dressers-lod1" type="Spatial" parent="props"]
+
+[node name="wooden_dresser" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 9.35676, 12 )
+
+[node name="wooden_dresser10" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -48, 9.35676, 33 )
+
+[node name="wooden_dresser2" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -56, 9.35676, 101 )
+
+[node name="wooden_dresser3" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 66, 9.35676, 101 )
+
+[node name="wooden_dresser4" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 67, 9.35676, 67 )
+
+[node name="wooden_dresser5" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 55, 9.35676, -9.00001 )
+
+[node name="wooden_dresser6" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 55, 9.35676, 5.99999 )
+
+[node name="wooden_dresser7" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 40, 9.35676, 16 )
+
+[node name="wooden_dresser8" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -37, 9.35676, -43 )
+
+[node name="wooden_dresser9" parent="props/dressers-lod1" instance=ExtResource( 14 )]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -69, 9.35676, -22 )
+
+[node name="others-lod1" type="Spatial" parent="props"]
+
+[node name="wooden_table" parent="props/others-lod1" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -68, 1, -19 )
+
+[node name="wooden_table2" parent="props/others-lod1" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -68, 1, -13 )
+
+[node name="wooden_table3" parent="props/others-lod1" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57, 1, 53 )
+
+[node name="wooden_table4" parent="props/others-lod1" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -41, 1, 77 )
+
+[node name="bookshelf" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 8.15777, 101 )
+
+[node name="bookshelf2" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -68, 8.15777, 93 )
+
+[node name="bookshelf3" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 8.15777, 101 )
+
+[node name="bookshelf4" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 60, 8.15777, 101 )
+
+[node name="bookshelf5" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 58, 8.15777, 66 )
+
+[node name="bookshelf6" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 56, 8.15777, -22 )
+
+[node name="bookshelf7" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 8.15777, -69 )
+
+[node name="bookshelf8" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -59, 8.15777, -69 )
+
+[node name="bookshelf9" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -69, 8.15777, 0 )
+
+[node name="bookshelf10" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -54, 8.15777, 27 )
+
+[node name="bookshelf11" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -54, 8.15777, 35 )
+
+[node name="bookshelf12" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -52, -0.126766, 41 )
+
+[node name="bookshelf13" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -69, -0.126766, 41 )
+
+[node name="bookshelf16" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -54, -0.126766, 78 )
+
+[node name="bookshelf17" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 43, -0.126766, 82 )
+
+[node name="bookshelf18" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 68, -0.126766, 48 )
+
+[node name="bookshelf29" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 61, 7.87323, 28 )
+
+[node name="bookshelf19" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 68, -0.126766, -46 )
+
+[node name="bookshelf20" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 68, -0.126766, -54 )
+
+[node name="bookshelf21" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 68, -0.126766, -62 )
+
+[node name="bookshelf22" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 59, -0.126766, -63 )
+
+[node name="bookshelf23" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 45, -0.126766, -63 )
+
+[node name="bookshelf27" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 34, -0.126766, -63 )
+
+[node name="bookshelf28" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 34, -0.126766, -53 )
+
+[node name="bookshelf24" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 45, -0.126766, -53 )
+
+[node name="bookshelf25" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 60, -0.126766, -53 )
+
+[node name="bookshelf26" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 45, -0.126766, -43 )
+
+[node name="bookshelf14" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -69, -0.126766, 30 )
+
+[node name="bookshelf15" parent="props/others-lod1" instance=ExtResource( 16 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -66, -0.126766, 1 )
+
+[node name="storage_rack" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -40, 0, -69 )
+
+[node name="storage_rack4" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.25, 0, -0.433013, 0, 0.4, 0, 0.433013, 0, 0.25, -39, 0, -61 )
+
+[node name="storage_rack5" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.433013, 0, -0.25, 0, 0.4, 0, 0.25, 0, 0.433013, -26, 0, -44 )
+
+[node name="storage_rack6" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.353553, 0, -0.353553, 0, 0.4, 0, 0.353553, 0, 0.353553, -34, 0, -51 )
+
+[node name="storage_rack7" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( -0.12941, 0, -0.482963, 0, 0.4, 0, 0.482963, 0, -0.12941, -53, 0, -56 )
+
+[node name="storage_rack8" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.433013, 0, -0.25, 0, 0.4, 0, 0.25, 0, 0.433013, -42, 0, -48 )
+
+[node name="storage_rack2" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -65, 0, -69 )
+
+[node name="storage_rack3" parent="props/others-lod1" instance=ExtResource( 15 )]
+transform = Transform( 0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -53, 0, -69 )
+
+[node name="chairs-lod1" type="Spatial" parent="props"]
+
+[node name="sofav1" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -52, 0, 10 )
+
+[node name="sofav2" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 68, 0, -28 )
+
+[node name="sofav3" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 44, 0, 3.8147e-06 )
+
+[node name="sofav10" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( 3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, 68, 8, 17 )
+
+[node name="sofav11" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 64, 8, 7 )
+
+[node name="sofav12" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( -0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707107, -44, 8, 30 )
+
+[node name="sofav4" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 44, 0, 14 )
+
+[node name="sofav5" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( -1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 56, 8, 94 )
+
+[node name="sofav6" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( 3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, 64, 8, 85 )
+
+[node name="sofav7" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( 3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, -52, 8, 91 )
+
+[node name="sofav8" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, -60, 8, 67 )
+
+[node name="sofav9" parent="props/chairs-lod1" instance=ExtResource( 11 )]
+transform = Transform( -1, 0, -4.37114e-07, 0, 1, 0, 4.37114e-07, 0, -1, -29, 8, -45 )
+
+[node name="bounds" type="Spatial" parent="props"]
+
+[node name="bush" type="MeshInstance" parent="props/bounds"]
+transform = Transform( 1, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 78, 2, 68 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 35 )
+
+[node name="bush6" type="MeshInstance" parent="props/bounds"]
+transform = Transform( 1, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -80, 2, 68 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 35 )
+
+[node name="bush2" type="MeshInstance" parent="props/bounds"]
+transform = Transform( 2, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 81, 2, 105 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 35 )
+
+[node name="bush5" type="MeshInstance" parent="props/bounds"]
+transform = Transform( 2, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -80.9788, 2, 105 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 35 )
+
+[node name="bush3" type="MeshInstance" parent="props/bounds"]
+transform = Transform( -2.18557e-07, 0, 0.5, 0, 0.4, 0, -5, 0, -2.18557e-08, 92, 2, 86 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 35 )
+
+[node name="bush4" type="MeshInstance" parent="props/bounds"]
+transform = Transform( -2.18557e-07, 0, 0.5, 0, 0.4, 0, -5, 0, -2.18557e-08, -87, 2, 86 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 35 )
+
+[node name="safety" type="MeshInstance" parent="props/bounds"]
+transform = Transform( 3.2, 0, 0, 0, 0.2, 0, 0, 0, 0.05, 0, 9, -39 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 17 )
+
+[node name="safety2" type="MeshInstance" parent="props/bounds"]
+transform = Transform( 3.2, 0, 0, 0, 0.2, 0, 0, 0, 0.05, 0, 9.28668, -72 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 17 )
+
+[node name="solid_walls" type="StaticBody" parent="."]
+transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0 )
+collision_layer = 17
+collision_mask = 17
+input_ray_pickable = false
+
+[node name="main_plane_floor" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 0, -0.110357, 0 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.075, 0, 0, 0, 2, 0, 0, 0, 4, 18, 8, -0.5 )
+shape = SubResource( 16 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.075, 0, 0, 0, 2, 0, 0, 0, 4, -18, 8, -0.5 )
+shape = SubResource( 19 )
+
+[node name="CollisionShape13" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.875, 0, 0, 0, 0.1, 0, 0, 0, 3.5, -14, 8, 5.5 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape14" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 3.925, 0, 0, 0, 0.1, 0, 0, 0, 0.5, 0, 8, 23.5 )
+shape = SubResource( 23 )
+
+[node name="CollisionShape15" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.05, 0, 0, 0, 0.1, 0, 0, 0, 0.35, 0, 8, 19.75 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape16" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.875, 0, 0, 0, 0.1, 0, 0, 0, 3.5, 14, 8, 5.5 )
+shape = SubResource( 25 )
+
+[node name="CollisionShape17" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.875, 0, 0, 0, 0.1, 0, 0, 0, 3.5, -14, 8, 5.5 )
+shape = SubResource( 26 )
+
+[node name="CollisionShape18" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 4, 0, 0, 0, 2, 0, 0, 0, 0.05, 0, 8, 26 )
+shape = SubResource( 32 )
+
+[node name="CollisionShape" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 4, 0, 0, 0, 0.1, 0, 0, 0, 0.875, 0, 8, -14 )
+shape = SubResource( 33 )
+
+[node name="inner_walls" type="Spatial" parent="solid_walls"]
+
+[node name="wall" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 12, 21.75 )
+shape = SubResource( 34 )
+
+[node name="wall2" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, 12, 21.75 )
+shape = SubResource( 34 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.75, 0, 0, 0, 2, 0, 0, 0, 0.075, 10.25, 8, -18.25 )
+shape = SubResource( 36 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.75, 0, 0, 0, 2, 0, 0, 0, 0.075, -10.25, 8, -18.25 )
+shape = SubResource( 37 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.6, 0, 0, 0, 1, 0, 0, 0, 0.075, -10.75, 4, -10 )
+shape = SubResource( 38 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.775, 0, 0, 0, 1, 0, 0, 0, 0.075, -7, 13, -10 )
+shape = SubResource( 39 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.8, 0, 0, 0, 2, 0, 0, 0, 0.075, 7.25, 9, -10 )
+shape = SubResource( 40 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.825, 0, 0, 0, 0.1, 0, 0, 0, 0.05, 0, 8, -9.86285 )
+shape = SubResource( 41 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.825, 0, 0, 0, 0.1, 0, 0, 0, 0.05, 0, 8, -18.1129 )
+shape = SubResource( 42 )
+
+[node name="CollisionShape11" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.75, 0, 0, 0, 2, 0, 0, 0, 0.075, 8, 8, 18.25 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape12" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.75, 0, 0, 0, 2, 0, 0, 0, 0.075, -8, 8, 18.25 )
+shape = SubResource( 44 )
+
+[node name="CollisionShape19" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.025, 0, 0, 0, 0.2, 0, 0, 0, 0.075, 0, 8, 18.25 )
+shape = SubResource( 45 )
+
+[node name="CollisionShape20" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.025, 0, 0, 0, 0.2, 0, 0, 0, 0.075, 0, 16, 18.25 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape21" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.875, 0, 0, 0, 0.3, 0, 0, 0, 0.075, 0.25, 16, -10 )
+shape = SubResource( 47 )
+
+[node name="CollisionShape22" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -8.74227e-08, 0, -0.075, 0, 1, 0, 2, 0, -3.27835e-09, -10, 4, 4.5 )
+shape = SubResource( 48 )
+
+[node name="CollisionShape23" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.36598e-07, 0, -0.025, 0, 0.2, 0, 3.125, 0, -1.09278e-09, -9.75, 9, 4 )
+shape = SubResource( 49 )
+
+[node name="CollisionShape24" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.36598e-07, 0, -0.025, 0, 0.2, 0, 3.125, 0, -1.09278e-09, 9.5, 9, 3.75 )
+shape = SubResource( 50 )
+
+[node name="CollisionShape25" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -4.37115e-08, 0, -0.075, 0, 0.5, 0, 1, 0, -3.27835e-09, -18, 8, 21.75 )
+shape = SubResource( 51 )
+
+[node name="CollisionShape26" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -4.37115e-08, 0, -0.075, 0, 0.5, 0, 1, 0, -3.27835e-09, -18, 15, 21.75 )
+shape = SubResource( 52 )
+
+[node name="CollisionShape27" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -4.37115e-08, 0, -0.075, 0, 0.5, 0, 1, 0, -3.27835e-09, 18, 15, 21.75 )
+shape = SubResource( 53 )
+
+[node name="CollisionShape28" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -4.37115e-08, 0, -0.075, 0, 0.5, 0, 1, 0, -3.27835e-09, 18, 8, 21.75 )
+shape = SubResource( 54 )
+
+[node name="CollisionShape29" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.025, 0, 1.2, 0, 0.25, 0, -1.09278e-09, -4, 3, -11 )
+shape = SubResource( 55 )
+
+[node name="CollisionShape30" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.025, 0, 1.2, 0, 0.25, 0, -1.09278e-09, -4, 3, -17 )
+shape = SubResource( 56 )
+
+[node name="CollisionShape31" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.025, 0, 1.2, 0, 0.25, 0, -1.09278e-09, 4, 3, -17 )
+shape = SubResource( 57 )
+
+[node name="CollisionShape32" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.025, 0, 1.2, 0, 0.25, 0, -1.09278e-09, 4, 3, -11.25 )
+shape = SubResource( 58 )
+
+[node name="CollisionShape33" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.025, 0, 1.2, 0, 0.25, 0, -1.09278e-09, 6, 3, 24.75 )
+shape = SubResource( 59 )
+
+[node name="CollisionShape34" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.025, 0, 1.2, 0, 0.25, 0, -1.09278e-09, -6, 3, 24.75 )
+shape = SubResource( 60 )
+
+[node name="CollisionShape35" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -8.74227e-08, 0, -0.075, 0, 1, 0, 2, 0, -3.27835e-09, 9.75, 4, 4.25 )
+shape = SubResource( 61 )
+
+[node name="CollisionShape36" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -4.37115e-08, 0, -0.05, 0, 1, 0, 1, 0, -2.18557e-09, 14.25, 3, 14 )
+shape = SubResource( 62 )
+
+[node name="CollisionShape37" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.73195e-08, 0, -0.05, 0, 1, 0, 0.625, 0, -2.18557e-09, 12.75, 13, 15.75 )
+shape = SubResource( 63 )
+
+[node name="CollisionShape38" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.07629e-08, 0, -0.05, 0, 1, 0, 0.475, 0, -2.18557e-09, 12.75, 13, 9.75 )
+shape = SubResource( 64 )
+
+[node name="CollisionShape39" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, -0.05, 0, 1, 0, 0.5, 0, -2.18557e-09, 12.75, 13, -1.25 )
+shape = SubResource( 65 )
+
+[node name="CollisionShape40" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, -0.05, 0, 1, 0, 0.5, 0, -2.18557e-09, 9.5, 13, -7.5 )
+shape = SubResource( 66 )
+
+[node name="CollisionShape41" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.05, 0, 1, 0, 0.25, 0, -2.18557e-09, 9.5, 13, 17 )
+shape = SubResource( 67 )
+
+[node name="CollisionShape42" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.63918e-08, 0, -0.05, 0, 1, 0, 0.375, 0, -2.18557e-09, 2.5, 13, 20.25 )
+shape = SubResource( 68 )
+
+[node name="CollisionShape43" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.63918e-08, 0, -0.05, 0, 1, 0, 0.375, 0, -2.18557e-09, -2.75, 13, 20.25 )
+shape = SubResource( 69 )
+
+[node name="CollisionShape44" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.05, 0, 1, 0, 0.25, 0, -2.18557e-09, 9.5, 13, 4.25 )
+shape = SubResource( 70 )
+
+[node name="CollisionShape45" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.05, 0, 1, 0, 0.25, 0, -2.18557e-09, -10, 12, 17 )
+shape = SubResource( 71 )
+
+[node name="CollisionShape46" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.05, 0, 1, 0, 0.25, 0, -2.18557e-09, -10, 12, 7.75 )
+shape = SubResource( 72 )
+
+[node name="CollisionShape47" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.05, 0, 1, 0, 0.25, 0, -2.18557e-09, -10, 12, -1.75 )
+shape = SubResource( 73 )
+
+[node name="CollisionShape48" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.09278e-08, 0, -0.05, 0, 1, 0, 0.25, 0, -2.18557e-09, -10, 12, -8.5 )
+shape = SubResource( 74 )
+
+[node name="CollisionShape49" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46393e-08, 0, -0.05, 0, 1, 0, 1.25, 0, -2.18557e-09, 12.75, 13, -10 )
+shape = SubResource( 75 )
+
+[node name="CollisionShape50" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-08, 0, -0.05, 0, 1, 0, 0.75, 0, -2.18557e-09, -12.75, 13, -7 )
+shape = SubResource( 76 )
+
+[node name="CollisionShape51" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.63918e-08, 0, -0.05, 0, 1, 0, 0.375, 0, -2.18557e-09, -5, 13, -12 )
+shape = SubResource( 77 )
+
+[node name="CollisionShape52" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.63918e-08, 0, -0.05, 0, 1, 0, 0.375, 0, -2.18557e-09, -5, 13, -16.25 )
+shape = SubResource( 78 )
+
+[node name="CollisionShape53" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.63918e-08, 0, -0.05, 0, 1, 0, 0.375, 0, -2.18557e-09, 5, 13, -16.25 )
+shape = SubResource( 79 )
+
+[node name="CollisionShape54" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.63918e-08, 0, -0.05, 0, 1, 0, 0.375, 0, -2.18557e-09, 5, 13, -12 )
+shape = SubResource( 80 )
+
+[node name="CollisionShape55" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-08, 0, -0.05, 0, 1, 0, 0.75, 0, -2.18557e-09, -12.75, 13, 0.5 )
+shape = SubResource( 81 )
+
+[node name="CollisionShape56" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46393e-08, 0, -0.05, 0, 1, 0, 1.25, 0, -2.18557e-09, -12.75, 13, 10.25 )
+shape = SubResource( 82 )
+
+[node name="CollisionShape57" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -4.37115e-08, 0, -0.05, 0, 1, 0, 1, 0, -2.18557e-09, -13.5, 3, 14 )
+shape = SubResource( 83 )
+
+[node name="CollisionShape58" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-08, 0, -0.05, 0, 1, 0, 0.75, 0, -2.18557e-09, -14, 3, 3 )
+shape = SubResource( 84 )
+
+[node name="CollisionShape59" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, -0.05, 0, 1, 0, 0.5, 0, -2.18557e-09, 14.25, 3, 6.25 )
+shape = SubResource( 85 )
+
+[node name="CollisionShape60" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-08, 0, -0.05, 0, 1, 0, 0.75, 0, -2.18557e-09, 14.25, 3, -0.25 )
+shape = SubResource( 86 )
+
+[node name="CollisionShape61" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.45, 0, 1, 0, 0.05, 0, -1.96701e-08, 16, 3, -3.5 )
+shape = SubResource( 87 )
+
+[node name="CollisionShape62" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.45, 0, 1, 0, 0.05, 0, -1.96701e-08, 16, 3, 6.25 )
+shape = SubResource( 88 )
+
+[node name="CollisionShape63" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.45, 0, 1, 0, 0.05, 0, -1.96701e-08, 16, 3, 17 )
+shape = SubResource( 89 )
+
+[node name="CollisionShape64" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.45, 0, 1, 0, 0.05, 0, -1.96701e-08, -15.75, 3, 17.25 )
+shape = SubResource( 90 )
+
+[node name="CollisionShape65" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.45, 0, 1, 0, 0.05, 0, -1.96701e-08, -12.25, 3, 7.5 )
+shape = SubResource( 91 )
+
+[node name="CollisionShape66" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.45, 0, 1, 0, 0.05, 0, -1.96701e-08, -16.25, 3, 1.75 )
+shape = SubResource( 92 )
+
+[node name="CollisionShape67" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.4, 0, 1, 0, 0.05, 0, -1.74846e-08, -12, 3, -4 )
+shape = SubResource( 93 )
+
+[node name="CollisionShape68" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.35, 0, 1, 0, 0.05, 0, -1.5299e-08, -16.25, 3, -4 )
+shape = SubResource( 94 )
+
+[node name="CollisionShape69" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.25, 0, 1, 0, 0.05, 0, -1.09278e-08, 11, 3, -3.5 )
+shape = SubResource( 95 )
+
+[node name="CollisionShape70" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.25, 0, 1, 0, 0.05, 0, -1.09278e-08, 11, 3, 7.5 )
+shape = SubResource( 96 )
+
+[node name="CollisionShape71" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.25, 0, 1, 0, 0.05, 0, -1.09278e-08, 11, 3, 13 )
+shape = SubResource( 97 )
+
+[node name="CollisionShape72" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.35, 0, 1, 0, 0.05, 0, -1.5299e-08, 16.5, 3, -10 )
+shape = SubResource( 98 )
+
+[node name="CollisionShape73" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.1, 0, 1.1, 0, 0.05, 0, -4.37115e-09, 13.25, 12, -10 )
+shape = SubResource( 99 )
+
+[node name="CollisionShape74" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.1, 0, 1.1, 0, 0.05, 0, -4.37115e-09, 17.5, 12, -10 )
+shape = SubResource( 100 )
+
+[node name="CollisionShape75" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.41734e-08, 0, -0.55, 0, 1, 0, 0.32425, 0, -2.40413e-08, 15.25, 13, -0.5 )
+shape = SubResource( 101 )
+
+[node name="CollisionShape76" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.55, 0, 1, 0, 0.05, 0, -2.40413e-08, 15.25, 13, 7.75 )
+shape = SubResource( 102 )
+
+[node name="CollisionShape77" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.55, 0, 1, 0, 0.05, 0, -2.40413e-08, 15.25, 13, 17.25 )
+shape = SubResource( 103 )
+
+[node name="CollisionShape78" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.55, 0, 1, 0, 0.05, 0, -2.40413e-08, -14.5, 13, 15.75 )
+shape = SubResource( 104 )
+
+[node name="CollisionShape79" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.55, 0, 1, 0, 0.05, 0, -2.40413e-08, -15.25, 13, 2.5 )
+shape = SubResource( 105 )
+
+[node name="CollisionShape80" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -1.30041e-08, 0, -0.55, 0, 1, 0, 0.2975, 0, -2.40413e-08, -15.25, 13, -9 )
+shape = SubResource( 106 )
+
+[node name="CollisionShape81" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-09, 0, -0.35, 0, 1, 0, 0.05, 0, -1.5299e-08, 12.25, 3, -10 )
+shape = SubResource( 107 )
+
+[node name="CollisionShape82" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, 9.75, 4, 15.75 )
+shape = SubResource( 108 )
+
+[node name="CollisionShape83" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, -10, 4, 15.75 )
+shape = SubResource( 109 )
+
+[node name="CollisionShape84" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, -10, 4, -6.25 )
+shape = SubResource( 110 )
+
+[node name="CollisionShape85" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.62268e-08, 0, -0.075, 0, 0.12, 0, 0.6, 0, -3.27835e-09, -10, 8, -7 )
+shape = SubResource( 111 )
+
+[node name="CollisionShape86" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.62268e-08, 0, -0.075, 0, 0.12, 0, 0.6, 0, -3.27835e-09, -10, 8, 15.5 )
+shape = SubResource( 112 )
+
+[node name="CollisionShape87" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.62268e-08, 0, -0.075, 0, 0.12, 0, 0.6, 0, -3.27835e-09, 9.75, 8, 15.5 )
+shape = SubResource( 113 )
+
+[node name="CollisionShape88" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.62268e-08, 0, -0.075, 0, 0.12, 0, 0.6, 0, -3.27835e-09, 9.75, 8, -7 )
+shape = SubResource( 114 )
+
+[node name="CollisionShape89" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, -7.75, 3.64358, -6.25 )
+shape = SubResource( 115 )
+
+[node name="CollisionShape90" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, -7.75, 3.64358, -1.75 )
+shape = SubResource( 116 )
+
+[node name="CollisionShape91" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, -7.75, 3.64358, 7.5 )
+shape = SubResource( 117 )
+
+[node name="CollisionShape92" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, 8, 4, 7.75 )
+shape = SubResource( 118 )
+
+[node name="CollisionShape93" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, 8, 4, -1.75 )
+shape = SubResource( 119 )
+
+[node name="CollisionShape94" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, 8, 4, -6.25 )
+shape = SubResource( 120 )
+
+[node name="CollisionShape95" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46392e-09, 0, -0.05, 0, 0.35, 0, 0.125, 0, -2.18557e-09, 5, 15, -14 )
+shape = SubResource( 121 )
+
+[node name="CollisionShape96" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46392e-09, 0, -0.05, 0, 0.35, 0, 0.125, 0, -2.18557e-09, -5, 15, -14 )
+shape = SubResource( 122 )
+
+[node name="CollisionShape97" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46392e-09, 0, -0.05, 0, 0.35, 0, 0.125, 0, -2.18557e-09, -12.75, 15, -3.25 )
+shape = SubResource( 123 )
+
+[node name="CollisionShape98" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46392e-09, 0, -0.05, 0, 0.35, 0, 0.125, 0, -2.18557e-09, -12.75, 15, 4.25 )
+shape = SubResource( 124 )
+
+[node name="CollisionShape99" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -5.46392e-09, 0, -0.05, 0, 0.35, 0, 0.125, 0, -2.18557e-09, 12.75, 15, -4 )
+shape = SubResource( 125 )
+
+[node name="CollisionShape100" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -6.30537e-09, 0, -0.05, 0, 0.35, 0, 0.14425, 0, -2.18557e-09, 12.75, 15, 12.5 )
+shape = SubResource( 126 )
+
+[node name="CollisionShape101" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.14425, 0, 0, 0, 0.35, 0, 0, 0, 0.05, -17.25, 15, 15.75 )
+shape = SubResource( 127 )
+
+[node name="CollisionShape102" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -6.30537e-09, 0, 0.05, 0, 0.35, 0, -0.14425, 0, -2.18557e-09, -14, 6, 7 )
+shape = SubResource( 128 )
+
+[node name="CollisionShape103" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -0.14425, 0, -4.37114e-09, 0, 0.35, 0, 1.26107e-08, 0, -0.05, -14.25, 6, -4 )
+shape = SubResource( 129 )
+
+[node name="CollisionShape104" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -0.14425, 0, -4.37114e-09, 0, 0.35, 0, 1.26107e-08, 0, -0.05, 14.5, 6, -10 )
+shape = SubResource( 130 )
+
+[node name="CollisionShape105" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.89161e-08, 0, -0.05, 0, 0.35, 0, 0.14425, 0, 6.55671e-09, 14.25, 6, 3.5 )
+shape = SubResource( 131 )
+
+[node name="CollisionShape106" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1.89161e-08, 0, -0.05, 0, 0.35, 0, 0.14425, 0, 6.55671e-09, 14.25, 6, 9 )
+shape = SubResource( 132 )
+
+[node name="CollisionShape107" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, -10, 4, -8.25 )
+shape = SubResource( 133 )
+
+[node name="CollisionShape108" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, 9.75, 4, -8.25 )
+shape = SubResource( 134 )
+
+[node name="CollisionShape109" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 1, 0, 0.075, 0, -3.27835e-09, 9.75, 4, -6.25 )
+shape = SubResource( 135 )
+
+[node name="CollisionShape110" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 2, 0, 0.075, 0, -3.27835e-09, -2.75, 8, 18.25 )
+shape = SubResource( 136 )
+
+[node name="CollisionShape111" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 2, 0, 0.075, 0, -3.27835e-09, -2.75, 8, 22 )
+shape = SubResource( 137 )
+
+[node name="CollisionShape112" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 2, 0, 0.075, 0, -3.27835e-09, -2.75, 8, 25.25 )
+shape = SubResource( 138 )
+
+[node name="CollisionShape113" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 2, 0, 0.075, 0, -3.27835e-09, 2.5, 8, 18.25 )
+shape = SubResource( 139 )
+
+[node name="CollisionShape114" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 2, 0, 0.075, 0, -3.27835e-09, 2.5, 8, 22 )
+shape = SubResource( 140 )
+
+[node name="CollisionShape115" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -3.27835e-09, 0, -0.075, 0, 2, 0, 0.075, 0, -3.27835e-09, 2.5, 8, 25.25 )
+shape = SubResource( 141 )
+
+[node name="CollisionShape116" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.5, 0, 0, 0, 0.3, 0, 0, 0, 0.025, -3.75, 1, -6 )
+shape = SubResource( 142 )
+
+[node name="CollisionShape117" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.5, 0, 0, 0, 0.3, 0, 0, 0, 0.025, 3.75, 1, -6 )
+shape = SubResource( 143 )
+
+[node name="CollisionShape118" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.5, 0, 0, 0, 0.3, 0, 0, 0, 0.025, 3.75, 1, 10 )
+shape = SubResource( 144 )
+
+[node name="CollisionShape119" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 0.5, 0, 0, 0, 0.3, 0, 0, 0, 0.025, -3.75, 1, 10 )
+shape = SubResource( 145 )
+
+[node name="CollisionShape120" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1, 0, 0, 0, 0.3, 0, 0, 0, 0.025, 0, 1, 14.25 )
+shape = SubResource( 146 )
+
+[node name="CollisionShape121" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, 0.025, 0, 0.3, 0, -0.5, 0, -1.09278e-09, -6, 1, 7.75 )
+shape = SubResource( 147 )
+
+[node name="CollisionShape122" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, 0.025, 0, 0.3, 0, -0.5, 0, -1.09278e-09, -6, 1, -3.75 )
+shape = SubResource( 148 )
+
+[node name="CollisionShape123" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, 0.025, 0, 0.3, 0, -0.5, 0, -1.09278e-09, 6, 1, -3.75 )
+shape = SubResource( 149 )
+
+[node name="CollisionShape124" type="CollisionShape" parent="solid_walls"]
+transform = Transform( -2.18557e-08, 0, 0.025, 0, 0.3, 0, -0.5, 0, -1.09278e-09, 6, 1, 7.75 )
+shape = SubResource( 150 )
+
+[node name="CollisionShape125" type="CollisionShape" parent="solid_walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75723, -18.3801 )
+shape = SubResource( 159 )
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.68514, 15.0981 )
+visible = false
+extents = Vector3( 89.7388, 23.1928, 87.4773 )
+quality = 0
+bounces = 2
+use_hdr = false
+environment_mode = 1
+environment_min_light = Color( 0.0470588, 0, 0.0980392, 1 )
+light_data = ExtResource( 7 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="Position3D" type="Position3D" parent="." groups=["dm_pos"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 15 )
+
+[node name="occluders" type="Spatial" parent="."]
+
+[node name="Occluder" type="Occluder" parent="occluders"]
+shape = SubResource( 151 )
+
+[node name="Occluder2" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.71217, 3.57266, 72.742 )
+shape = SubResource( 152 )
+
+[node name="Occluder3" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0375, 3.8061, 73.0003 )
+shape = SubResource( 152 )
+
+[node name="Occluder4" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3353, 3.09144, -43.7106 )
+shape = SubResource( 153 )
+
+[node name="Occluder5" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.3316, 1.7499, -0.203408 )
+shape = SubResource( 154 )
+
+[node name="Occluder7" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.6158, 1.86718, -14.4819 )
+shape = SubResource( 155 )
+
+[node name="Occluder12" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.698, 9.57761, 68.374 )
+shape = SubResource( 155 )
+
+[node name="Occluder10" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.3741, 13.0794, -37.3484 )
+shape = SubResource( 155 )
+
+[node name="Occluder11" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.849, 0 )
+shape = SubResource( 158 )
+
+[node name="Occluder8" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3597, 5.80641, -41.8215 )
+shape = SubResource( 157 )
+
+[node name="Occluder9" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.3902, 10.1004, 28.7119 )
+shape = SubResource( 157 )
+
+[node name="Occluder6" type="Occluder" parent="occluders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -56.1757, 0.0801058, 30.6836 )
+shape = SubResource( 156 )

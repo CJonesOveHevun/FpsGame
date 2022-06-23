@@ -1,0 +1,412 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Materials/Vfx/metal_gun02.tres" type="Material" id=2]
+[ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=3]
+[ext_resource path="res://Materials/Vfx/wood03.tres" type="Material" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.291, 0.429, 1.758 )
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.15
+bottom_radius = 0.15
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.407
+radial_segments = 10
+rings = 1
+
+[sub_resource type="PrismMesh" id=4]
+left_to_right = 1.7
+size = Vector3( 0.451, 0.623, 0.165 )
+
+[sub_resource type="PrismMesh" id=5]
+left_to_right = 0.8
+size = Vector3( 0.848, 1.556, 0.165 )
+
+[sub_resource type="CubeMesh" id=9]
+size = Vector3( 0.264, 1.145, 0.316 )
+
+[sub_resource type="CubeMesh" id=13]
+size = Vector3( 0.277, 0.195, 0.346 )
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 0.053, 0.118, 0.348 )
+
+[sub_resource type="CylinderMesh" id=10]
+top_radius = 0.12
+bottom_radius = 0.12
+height = 1.732
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CylinderMesh" id=12]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.557
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CylinderMesh" id=6]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 1.168
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CubeMesh" id=7]
+size = Vector3( 0.291, 1.164, 0.274 )
+
+[sub_resource type="CylinderMesh" id=8]
+top_radius = 0.157
+bottom_radius = 0.157
+height = 0.901
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CubeMesh" id=15]
+size = Vector3( 0.147, 1.296, 0.511 )
+
+[sub_resource type="CubeMesh" id=16]
+material = ExtResource( 3 )
+size = Vector3( 0.083, 0.185, 0.487 )
+
+[sub_resource type="CubeMesh" id=17]
+material = ExtResource( 3 )
+size = Vector3( 0.117, 0.1, 0.06 )
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 0.21098, 0.704691, 2.95713 )
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MultiMeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.479718 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MultiMeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MultiMeshInstance/ejector/MeshInstance:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.0755928, 0, 0.176765 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MultiMeshInstance/mag:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.812084, 0.677782 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MultiMeshInstance/mag:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -18.905, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fire"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("MultiMeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.07, 0.1 ),
+"transitions": PoolRealArray( 0.196146, 1, 1, 0.196146 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.479718 ), Vector3( 0, 0.106175, -0.0709782 ), Vector3( 0, 0, 0.184649 ), Vector3( 0, 0, 0.479718 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MultiMeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.07, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -2.10772, 0, 0 ), Vector3( 1.861, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MultiMeshInstance/ejector/MeshInstance:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.03, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.0755928, 0, 0.176765 ), Vector3( -0.0755928, 0.0129852, -0.176063 ), Vector3( -0.0755928, 0, 0.176765 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "reload"
+length = 2.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("MultiMeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.9, 1, 1.1, 1.2, 1.4, 1.6, 1.7, 1.8, 1.9, 2.4, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.106175, -0.0709782 ), Vector3( 0, 0.279112, -0.0709782 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0, 0.366483, -0.101413 ), Vector3( 0, 0.388391, -0.145071 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0.697989, 0.266312, -0.486345 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0, 0.106175, -0.0709782 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MultiMeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.9, 1, 1.1, 1.2, 1.4, 1.6, 2.3, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 0.840896, 2.92817, 2.37841, 1 ),
+"update": 0,
+"values": [ Vector3( -2.10772, 0, 0 ), Vector3( -9.76872, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -16.6387, 0, 0 ), Vector3( -25.2977, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -7.20487, 11.2303, -57.7213 ), Vector3( -7.205, 11.23, -23 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MultiMeshInstance/mag:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.1 ),
+"transitions": PoolRealArray( 0.277392, 1, 7.46426, 1, 0.277392 ),
+"update": 0,
+"values": [ Vector3( 0, -0.812084, 0.677782 ), Vector3( 0, -3.75654, 0.733904 ), Vector3( 0, -3.04216, -2.28394 ), Vector3( 0, -1.7763, 0.490264 ), Vector3( 0, -0.812084, 0.677782 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MultiMeshInstance/mag:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.1 ),
+"transitions": PoolRealArray( 0.378929, 1, 12.996, 1, 0.378929 ),
+"update": 0,
+"values": [ Vector3( -18.905, 0, 0 ), Vector3( 11.644, 0, 0 ), Vector3( 11.644, 0, 0 ), Vector3( 23.273, 0, 0 ), Vector3( -18.905, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MultiMeshInstance/ejector/MeshInstance:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.6, 1.8, 1.9 ),
+"transitions": PoolRealArray( 1, 0.210224, 11.3137, 0.210224 ),
+"update": 0,
+"values": [ Vector3( -0.076, 0.013, 0.177 ), Vector3( -0.076, 0.013, 0.177 ), Vector3( -0.0755928, 0.0129852, -0.176063 ), Vector3( -0.076, 0.013, 0.177 ) ]
+}
+
+[node name="ak47" type="RigidBody"]
+collision_layer = 0
+
+[node name="MultiMeshInstance" type="MultiMeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.479718 )
+cast_shadow = 0
+generate_lightmap = false
+
+[node name="body" type="MeshInstance" parent="MultiMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.168235, 0 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 1 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="curve" type="MeshInstance" parent="MultiMeshInstance/body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.190569, 0.121564 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 2 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="curve2" type="MeshInstance" parent="MultiMeshInstance/body"]
+transform = Transform( 1, 0, 0, 0, 0.656283, -0.754515, 0, 0.754515, 0.656283, 0, 0.093896, -0.9435 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 3 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="stock" type="MeshInstance" parent="MultiMeshInstance/body/curve2"]
+transform = Transform( -0.0103845, 0.00418861, -0.999937, 0.449155, 0.893454, -0.000921989, 0.893394, -0.449136, -0.0111594, 0, -0.326725, -0.298841 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 4 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="tail" type="MeshInstance" parent="MultiMeshInstance/body/curve2"]
+transform = Transform( -0.0103845, 0.00418861, -0.999937, -0.259075, 0.965834, 0.0067363, 0.965802, 0.259128, -0.00894458, -0.00772017, -0.801347, -0.34895 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 5 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="handle" type="MeshInstance" parent="MultiMeshInstance/body"]
+transform = Transform( 1, 0, 0, 0, 0.963537, -0.267575, 0, 0.267575, 0.963537, 0, -0.431974, -0.830317 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 9 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="top" type="MeshInstance" parent="MultiMeshInstance/body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26746, 0.932203 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 13 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="sights_l" type="MeshInstance" parent="MultiMeshInstance/body/top"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.08964, -0.0177318, 0.0780242 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 11 )
+skeleton = NodePath("../../../muzzle")
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="sights_r" type="MeshInstance" parent="MultiMeshInstance/body/top"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0859908, -0.0150704, 0.0780242 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 11 )
+skeleton = NodePath("../../../muzzle")
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="muzzle" type="MeshInstance" parent="MultiMeshInstance"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.225089, 2.89607 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 10 )
+skeleton = NodePath("../body")
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="sights_mid" type="MeshInstance" parent="MultiMeshInstance/muzzle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659051, -0.275177 )
+cast_shadow = 0
+mesh = SubResource( 11 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="muzzle_top" type="MeshInstance" parent="MultiMeshInstance/muzzle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.597573, -0.258867 )
+cast_shadow = 0
+mesh = SubResource( 12 )
+skeleton = NodePath("../../body")
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="handle_b" type="MeshInstance" parent="MultiMeshInstance"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.299717, 1.44678 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 6 )
+skeleton = NodePath("../body")
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="center" type="MeshInstance" parent="MultiMeshInstance/handle_b"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.163785 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 7 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="top" type="MeshInstance" parent="MultiMeshInstance/handle_b/center"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114603, -0.187137 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 8 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="mag" type="MeshInstance" parent="MultiMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 0.946057, 0.324, 0, -0.324, 0.946057, 0, -0.812084, 0.677782 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 15 )
+material/0 = ExtResource( 3 )
+
+[node name="ejector" type="MeshInstance" parent="MultiMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111533, 0.0117231, 0.199258 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="MultiMeshInstance/ejector"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0755928, 0, 0.176765 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="collider" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.488118, 1.16839 )
+shape = SubResource( 14 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 18 )
+anims/fire = SubResource( 19 )
+anims/reload = SubResource( 20 )
