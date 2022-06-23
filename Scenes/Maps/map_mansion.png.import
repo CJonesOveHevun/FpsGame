@@ -1,0 +1,25 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/map_mansion.png-c0f001a0aafeefd02bc8e6b07885249b.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Scenes/Maps/map_mansion_data/map_mansion.png"
+dest_files=[ "res://.import/map_mansion.png-c0f001a0aafeefd02bc8e6b07885249b.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=false
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=true
+slices/horizontal=1
+slices/vertical=1
