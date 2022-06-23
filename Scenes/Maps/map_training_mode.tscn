@@ -1,0 +1,971 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Maps/map_data/data.hterrain" type="Resource" id=4]
+[ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=5]
+[ext_resource path="res://Materials/Vfx/desert_grass_shader.tres" type="Shader" id=6]
+[ext_resource path="res://Scenes/Props/iron_fence01.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Materials/Vfx/g_floor01.tres" type="Material" id=8]
+[ext_resource path="res://Scenes/Props/wooden_table.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Characters/weapons/guns/uzi.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Materials/Vfx/g_concrete01.tres" type="Material" id=11]
+[ext_resource path="res://Scenes/Props/target_dummy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Materials/Vfx/building_c1.tres" type="Material" id=13]
+[ext_resource path="res://Scenes/Characters/weapons/guns/sawedoff.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Characters/weapons/guns/wm1897.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Characters/weapons/guns/ak47.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Characters/weapons/guns/vector.tscn" type="PackedScene" id=17]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+// This is a shader with less textures, in case the main one doesn't run on your GPU.
+// It's mostly a big copy/paste, because Godot doesn't support #include or #ifdef...
+
+uniform sampler2D u_terrain_heightmap;
+uniform sampler2D u_terrain_normalmap;
+// I had to remove `hint_albedo` from colormap because it makes sRGB conversion kick in,
+// which snowballs to black when doing GPU painting on that texture...
+uniform sampler2D u_terrain_colormap;// : hint_albedo;
+uniform sampler2D u_terrain_splatmap;
+uniform mat4 u_terrain_inverse_transform;
+uniform mat3 u_terrain_normal_basis;
+
+uniform sampler2D u_ground_albedo_bump_0 : hint_albedo;
+uniform sampler2D u_ground_albedo_bump_1 : hint_albedo;
+uniform sampler2D u_ground_albedo_bump_2 : hint_albedo;
+uniform sampler2D u_ground_albedo_bump_3 : hint_albedo;
+
+uniform float u_ground_uv_scale = 20.0;
+uniform bool u_depth_blending = true;
+uniform bool u_triplanar = false;
+// Each component corresponds to a ground texture. Set greater than zero to enable.
+uniform vec4 u_tile_reduction = vec4(0.0, 0.0, 0.0, 0.0);
+
+varying vec4 v_tint;
+varying vec4 v_splat;
+varying vec3 v_ground_uv;
+
+
+vec3 unpack_normal(vec4 rgba) {
+	vec3 n = rgba.xzy * 2.0 - vec3(1.0);
+	// Had to negate Z because it comes from Y in the normal map,
+	// and OpenGL-style normal maps are Y-up.
+	n.z *= -1.0;
+	return n;
+}
+
+// Blends weights according to the bump of detail textures,
+// so for example it allows to have sand fill the gaps between pebbles
+vec4 get_depth_blended_weights(vec4 splat, vec4 bumps) {
+	float dh = 0.2;
+
+	vec4 h = bumps + splat;
+	
+	// TODO Keep improving multilayer blending, there are still some edge cases...
+	// Mitigation: nullify layers with near-zero splat
+	h *= smoothstep(0, 0.05, splat);
+	
+	vec4 d = h + dh;
+	d.r -= max(h.g, max(h.b, h.a));
+	d.g -= max(h.r, max(h.b, h.a));
+	d.b -= max(h.g, max(h.r, h.a));
+	d.a -= max(h.g, max(h.b, h.r));
+	
+	return clamp(d, 0, 1);
+}
+
+vec3 get_triplanar_blend(vec3 world_normal) {
+	vec3 blending = abs(world_normal);
+	blending = normalize(max(blending, vec3(0.00001))); // Force weights to sum to 1.0
+	float b = blending.x + blending.y + blending.z;
+	return blending / vec3(b, b, b);
+}
+
+vec4 texture_triplanar(sampler2D tex, vec3 world_pos, vec3 blend) {
+	vec4 xaxis = texture(tex, world_pos.yz);
+	vec4 yaxis = texture(tex, world_pos.xz);
+	vec4 zaxis = texture(tex, world_pos.xy);
+	// blend the results of the 3 planar projections.
+	return xaxis * blend.x + yaxis * blend.y + zaxis * blend.z;
+}
+
+vec4 depth_blend2(vec4 a, vec4 b, float t) {
+	// https://www.gamasutra.com
+	// /blogs/AndreyMishkinis/20130716/196339/Advanced_Terrain_Texture_Splatting.php
+	float d = 0.1;
+	float ma = max(a.a + (1.0 - t), b.a + t) - d;
+	float ba = max(a.a + (1.0 - t) - ma, 0.0);
+	float bb = max(b.a + t - ma, 0.0);
+	return (a * ba + b * bb) / (ba + bb);
+}
+
+vec4 texture_antitile(sampler2D tex, vec2 uv) {
+	float frequency = 2.0;
+	float scale = 1.3;
+	float sharpness = 0.7;
+	
+	// Rotate and scale UV
+	float rot = 3.14 * 0.6;
+	float cosa = cos(rot);
+	float sina = sin(rot);
+	vec2 uv2 = vec2(cosa * uv.x - sina * uv.y, sina * uv.x + cosa * uv.y) * scale;
+	
+	vec4 col0 = texture(tex, uv);
+	vec4 col1 = texture(tex, uv2);
+	//col0 = vec4(0.0, 0.0, 1.0, 1.0);
+	// Periodically alternate between the two versions using a warped checker pattern
+	float t = 0.5 + 0.5 
+		* sin(uv2.x * frequency + sin(uv.x) * 2.0) 
+		* cos(uv2.y * frequency + sin(uv.y) * 2.0);
+	// Using depth blend because classic alpha blending smoothes out details
+	return depth_blend2(col0, col1, smoothstep(0.5 * sharpness, 1.0 - 0.5 * sharpness, t));
+}
+
+void vertex() {
+	vec2 cell_coords = (u_terrain_inverse_transform * WORLD_MATRIX * vec4(VERTEX, 1)).xz;
+	// Must add a half-offset so that we sample the center of pixels,
+	// otherwise bilinear filtering of the textures will give us mixed results.
+	cell_coords += vec2(0.5);
+
+	// Normalized UV
+	UV = cell_coords / vec2(textureSize(u_terrain_heightmap, 0));
+	
+	// Height displacement
+	float h = texture(u_terrain_heightmap, UV).r;
+	VERTEX.y = h;
+
+	v_ground_uv = vec3(cell_coords.x, h * WORLD_MATRIX[1][1], cell_coords.y) / u_ground_uv_scale;
+	
+	// Putting this in vertex saves 2 fetches from the fragment shader,
+	// which is good for performance at a negligible quality cost,
+	// provided that geometry is a regular grid that decimates with LOD.
+	// (downside is LOD will also decimate tint and splat, but it's not bad overall)
+	v_tint = texture(u_terrain_colormap, UV);
+	v_splat = texture(u_terrain_splatmap, UV);
+	
+	// Need to use u_terrain_normal_basis to handle scaling.
+	NORMAL = u_terrain_normal_basis * unpack_normal(texture(u_terrain_normalmap, UV));
+}
+
+void fragment() {
+	if (v_tint.a < 0.5) {
+		// TODO Add option to use vertex discarding instead, using NaNs
+		discard;
+	}
+	
+	vec3 terrain_normal_world = 
+		u_terrain_normal_basis * unpack_normal(texture(u_terrain_normalmap, UV));
+	terrain_normal_world = normalize(terrain_normal_world);
+
+	// TODO Detail should only be rasterized on nearby chunks (needs proximity management to switch shaders)
+	
+	vec2 ground_uv = v_ground_uv.xz;
+	
+	vec4 ab0, ab1, ab2, ab3;
+	if (u_triplanar) {
+		// Only do triplanar on one texture slot,
+		// because otherwise it would be very expensive and cost many more ifs.
+		// I chose the last slot because first slot is the default on new splatmaps,
+		// and that's a feature used for cliffs, which are usually designed later.
+
+		vec3 blending = get_triplanar_blend(terrain_normal_world);
+
+		ab3 = texture_triplanar(u_ground_albedo_bump_3, v_ground_uv, blending);
+
+	} else {
+		if (u_tile_reduction[3] > 0.0) {
+			ab3 = texture(u_ground_albedo_bump_3, ground_uv);
+		} else {
+			ab3 = texture_antitile(u_ground_albedo_bump_3, ground_uv);
+		}
+	}
+	
+	if (u_tile_reduction[0] > 0.0) {
+		ab0 = texture_antitile(u_ground_albedo_bump_0, ground_uv);
+	} else {
+		ab0 = texture(u_ground_albedo_bump_0, ground_uv);
+	}
+	if (u_tile_reduction[1] > 0.0) {
+		ab1 = texture_antitile(u_ground_albedo_bump_1, ground_uv);
+	} else {
+		ab1 = texture(u_ground_albedo_bump_1, ground_uv);
+	}
+	if (u_tile_reduction[2] > 0.0) {
+		ab2 = texture_antitile(u_ground_albedo_bump_2, ground_uv);
+	} else {
+		ab2 = texture(u_ground_albedo_bump_2, ground_uv);
+	}
+	
+	vec3 col0 = ab0.rgb;
+	vec3 col1 = ab1.rgb;
+	vec3 col2 = ab2.rgb;
+	vec3 col3 = ab3.rgb;
+	
+	vec4 w;
+	// TODO An #ifdef macro would be nice! Or copy/paste everything in a different shader...
+	if (u_depth_blending) {
+		w = get_depth_blended_weights(v_splat, vec4(ab0.a, ab1.a, ab2.a, ab3.a));
+	} else {
+		w = v_splat.rgba;
+	}
+	
+	float w_sum = (w.r + w.g + w.b + w.a);
+	
+	ALBEDO = v_tint.rgb * (
+		w.r * col0.rgb + 
+		w.g * col1.rgb + 
+		w.b * col2.rgb + 
+		w.a * col3.rgb) / w_sum;
+	
+	ROUGHNESS = 1.0;
+	
+	NORMAL = (INV_CAMERA_MATRIX * (vec4(terrain_normal_world, 0.0))).xyz;
+
+	//ALBEDO = w.rgb;
+	//ALBEDO = v_ground_uv.xyz;
+}
+
+"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+mode = 0
+textures = [ [  ], [  ] ]
+
+[sub_resource type="ProceduralSky" id=3]
+sky_top_color = Color( 0.423529, 0.701961, 0.807843, 1 )
+sky_horizon_color = Color( 1, 0.839216, 0.729412, 1 )
+sky_curve = 0.107029
+sky_energy = 1.2
+ground_bottom_color = Color( 1, 0.686275, 0.431373, 1 )
+ground_horizon_color = Color( 1, 0.713726, 0.482353, 1 )
+sun_latitude = 137.86
+sun_longitude = -56.57
+
+[sub_resource type="Environment" id=4]
+background_mode = 2
+background_sky = SubResource( 3 )
+background_color = Color( 1, 1, 1, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+fog_enabled = true
+fog_color = Color( 1, 0.631373, 0.364706, 1 )
+fog_sun_color = Color( 1, 0.929412, 0.796078, 1 )
+fog_sun_amount = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 326.8
+tonemap_mode = 4
+glow_enabled = true
+glow_strength = 0.82
+
+[sub_resource type="OccluderShapeSphere" id=5]
+spheres = [ Plane( 0, 0, 0, 2 ), Plane( 0, 0, 4, 2 ), Plane( 0, 0, 8, 2 ), Plane( 0, 0, 12, 2 ), Plane( 0, 0, 16, 2 ), Plane( 0, 0, 20, 2 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=6]
+spheres = [ Plane( 0, 9.53674e-07, -7.15256e-07, 25.672 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=12]
+spheres = [ Plane( 0, 0, 0, 73.7155 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=7]
+spheres = [ Plane( 0, 0, 0, 8 ) ]
+
+[sub_resource type="OccluderShapeSphere" id=13]
+spheres = [ Plane( 0, 0, 0, 9.81983 ) ]
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 6.30056, 8.41901, 6.96846 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 12.1316, 17.2823, 4.54349 )
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 18.1623, 13.3839, 6.11956 )
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 8.83687, 6.86947, 1 )
+
+[node name="map_training_mode" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -150, -20, -180 )
+script = ExtResource( 2 )
+ambient_wind = 0.085
+_terrain_data = ExtResource( 4 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = SubResource( 1 )
+custom_globalmap_shader = null
+texture_set = SubResource( 2 )
+shader_params/u_ground_uv_scale = 20.0
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="HTerrainDetailLayer" type="Spatial" parent="HTerrain"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+view_distance = 58.987
+custom_shader = ExtResource( 6 )
+density = 1.0
+shader_params/u_globalmap_tint_bottom = 0.0
+shader_params/u_globalmap_tint_top = 0.434
+shader_params/u_bottom_ao = 0.302
+shader_params/u_instance_scale = Vector3( 1, 1, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 4 )
+
+[node name="props" type="Spatial" parent="."]
+
+[node name="iron_fence01" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.746034, 0, 0.939912, 0, 1.2, 0, -0.939912, 0, 0.746034, 2.6808, -19.1639, -54.2027 )
+
+[node name="iron_fence16" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.05647, 0, -0.56909, 0, 1.2, 0, 0.56909, 0, -1.05647, -34.8811, -19.1639, -20.6721 )
+
+[node name="iron_fence17" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.19927, 0, -0.0419004, 0, 1.2, 0, 0.0419004, 0, -1.19927, -32.7913, -19.1639, -11.8355 )
+
+[node name="iron_fence18" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.15805, 0, -0.314506, 0, 1.2, 0, 0.314506, 0, -1.15805, -31.274, -19.1639, -2.24418 )
+
+[node name="iron_fence19" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.18255, 0, 0.203921, 0, 1.2, 0, -0.203921, 0, -1.18255, -30.3273, -19.1639, 7.61541 )
+
+[node name="iron_fence20" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.15068, 0, 0.340477, 0, 1.2, 0, -0.340477, 0, -1.15068, -32.3312, -18.3769, 16.8722 )
+
+[node name="iron_fence21" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.18265, 0, 0.203343, 0, 1.2, 0, -0.203343, 0, -1.18265, -34.8181, -18.3769, 26.2518 )
+
+[node name="iron_fence12" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 1.19099, 0, -0.146763, 0, 1.2, 0, 0.146763, 0, 1.19099, 45.2876, -17.8165, 2.05326 )
+
+[node name="iron_fence13" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 1.19693, 0, -0.0858388, 0, 1.2, 0, 0.0858388, 0, 1.19693, 46.0984, -17.8165, -7.48243 )
+
+[node name="iron_fence14" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 1.05264, 0, 0.576158, 0, 1.2, 0, -0.576158, 0, 1.05264, 46.0984, -17.8165, -15.7196 )
+
+[node name="iron_fence15" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -0.433989, 0, 1.11877, 0, 1.2, 0, -1.11877, 0, -0.433989, 19.7123, -18.8052, -49.3021 )
+
+[node name="iron_fence07" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.449159, 0, 1.11277, 0, 1.2, 0, -1.11277, 0, 0.449159, 10.9441, -19.1639, -49.3588 )
+
+[node name="iron_fence02" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.099829, 0, 1.19584, 0, 1.2, 0, -1.19584, 0, 0.099829, -5.9085, -19.1639, -57.5143 )
+
+[node name="iron_fence03" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.316627, 0, 1.15747, 0, 1.2, 0, -1.15747, 0, 0.316627, -14.8284, -19.1639, -59.4499 )
+
+[node name="iron_fence04" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -0.203488, 0, 1.18262, 0, 1.2, 0, -1.18262, 0, -0.203488, -24.2177, -19.1639, -59.7223 )
+
+[node name="iron_fence05" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -0.445466, 0, 1.11425, 0, 1.2, 0, -1.11425, 0, -0.445466, -33.4483, -18.8685, -57.2472 )
+
+[node name="iron_fence06" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -1.16091, 0, 0.3038, 0, 1.2, 0, -0.3038, 0, -1.16091, -38.9413, -18.1006, -50.7336 )
+
+[node name="iron_fence08" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.0564021, 0, 1.19867, 0, 1.2, 0, -1.19867, 0, 0.0564021, 159.459, -12.8824, 35.0448 )
+
+[node name="iron_fence09" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.0564021, 0, 1.19867, 0, 1.2, 0, -1.19867, 0, 0.0564021, 149.999, -12.1411, 34.3991 )
+
+[node name="iron_fence10" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -0.0140322, 0, 1.19992, 0, 1.2, 0, -1.19992, 0, -0.0140322, 140.286, -12.1411, 34.2702 )
+
+[node name="iron_fence22" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( -0.0162521, 0, 1.19989, 0, 1.2, 0, -1.19989, 0, -0.0162521, 95.6892, -14.5683, 35.752 )
+
+[node name="iron_fence11" parent="props" groups=["lod"] instance=ExtResource( 7 )]
+transform = Transform( 0.0346992, 0, 1.1995, 0, 1.2, 0, -1.1995, 0, 0.0346992, 130.511, -12.1411, 34.2702 )
+
+[node name="wooden_table" parent="props" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4528, -18.8047, 44.3028 )
+
+[node name="wooden_table2" parent="props" instance=ExtResource( 9 )]
+transform = Transform( 0.0772933, 0, 0.997008, 0, 1, 0, -0.997008, 0, 0.0772933, -37.087, -18.9314, 40.1522 )
+
+[node name="uzi" type="Spatial" parent="props"]
+transform = Transform( 0.00215465, -0.399994, 0.000319171, 0.399684, 0.00214041, -0.0157535, 0.0157516, 0.000403777, 0.399689, -37.096, -18.3737, 43.9758 )
+
+[node name="Uzi" parent="props/uzi" instance=ExtResource( 10 )]
+collision_layer = 4
+collision_mask = 5
+mode = 1
+
+[node name="target_dummy5" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -23.9161, -20.1568, 118.024 )
+
+[node name="target_dummy" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -19.8365, -20.3067, -47.8446 )
+
+[node name="target_dummy2" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -28.4707, -20.3067, -42.5312 )
+
+[node name="target_dummy3" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -14.2768, -20.3067, -54.4265 )
+
+[node name="target_dummy4" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, -30.2417, -20.3067, 88.8595 )
+
+[node name="target_dummy6" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, -4.09913, -20.3067, 101.395 )
+
+[node name="target_dummy7" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, 22.9195, -20.3067, 113.019 )
+
+[node name="target_dummy8" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, 0.888205, -20.3067, 122.357 )
+
+[node name="target_dummy9" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, 50.5091, -13.6755, 14.1458 )
+
+[node name="target_dummy10" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, 66.2352, -13.6755, 14.1458 )
+
+[node name="target_dummy11" parent="props" instance=ExtResource( 12 )]
+transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, 83.8962, -13.6755, 14.1458 )
+
+[node name="buildings" type="Spatial" parent="."]
+
+[node name="floor1" type="CSGBox" parent="buildings"]
+transform = Transform( 0.999312, 0, 0.0370797, 0, 1, 0, -0.0370797, 0, 0.999312, -40.3499, -16.2244, -35.1347 )
+use_in_baked_light = true
+use_collision = true
+width = 10.054
+height = 19.201
+depth = 22.334
+material = ExtResource( 11 )
+
+[node name="floor18" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67.1631, -13.6804, 33.342 )
+use_in_baked_light = true
+use_collision = true
+width = 42.7794
+height = 2.38103
+depth = 1.36996
+material = ExtResource( 8 )
+
+[node name="floor11" type="CSGBox" parent="buildings"]
+transform = Transform( 0.99417, 0, -0.107826, 0, 1, 0, 0.107826, 0, 0.99417, -43.5399, -15.3788, 37.8071 )
+use_in_baked_light = true
+use_collision = true
+width = 10.054
+height = 19.201
+depth = 22.334
+material = ExtResource( 11 )
+
+[node name="floor12" type="CSGBox" parent="buildings"]
+transform = Transform( 0.998497, 0, -0.0548108, 0, 1, 0, 0.0548108, 0, 0.998497, -58.9391, -1.92308, 8.71856 )
+use_in_baked_light = true
+use_collision = true
+width = 21.7172
+height = 32.1875
+depth = 22.334
+material = ExtResource( 11 )
+
+[node name="floor2" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3008, -19.7308, 26.6377 )
+use_in_baked_light = true
+use_collision = true
+width = 46.204
+height = 10.247
+depth = 38.6865
+material = ExtResource( 8 )
+
+[node name="floor10" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.7773, -15.3041, 40.6787 )
+use_in_baked_light = true
+use_collision = true
+width = 6.84263
+height = 1.31488
+depth = 10.6474
+material = ExtResource( 8 )
+
+[node name="floor13" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 0.923458, 0.383699, 0, -0.383699, 0.923458, 40.7773, -16.5586, 32.4647 )
+use_in_baked_light = true
+use_collision = true
+width = 5.85434
+height = 1.31488
+depth = 6.88453
+material = ExtResource( 8 )
+
+[node name="floor9" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67.2963, -3.75278, 26.562 )
+use_in_baked_light = true
+use_collision = true
+width = 47.3083
+height = 1.48879
+depth = 40.8663
+
+[node name="floor14" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 196.309, -3.75278, 51.0824 )
+use_in_baked_light = true
+use_collision = true
+width = 74.5435
+height = 1.48879
+depth = 50.3784
+
+[node name="floor3" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 196.566, -19.0335, 50.4091 )
+use_in_baked_light = true
+use_collision = true
+width = 65.3128
+height = 10.247
+depth = 45.2775
+material = ExtResource( 8 )
+
+[node name="floor4" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 127.885, -19.0335, 39.7174 )
+use_in_baked_light = true
+use_collision = true
+width = 55.016
+height = 13.2319
+depth = 11.6015
+material = ExtResource( 8 )
+
+[node name="floor15" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 186.422, -14.264, 76.6607 )
+use_in_baked_light = true
+calculate_tangents = false
+use_collision = true
+width = 44.8393
+height = 0.745364
+depth = 7.2397
+material = ExtResource( 8 )
+
+[node name="floor16" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 0.875127, -0.483893, 0, 0.483893, 0.875127, 186.422, -17.0685, 85.2024 )
+use_in_baked_light = true
+calculate_tangents = false
+use_collision = true
+width = 44.8393
+height = 0.745364
+depth = 11.6286
+material = ExtResource( 8 )
+
+[node name="floor17" type="CSGBox" parent="buildings"]
+transform = Transform( -4.36125e-08, -0.54162, -0.840623, -2.93803e-09, 0.840623, -0.54162, 1, -2.11517e-08, -3.8253e-08, 159.193, -17.3696, 57.8092 )
+use_in_baked_light = true
+calculate_tangents = false
+use_collision = true
+width = 5.21222
+height = 0.745364
+depth = 11.6286
+material = ExtResource( 8 )
+
+[node name="floor7" type="CSGBox" parent="buildings"]
+transform = Transform( 0.97594, -0.218041, 0, 0.218041, 0.97594, 0, 0, 0, 1, 94.4278, -14.5474, 40.5414 )
+use_in_baked_light = true
+use_collision = true
+width = 12.2014
+height = 1.65154
+depth = 8.59735
+material = ExtResource( 8 )
+
+[node name="floor8" type="CSGBox" parent="buildings"]
+transform = Transform( 0.985283, 0.170932, 0, -0.170932, 0.985283, 0, 0, 0, 1, 161.12, -14.2296, 39.641 )
+use_in_baked_light = true
+use_collision = true
+width = 12.2014
+height = 1.65154
+depth = 8.59735
+material = ExtResource( 8 )
+
+[node name="floor6" type="CSGBox" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 98.6568, -2.81763, -23.1216 )
+use_in_baked_light = true
+use_collision = true
+width = 15.3983
+height = 27.9524
+depth = 23.0121
+material = ExtResource( 11 )
+
+[node name="floor5" type="CSGBox" parent="buildings"]
+transform = Transform( 0.851917, -0.522722, 0.0316106, 0.522362, 0.852503, 0.0193824, -0.0370797, 0, 0.999312, 65.2108, -5.47809, -27.1186 )
+use_in_baked_light = true
+use_collision = true
+width = 61.7888
+height = 1.48124
+depth = 11.9378
+material = ExtResource( 8 )
+
+[node name="Occluder" type="Occluder" parent="buildings"]
+transform = Transform( 0.999314, 0, 0.0370798, 0, 1, 0, -0.0370798, 0, 0.999314, 45.4613, -13.3707, 10.8419 )
+shape = SubResource( 5 )
+
+[node name="Occluder3" type="Occluder" parent="buildings"]
+transform = Transform( 0.999314, 0, 0.0370798, 0, 1, 0, -0.0370798, 0, 0.999314, 45.4613, -11.3563, 10.8419 )
+shape = SubResource( 5 )
+
+[node name="Occluder4" type="Occluder" parent="buildings"]
+transform = Transform( 0.999314, 0, 0.0370798, 0, 1, 0, -0.0370798, 0, 0.999314, 45.4613, -8.41702, 10.8419 )
+shape = SubResource( 5 )
+
+[node name="Occluder5" type="Occluder" parent="buildings"]
+transform = Transform( 0.999314, 0, 0.0370798, 0, 1, 0, -0.0370798, 0, 0.999314, 45.4613, -6.40722, 10.8419 )
+shape = SubResource( 5 )
+
+[node name="Occluder2" type="Occluder" parent="buildings"]
+transform = Transform( -0.0106812, 0, 0.999945, 0, 1, 0, -0.999945, 0, -0.0106812, 72.3132, -12.0465, 70.7848 )
+shape = SubResource( 6 )
+
+[node name="Occluder7" type="Occluder" parent="buildings"]
+transform = Transform( -0.0106812, 0, 0.999945, 0, 1, 0, -0.999945, 0, -0.0106812, 117.709, -6.76528, 3.95482 )
+shape = SubResource( 6 )
+
+[node name="Occluder8" type="Occluder" parent="buildings"]
+transform = Transform( -0.0106812, 0, 0.999945, 0, 1, 0, -0.999945, 0, -0.0106812, 110.13, 39.5122, -92.714 )
+shape = SubResource( 12 )
+
+[node name="Occluder6" type="Occluder" parent="buildings"]
+transform = Transform( -0.0106812, 0, 0.999945, 0, 1, 0, -0.999945, 0, -0.0106812, 151.157, -6.30078, 54.4033 )
+shape = SubResource( 7 )
+
+[node name="wall" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.2144, -9.21577, 21.7948 )
+use_in_baked_light = true
+use_collision = true
+height = 11.1073
+depth = 29.2269
+material = ExtResource( 13 )
+
+[node name="wall5" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 113.431, -12.5443, 33.4531 )
+use_in_baked_light = true
+use_collision = true
+height = 18.273
+depth = 25.1921
+material = ExtResource( 13 )
+
+[node name="wall19" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 151.512, -15.9518, 90.4777 )
+use_in_baked_light = true
+use_collision = true
+height = 18.273
+depth = 25.1921
+material = ExtResource( 13 )
+
+[node name="wall7" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 181.161, -12.5443, 28.6471 )
+use_in_baked_light = true
+use_collision = true
+height = 18.273
+depth = 34.6154
+material = ExtResource( 13 )
+
+[node name="wall8" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 216.306, -12.5443, 28.6471 )
+use_in_baked_light = true
+use_collision = true
+height = 18.273
+depth = 26.0494
+material = ExtResource( 13 )
+
+[node name="wall12" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 210.841, -12.5443, 72.1603 )
+use_in_baked_light = true
+use_collision = true
+height = 18.273
+depth = 5.86195
+material = ExtResource( 13 )
+
+[node name="wall13" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 186.509, -12.5443, 72.1603 )
+use_in_baked_light = true
+use_collision = true
+height = 18.273
+depth = 5.86195
+material = ExtResource( 13 )
+
+[node name="wall6" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 127.864, -13.1616, 44.5142 )
+use_in_baked_light = true
+use_collision = true
+height = 3.78174
+depth = 54.9253
+material = ExtResource( 13 )
+
+[node name="wall4" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 89.4029, -9.21577, 21.7948 )
+use_in_baked_light = true
+use_collision = true
+height = 11.1073
+depth = 29.2269
+material = ExtResource( 13 )
+
+[node name="wall9" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 228.313, -9.21577, 46.4463 )
+use_in_baked_light = true
+use_collision = true
+height = 11.5883
+depth = 33.605
+material = ExtResource( 13 )
+
+[node name="wall20" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 0.995583, 0, 0.0938824, 0, 1, 0, -0.0938824, 0, 0.995583, 242.484, -16.3566, 109.089 )
+use_in_baked_light = true
+use_collision = true
+height = 14.3289
+depth = 62.1622
+material = ExtResource( 13 )
+
+[node name="wall21" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 0.999548, 0, -0.0300675, 0, 1, 0, 0.0300675, 0, 0.999548, 244.571, -16.3566, 170.97 )
+use_in_baked_light = true
+use_collision = true
+height = 14.3289
+depth = 62.1622
+material = ExtResource( 13 )
+
+[node name="wall14" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 209.193, -9.21577, 60.6967 )
+use_in_baked_light = true
+use_collision = true
+height = 11.5883
+depth = 21.7123
+material = ExtResource( 13 )
+
+[node name="wall15" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 209.193, -9.21577, 37.5554 )
+use_in_baked_light = true
+use_collision = true
+height = 11.5883
+depth = 17.2165
+material = ExtResource( 13 )
+
+[node name="wall10" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 164.99, -9.21577, 49.8556 )
+use_in_baked_light = true
+use_collision = true
+height = 11.5883
+depth = 10.9558
+material = ExtResource( 13 )
+
+[node name="wall11" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 164.99, -9.21577, 66.7651 )
+use_in_baked_light = true
+use_collision = true
+height = 11.5883
+depth = 12.5263
+material = ExtResource( 13 )
+
+[node name="wall2" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.4046, -9.21577, 45.4553 )
+use_in_baked_light = true
+use_collision = true
+height = 11.1073
+depth = 45.6705
+material = ExtResource( 13 )
+
+[node name="wall16" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.698, -15.5751, 62.7042 )
+use_in_baked_light = true
+use_collision = true
+height = 13.8027
+depth = 33.4007
+material = ExtResource( 13 )
+
+[node name="wall17" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 101.973, -15.5751, 62.2927 )
+use_in_baked_light = true
+use_collision = true
+height = 9.39254
+depth = 33.4007
+material = ExtResource( 13 )
+
+[node name="wall18" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 164.973, -14.7508, 88.1385 )
+use_in_baked_light = true
+use_collision = true
+height = 15.4613
+depth = 30.2118
+material = ExtResource( 13 )
+
+[node name="wall3" type="CSGBox" parent="buildings" groups=["lod"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.4046, -9.21577, 7.7747 )
+use_in_baked_light = true
+use_collision = true
+height = 11.1073
+depth = 45.6705
+material = ExtResource( 13 )
+
+[node name="CSGBox" type="CSGBox" parent="buildings"]
+transform = Transform( 0.988137, -0.115876, -0.100783, 0, 0.656257, -0.754538, 0.153572, 0.745587, 0.648472, -33.8958, -20.01, 51.1812 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 11.4535
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox2" type="CSGBox" parent="buildings"]
+transform = Transform( 0.999987, -0.00391124, -0.00340179, 0, 0.656257, -0.754538, 0.00518362, 0.754528, 0.656248, -21.8749, -20.01, 52.3249 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 11.4535
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox3" type="CSGBox" parent="buildings"]
+transform = Transform( 0.842405, -0.500776, -0.198943, 0.152848, 0.57611, -0.802954, 0.516713, 0.646004, 0.56186, 21.7828, -15.3031, 59.0511 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 11.4535
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox6" type="CSGBox" parent="buildings"]
+transform = Transform( 0.988629, -0.115417, -0.0963917, 0.0138818, 0.708323, -0.705752, 0.149732, 0.696389, 0.701871, 11.3356, -17.0141, 54.2747 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 11.4535
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox4" type="CSGBox" parent="buildings"]
+transform = Transform( 0.996417, 0.0729895, -0.0427175, -0.0828089, 0.739472, -0.668075, -0.0171741, 0.669219, 0.742867, 33.1684, -15.1529, 61.688 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 11.4535
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox7" type="CSGBox" parent="buildings"]
+transform = Transform( 0.968079, -0.196557, -0.155528, 0.0351797, 0.720919, -0.692125, 0.248165, 0.66456, 0.704822, 111.057, -18.7806, 84.5268 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 20.9244
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox8" type="CSGBox" parent="buildings"]
+transform = Transform( 0.983576, 0.157038, 0.0889833, -0.050018, 0.710822, -0.701591, -0.173428, 0.685617, 0.707002, 128.357, -18.7806, 89.6186 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 18.712
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGBox5" type="CSGBox" parent="buildings"]
+transform = Transform( 0.538776, -0.619688, 0.570708, 0.842274, 0.41004, -0.349916, -0.0171741, 0.669219, 0.742867, 42.5306, -12.834, 61.7843 )
+extra_cull_margin = 1.0
+use_in_baked_light = true
+width = 8.95981
+height = 2.78309
+depth = 2.65504
+material = ExtResource( 11 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="buildings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25112, -15.1139, 52.9812 )
+calculate_tangents = false
+use_collision = true
+radius = 10.6085
+height = 12.8777
+sides = 7
+material = ExtResource( 13 )
+
+[node name="Occluder" type="Occluder" parent="buildings/CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.702408 )
+shape = SubResource( 13 )
+
+[node name="boundaries" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.991121, 0, 0.132966, 0, 1, 0, -0.132966, 0, 0.991121, 16.8392, -17.6105, -56.9027 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="boundaries"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 126.249, -14.8238, 30.0118 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.997067, 0, -0.0765276, 0, 1, 0, 0.0765276, 0, 0.997067, -27.8473, -14.8238, 54.8738 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.984177, 0, -0.177188, 0, 1, 0, 0.177188, 0, 0.984177, 8.82383, -14.8238, 56.3639 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.836114, 0, -0.548556, 0, 1, 0, 0.548556, 0, 0.836114, 21.9779, -14.8238, 61.5444 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.978778, 0, -0.204923, 0, 1, 0, 0.204923, 0, 0.978778, 121.054, -14.8238, 89.2708 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.999836, 0, -0.018133, 0, 1, 0, 0.018133, 0, 0.999836, 94.1111, -11.13, 45.4044 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="boundaries"]
+transform = Transform( 0.999493, 0, 0.0318294, 0, 1, 0, -0.0318294, 0, 0.999493, 35.9058, -14.8238, 64.1338 )
+shape = SubResource( 9 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.160055, -0.687988, 0.707852, 0.684907, 0.593796, 0.422266, -0.710834, 0.417227, 0.566248, 0, 0, 0 )
+shadow_enabled = true
+shadow_color = Color( 0.596078, 0, 0, 1 )
+shadow_bias = 0.098
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.044
+directional_shadow_split_2 = 0.04
+directional_shadow_split_3 = 0.0
+directional_shadow_max_distance = 86.4
+
+[node name="weapons" type="Spatial" parent="."]
+
+[node name="sawedoff" type="Spatial" parent="weapons"]
+transform = Transform( 0.0203105, 0.399366, -0.00971116, -0.399353, 0.0200492, -0.010723, -0.0102192, 0.0102399, 0.399738, -35.6471, -18.3442, 43.6236 )
+
+[node name="Sawedoff" parent="weapons/sawedoff" instance=ExtResource( 14 )]
+collision_layer = 5
+collision_mask = 5
+mode = 1
+
+[node name="wm1897" type="Spatial" parent="weapons"]
+transform = Transform( -1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0, 0.4, -35.0737, -18.4541, 43.911 )
+
+[node name="Wm1897" parent="weapons/wm1897" instance=ExtResource( 15 )]
+collision_layer = 5
+collision_mask = 5
+mode = 1
+
+[node name="ak47" type="Spatial" parent="weapons"]
+transform = Transform( -0.0362878, -0.398351, 0, 0.398351, -0.0362878, 0, 0, 0, 0.4, -34.0952, -18.4907, 43.832 )
+
+[node name="Ak47" parent="weapons/ak47" instance=ExtResource( 16 )]
+collision_layer = 5
+collision_mask = 5
+mode = 1
+
+[node name="vector" type="Spatial" parent="weapons"]
+transform = Transform( -0.0129576, -0.499832, 0, 0.499832, -0.0129576, 0, 0, 0, 0.5, -36.3846, -18.5621, 41.261 )
+
+[node name="Vector" parent="weapons/vector" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0208778, 0.233192, 0 )
+collision_layer = 4
+collision_mask = 5
+mode = 1
+
+[editable path="props/target_dummy5"]
