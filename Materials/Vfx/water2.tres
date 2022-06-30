@@ -22,7 +22,7 @@ uniform vec3 uv2_offset;
 
 
 void vertex() {
-	VERTEX.y += sin(TIME * 10.0 + VERTEX.x * 999.2 + VERTEX.z * 0.02) * 0.2;
+	VERTEX.y += sin(TIME * 1.0 + VERTEX.x * 999.2 + VERTEX.z * 0.02) * 0.5;
 	ROUGHNESS=roughness;
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
 }
