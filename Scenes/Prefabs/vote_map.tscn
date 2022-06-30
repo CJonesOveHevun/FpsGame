@@ -1,0 +1,306 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/vote_map.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("bg_panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.682353 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bg_panel/bottom:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.85098 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 592 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.0235294 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Control:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1024, 600 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "onready"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("bg_panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 4.8, 5 ),
+"transitions": PoolRealArray( 5.85634, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.729412 ), Color( 0, 0, 0, 0.729412 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bg_panel/bottom:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.196146, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.854902 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.189465, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 592 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 8.28212, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.0235294 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Control:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1024, 600 ), Vector2( 1024, 600 ) ]
+}
+
+[node name="vote_map" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg_panel" type="Panel" parent="."]
+self_modulate = Color( 0, 0, 0, 0.682353 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bottom" type="Panel" parent="bg_panel"]
+self_modulate = Color( 0, 0, 0, 0.85098 )
+anchor_top = 0.907
+anchor_right = 1.0
+anchor_bottom = 0.987
+margin_top = 7.79999
+margin_bottom = -0.200012
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "onready"
+anims/RESET = SubResource( 1 )
+anims/onready = SubResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.0235294 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 592.0
+margin_bottom = 592.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="b_menu" type="Button" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -48.0
+margin_right = 88.0
+text = "<Quit Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbl" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.933
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = 0.200439
+margin_right = 160.0
+margin_bottom = -7.99957
+text = "WINNER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="maps" type="ScrollContainer" parent="Control"]
+anchor_left = 0.156
+anchor_right = 0.156
+anchor_bottom = 1.0
+margin_left = -95.744
+margin_top = 64.0
+margin_right = 96.256
+margin_bottom = -87.9995
+grow_horizontal = 0
+grow_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dm" type="Control" parent="Control/maps"]
+
+[node name="cargo" type="Button" parent="Control/maps/dm"]
+margin_right = 192.0
+margin_bottom = 20.0
+text = "Cargo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v" type="Label" parent="Control/maps/dm/cargo"]
+margin_right = 40.0
+margin_bottom = 16.0
+text = "00"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="mansion" type="Button" parent="Control/maps/dm"]
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 44.0
+text = "Mansion"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v" type="Label" parent="Control/maps/dm/mansion"]
+margin_right = 40.0
+margin_bottom = 16.0
+text = "00"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Office" type="Button" parent="Control/maps/dm"]
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 68.0
+text = "Office"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v" type="Label" parent="Control/maps/dm/Office"]
+margin_right = 40.0
+margin_bottom = 16.0
+text = "00"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="heading" type="Label" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 0.107
+margin_bottom = -0.199989
+text = "Vote New Maps"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="Label" parent="Control"]
+anchor_top = 0.225
+anchor_right = 1.0
+anchor_bottom = 0.225
+margin_left = 608.0
+margin_top = -6.99989
+margin_right = -300.0
+margin_bottom = 7.00011
+text = "player kills deaths"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer" type="Label" parent="Control"]
+anchor_top = 0.118
+anchor_right = 1.0
+anchor_bottom = 0.118
+margin_left = 480.0
+margin_top = -6.79995
+margin_right = -483.0
+margin_bottom = 7.20005
+text = "Time left:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Control/b_menu" to="." method="_on_b_menu_pressed"]

@@ -98,7 +98,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="hg" type="Control" parent="weaponslist/VBoxContainer"]
-visible = false
 margin_right = 384.0
 
 [node name="glock17" type="Button" parent="weaponslist/VBoxContainer/hg"]
@@ -139,6 +138,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Mp5" type="Button" parent="weaponslist/VBoxContainer/smg"]
+margin_top = 48.0
+margin_right = 384.0
+margin_bottom = 72.0
+text = "Mp5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="sg" type="Control" parent="weaponslist/VBoxContainer"]
 visible = false
 margin_right = 384.0
@@ -168,6 +176,15 @@ margin_right = 384.0
 margin_right = 384.0
 margin_bottom = 24.0
 text = "Ak47"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="M16" type="Button" parent="weaponslist/VBoxContainer/ar"]
+margin_top = 24.0
+margin_right = 384.0
+margin_bottom = 48.0
+text = "M16"
 __meta__ = {
 "_edit_use_anchors_": false
 }

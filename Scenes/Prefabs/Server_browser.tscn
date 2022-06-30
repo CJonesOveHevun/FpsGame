@@ -66,23 +66,25 @@ wait_time = 5.0
 one_shot = true
 
 [node name="server_container" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = 64.0
-margin_right = -384.0
-margin_bottom = -88.0
+anchor_left = 0.062
+anchor_top = 0.147
+anchor_right = 0.625
+anchor_bottom = 0.853
+margin_left = 0.511997
+margin_top = -0.199997
+margin_bottom = 0.199982
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="txt" type="Label" parent="."]
+anchor_top = 0.093
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.093
 margin_left = 64.0
-margin_top = 32.0
+margin_top = -23.8
 margin_right = -384.0
-margin_bottom = -520.0
+margin_bottom = 24.2
 text = "Finding Servers... Servers Available:"
 align = 1
 valign = 1
@@ -104,6 +106,7 @@ __meta__ = {
 
 [node name="server_listener" parent="." instance=ExtResource( 2 )]
 
+[connection signal="text_entered" from="address_bar" to="." method="_on_address_bar_text_entered"]
 [connection signal="pressed" from="join_dir" to="." method="_on_join_dir_pressed"]
 [connection signal="timeout" from="join_dir/connection_time" to="." method="_on_connection_time_timeout"]
 [connection signal="pressed" from="back_b" to="." method="_on_back_b_pressed"]

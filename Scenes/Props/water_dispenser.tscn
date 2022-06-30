@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Materials/Vfx/common.tres" type="Shader" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1.212, 2.135, 1.31 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/Color = Color( 0.913725, 0.847059, 0.847059, 1 )
+shader_param/Metallic = null
+shader_param/Roughness = 1.0
+shader_param/Specular = 1.0
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.789, 0.214, 0.878 )
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 0.6
+bottom_radius = 0.6
+height = 1.075
+radial_segments = 15
+rings = 1
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/Color = Color( 0, 0.729412, 1, 1 )
+shader_param/Metallic = 0.901
+shader_param/Roughness = 1.0
+shader_param/Specular = 0.445
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.600785, 1.56441, 0.609156 )
+
+[node name="water_dispenser" type="StaticBody"]
+collision_layer = 17
+collision_mask = 17
+
+[node name="body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.413338, 0 )
+mesh = SubResource( 1 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 3 )
+
+[node name="slot" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.413338, 0.446299 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 3 )
+
+[node name="water" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21899, 0 )
+cast_shadow = 0
+mesh = SubResource( 4 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114171, 0 )
+shape = SubResource( 6 )

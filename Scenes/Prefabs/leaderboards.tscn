@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/leaderboards.gd" type="Script" id=1]
+
+[node name="leaderboards" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 0.0117647, 0.0117647, 0.0117647, 0.564706 )
+anchor_left = 0.187
+anchor_top = 0.173
+anchor_right = 0.812
+anchor_bottom = 0.893
+margin_left = 0.511993
+margin_top = 0.199997
+margin_right = 0.511963
+margin_bottom = 0.199951
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="heading" type="Label" parent="Panel"]
+anchor_top = 0.065
+anchor_right = 1.0
+anchor_bottom = 0.065
+margin_top = -28.08
+margin_right = -528.0
+margin_bottom = 19.92
+text = "Leaderboards"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_top = 0.13
+anchor_right = 1.0
+anchor_bottom = 0.13
+margin_top = -8.16
+margin_bottom = 15.84
+text = "Player                                                                                                           Kills       Deaths"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="VBoxContainer" parent="Panel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -144.0
+margin_right = -384.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container2" type="VBoxContainer" parent="Panel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 384.0
+margin_top = -144.0
+margin_right = -63.9999
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Materials/Vfx/common.tres" type="Shader" id=1]
+[ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.991, 0.277, 0.917 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/Color = Color( 0.25098, 0.192157, 0.192157, 1 )
+shader_param/Metallic = null
+shader_param/Roughness = 1.0
+shader_param/Specular = 0.428
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.2, 0.901, 0.2 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.592, 0.137, 0.715 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.186, 1.1, 0.155 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.195, 0.205, 0.192 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 1 )
+shader_param/Color = Color( 0.2, 0.168627, 0.168627, 1 )
+shader_param/Metallic = null
+shader_param/Roughness = 1.0
+shader_param/Specular = 1.0
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.454, 0.643, 0.486 )
+
+[node name="office_chair" type="StaticBody"]
+collision_layer = 17
+collision_mask = 17
+
+[node name="base" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392744, 0 )
+mesh = SubResource( 1 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 3 )
+
+[node name="base2" type="MeshInstance" parent="base"]
+transform = Transform( 1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0.954131, -0.346551 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 3 )
+
+[node name="rod" type="MeshInstance" parent="base"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.503277, 0 )
+mesh = SubResource( 2 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="quat" type="MeshInstance" parent="base/rod"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423936, 0 )
+mesh = SubResource( 4 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="rod2" type="MeshInstance" parent="base/rod"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.508714 )
+mesh = SubResource( 5 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="wheel" type="MeshInstance" parent="base/rod"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286094, -0.528023, -0.313221 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="wheel2" type="MeshInstance" parent="base/rod"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.301255, -0.528023, -0.313221 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="wheel3" type="MeshInstance" parent="base/rod"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.301255, -0.528023, 0.327164 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="wheel4" type="MeshInstance" parent="base/rod"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.276885, -0.528023, 0.327164 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.869189, 0 )
+shape = SubResource( 8 )

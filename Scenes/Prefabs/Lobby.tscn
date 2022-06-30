@@ -187,7 +187,7 @@ margin_top = 48.0
 margin_right = 256.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
-text = "Urban"
+text = "Office"
 
 [connection signal="pressed" from="menu_button" to="." method="_on_menu_button_pressed"]
 [connection signal="timeout" from="interval" to="." method="_on_interval_timeout"]
