@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fpsgame-sounds_uzi_gun_fire.mp3-dcff72619df6896ba32c48cb407a4606.mp3str"
+
+[deps]
+
+source_file="res://Materials/Sfx/fpsgame-sounds_uzi_gun_fire.mp3"
+dest_files=[ "res://.import/fpsgame-sounds_uzi_gun_fire.mp3-dcff72619df6896ba32c48cb407a4606.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

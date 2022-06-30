@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fpsgame-sounds_shotgun_gun_fire.mp3-6131963cab64814e0935450ba36c159f.mp3str"
+
+[deps]
+
+source_file="res://Materials/Sfx/fpsgame-sounds_shotgun_gun_fire.mp3"
+dest_files=[ "res://.import/fpsgame-sounds_shotgun_gun_fire.mp3-6131963cab64814e0935450ba36c159f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fpsgame-sounds_sub_machinegun_mag_reload.mp3-a372891b0fd6bb7141812907a5113442.mp3str"
+
+[deps]
+
+source_file="res://Materials/Sfx/fpsgame-sounds_sub_machinegun_mag_reload.mp3"
+dest_files=[ "res://.import/fpsgame-sounds_sub_machinegun_mag_reload.mp3-a372891b0fd6bb7141812907a5113442.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

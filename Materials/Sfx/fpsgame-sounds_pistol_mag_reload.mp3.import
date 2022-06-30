@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fpsgame-sounds_pistol_mag_reload.mp3-53af23a3254cb511d9942c2ff2e2a0a8.mp3str"
+
+[deps]
+
+source_file="res://Materials/Sfx/fpsgame-sounds_pistol_mag_reload.mp3"
+dest_files=[ "res://.import/fpsgame-sounds_pistol_mag_reload.mp3-53af23a3254cb511d9942c2ff2e2a0a8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
