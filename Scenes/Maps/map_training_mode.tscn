@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Scenes/Characters/weapons/guns/wm1897.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Characters/weapons/guns/ak47.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Characters/weapons/guns/vector.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Characters/weapons/guns/M16.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Characters/weapons/guns/Mp5.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -239,7 +241,6 @@ textures = [ [  ], [  ] ]
 sky_top_color = Color( 0.423529, 0.701961, 0.807843, 1 )
 sky_horizon_color = Color( 1, 0.839216, 0.729412, 1 )
 sky_curve = 0.107029
-sky_energy = 1.2
 ground_bottom_color = Color( 1, 0.686275, 0.431373, 1 )
 ground_horizon_color = Color( 1, 0.713726, 0.482353, 1 )
 sun_latitude = 137.86
@@ -250,14 +251,14 @@ background_mode = 2
 background_sky = SubResource( 3 )
 background_color = Color( 1, 1, 1, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_sky_contribution = 0.42
 fog_enabled = true
 fog_color = Color( 1, 0.631373, 0.364706, 1 )
 fog_sun_color = Color( 1, 0.929412, 0.796078, 1 )
 fog_sun_amount = 1.0
 fog_depth_begin = 0.0
-fog_depth_end = 326.8
+fog_depth_end = 224.2
 tonemap_mode = 4
-glow_enabled = true
 glow_strength = 0.82
 
 [sub_resource type="OccluderShapeSphere" id=5]
@@ -294,7 +295,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -150, -20, -180 )
 script = ExtResource( 2 )
 ambient_wind = 0.085
 _terrain_data = ExtResource( 4 )
-chunk_size = 32
+chunk_size = 64
 collision_enabled = true
 collision_layer = 1
 collision_mask = 1
@@ -409,13 +410,13 @@ mode = 1
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -23.9161, -20.1568, 118.024 )
 
 [node name="target_dummy" parent="props" instance=ExtResource( 12 )]
-transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -19.8365, -20.3067, -47.8446 )
+transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -19.8365, -18.8255, -47.8446 )
 
 [node name="target_dummy2" parent="props" instance=ExtResource( 12 )]
-transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -28.4707, -20.3067, -42.5312 )
+transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -28.4707, -19.3336, -42.5312 )
 
 [node name="target_dummy3" parent="props" instance=ExtResource( 12 )]
-transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -14.2768, -20.3067, -54.4265 )
+transform = Transform( 3.60388, 0, 1.73552, 0, 4, 0, -1.73552, 0, 3.60388, -14.2768, -19.6481, -54.4265 )
 
 [node name="target_dummy4" parent="props" instance=ExtResource( 12 )]
 transform = Transform( 3.99816, 0, -0.121177, 0, 4, 0, 0.121177, 0, 3.99816, -30.2417, -20.3067, 88.8595 )
@@ -922,17 +923,6 @@ shape = SubResource( 10 )
 transform = Transform( 0.999493, 0, 0.0318294, 0, 1, 0, -0.0318294, 0, 0.999493, 35.9058, -14.8238, 64.1338 )
 shape = SubResource( 9 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.160055, -0.687988, 0.707852, 0.684907, 0.593796, 0.422266, -0.710834, 0.417227, 0.566248, 0, 0, 0 )
-shadow_enabled = true
-shadow_color = Color( 0.596078, 0, 0, 1 )
-shadow_bias = 0.098
-directional_shadow_mode = 1
-directional_shadow_split_1 = 0.044
-directional_shadow_split_2 = 0.04
-directional_shadow_split_3 = 0.0
-directional_shadow_max_distance = 86.4
-
 [node name="weapons" type="Spatial" parent="."]
 
 [node name="sawedoff" type="Spatial" parent="weapons"]
@@ -964,6 +954,20 @@ transform = Transform( -0.0129576, -0.499832, 0, 0.499832, -0.0129576, 0, 0, 0, 
 
 [node name="Vector" parent="weapons/vector" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0208778, 0.233192, 0 )
+collision_layer = 4
+collision_mask = 5
+mode = 1
+
+[node name="guns" type="Spatial" parent="weapons"]
+transform = Transform( 0.00881491, -0.391451, -0.0817848, 0.399899, 0.00900515, 0, 0.00184121, -0.081764, 0.39155, -37.441, -18.6085, 40.4627 )
+
+[node name="M16" parent="weapons/guns" instance=ExtResource( 18 )]
+collision_layer = 4
+collision_mask = 5
+mode = 1
+
+[node name="Mp5" parent="weapons/guns" instance=ExtResource( 19 )]
+transform = Transform( 0.999567, -0.0292908, -0.00268721, 0.029053, 0.997443, -0.0652792, 0.00459243, 0.0651725, 0.997864, -0.0211182, -2.4619, -3.44026 )
 collision_layer = 4
 collision_mask = 5
 mode = 1
