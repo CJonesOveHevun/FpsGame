@@ -1,0 +1,369 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Materials/Vfx/metal_gun02.tres" type="Material" id=1]
+[ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=2]
+[ext_resource path="res://Materials/Vfx/metal_gun03.tres" type="Material" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.336, 0.705, 1.574 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.27, 1.267, 0.414 )
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.37
+bottom_radius = 0.292
+height = 0.146
+radial_segments = 14
+rings = 1
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 0.215
+bottom_radius = 0.366
+height = 1.773
+radial_segments = 14
+rings = 1
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.382, 0.493, 0.406 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.1, 0.452, 2.045 )
+
+[sub_resource type="PrismMesh" id=7]
+left_to_right = 0.0
+size = Vector3( 0.436, 1.895, 0.093 )
+
+[sub_resource type="CylinderMesh" id=8]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.105
+radial_segments = 4
+rings = 1
+
+[sub_resource type="CubeMesh" id=9]
+size = Vector3( 0.063, 0.052, 0.747 )
+
+[sub_resource type="CubeMesh" id=10]
+size = Vector3( 0.308, 0.366, 0.201 )
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 0.31, 0.099, 1.143 )
+
+[sub_resource type="CubeMesh" id=12]
+size = Vector3( 0.292, 0.349, 0.062 )
+
+[sub_resource type="CubeMesh" id=13]
+size = Vector3( 0.279, 0.434, 0.608 )
+
+[sub_resource type="CubeMesh" id=14]
+size = Vector3( 0.108, 0.957, 0.548 )
+
+[sub_resource type="CapsuleMesh" id=17]
+radius = 0.167
+mid_height = 0.411
+radial_segments = 8
+rings = 3
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 0.250086, 0.84685, 3.30476 )
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.866321 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/mag_feed/magazine:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.396158, 0.0214056 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/mag_feed/magazine:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "fire"
+length = 0.08
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.05, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.866321 ), Vector3( 0, 0.126546, 0.201538 ), Vector3( 0, -0.0176427, 0.662796 ), Vector3( 0, 0, 0.866321 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.02, 0.05, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -0.129613, 0, 0 ), Vector3( -4.5138, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "holster"
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2.34149, 0.10452 ), Vector3( 0, -0.309068, 0.299415 ), Vector3( 0, 0.216761, 0.717751 ), Vector3( 0, -0.326194, 0.88334 ), Vector3( 0, -0.724888, 1.23197 ), Vector3( 0, -0.358721, 1.26112 ), Vector3( 0, -0.129304, 0.670609 ), Vector3( 0, -0.317046, 1.26236 ), Vector3( 0, -0.144429, 1.05862 ), Vector3( 0, 0, 0.866 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -82.1305, 0, 0 ), Vector3( -68.9312, 0, 0 ), Vector3( -38.951, 0, 0 ), Vector3( 3.30166, 0, 0 ), Vector3( 13.3516, 0, 0 ), Vector3( 15.4516, 0, 0 ), Vector3( 12.7738, 0, 0 ), Vector3( 10.096, 0, 0 ), Vector3( -0.696871, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "reload"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.866 ), Vector3( 0, 0.0556612, 0.804625 ), Vector3( 0, 0.499416, 0.616475 ), Vector3( 0, 0.596565, 0.532654 ), Vector3( 0, 0.690234, 0.490987 ), Vector3( 0, 0.658614, 0.540845 ), Vector3( 0, 0.355168, 0.64149 ), Vector3( 0, -0.283612, 0.761521 ), Vector3( 0, -0.263162, 0.799071 ), Vector3( 0, -0.0567342, 0.819242 ), Vector3( 0, 0.105825, 0.830931 ), Vector3( 0, 0.026531, 0.844018 ), Vector3( 0, -0.0115773, 0.855009 ), Vector3( 0, 0, 0.866 ), Vector3( 0, 0, 0.866 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -6.377, 0, 0 ), Vector3( -14.218, 0, 0 ), Vector3( -17.027, 0, 0 ), Vector3( -20.044, 0, 0 ), Vector3( -20.044, 0, 0 ), Vector3( -12.733, 0, 0 ), Vector3( 8.377, 0, 0 ), Vector3( 7.643, 0, 0 ), Vector3( 2.7154, 0, 0 ), Vector3( -5.52145, 0, 0 ), Vector3( -2.44096, 0, 0 ), Vector3( -0.913482, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/mag_feed/magazine:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.396158, 0.0214056 ), Vector3( 0, -1.20801, -0.0712343 ), Vector3( 0, -3.32342, -0.667695 ), Vector3( 0, -4.55901, -2.54906 ), Vector3( 0, -3.37224, -0.971759 ), Vector3( 0, -1.82996, -0.592273 ), Vector3( 0, -0.565877, -0.0240552 ), Vector3( 0, -0.396158, 0.0214056 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/mag_feed/magazine:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 6.975, 0, 0 ), Vector3( 21.734, 0, 0 ), Vector3( 47.009, 0, 0 ), Vector3( 30.866, 0, 0 ), Vector3( 34.498, 0, 0 ), Vector3( 4.80697, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="M16" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.364604, 0 )
+
+[node name="body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0.866321 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 1 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="handle" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 0.967077, -0.254484, 0, 0.254484, 0.967077, 0, -0.567776, -0.805849 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 2 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="support" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.866455 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 3 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 3 )
+
+[node name="support2" type="MeshInstance" parent="body/support"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951904, -4.16091e-08 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 4 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 3 )
+
+[node name="stockholder" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131927, -0.7641 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 5 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="stock1" type="MeshInstance" parent="body/stockholder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0524354, -1.18266 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 6 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 3 )
+
+[node name="stok2" type="MeshInstance" parent="body/stockholder"]
+transform = Transform( -4.37114e-08, 0, -1, -1, 2.98023e-08, 4.37114e-08, 2.98023e-08, 1, -1.77636e-15, 0, -0.4891, -1.25713 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 7 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 3 )
+
+[node name="muzzle" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 3.11835 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 8 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="sights" type="MeshInstance" parent="body/muzzle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.174498, -0.326808 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 9 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="sights2" type="MeshInstance" parent="body/muzzle"]
+transform = Transform( 1, 0, 0, 0, 0.879474, -0.475947, 0, 0.475947, 0.879474, 0, -0.34991, -0.382544 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 9 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="sights2" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 0.97457, -0.224084, 0, 0.224084, 0.97457, 0, 0.510672, -0.592464 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 10 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="sights3" type="MeshInstance" parent="body/sights2"]
+transform = Transform( 1, 0, 0, 0, 0.980233, 0.197846, 0, -0.197846, 0.980233, 0, 0.245002, 0.474916 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 11 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="sights_front" type="MeshInstance" parent="body/sights2/sights3"]
+transform = Transform( 1, 0, 0, 0, 0.997477, 0.0709926, 0, -0.0709926, 0.997477, 0, -0.12571, 0.593671 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 12 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="mag_feed" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 0.997079, 0.076371, 0, -0.076371, 0.997079, 0, -0.39701, 0.420139 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 13 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="magazine" type="MeshInstance" parent="body/mag_feed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.396158, 0.0214056 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 14 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0607327, 0.0964129, 0 )
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 17 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24964, 1.228 )
+shape = SubResource( 15 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 18 )
+anims/fire = SubResource( 16 )
+anims/holster = SubResource( 19 )
+anims/reload = SubResource( 20 )

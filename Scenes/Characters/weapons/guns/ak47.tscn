@@ -1,8 +1,10 @@
 [gd_scene load_steps=24 format=2]
 
+[ext_resource path="res://Materials/Models/ar_mag1.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://Materials/Vfx/metal_gun02.tres" type="Material" id=2]
 [ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=3]
 [ext_resource path="res://Materials/Vfx/wood03.tres" type="Material" id=4]
+[ext_resource path="res://Materials/Models/stock_mesh.tres" type="ArrayMesh" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.291, 0.429, 1.758 )
@@ -19,14 +21,6 @@ bottom_radius = 0.15
 height = 0.407
 radial_segments = 10
 rings = 1
-
-[sub_resource type="PrismMesh" id=4]
-left_to_right = 1.7
-size = Vector3( 0.451, 0.623, 0.165 )
-
-[sub_resource type="PrismMesh" id=5]
-left_to_right = 0.8
-size = Vector3( 0.848, 1.556, 0.165 )
 
 [sub_resource type="CubeMesh" id=9]
 size = Vector3( 0.264, 1.145, 0.316 )
@@ -67,9 +61,6 @@ bottom_radius = 0.157
 height = 0.901
 radial_segments = 10
 rings = 1
-
-[sub_resource type="CubeMesh" id=15]
-size = Vector3( 0.147, 1.296, 0.511 )
 
 [sub_resource type="CubeMesh" id=16]
 material = ExtResource( 3 )
@@ -130,7 +121,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, -0.812084, 0.677782 ) ]
+"values": [ Vector3( -0.012531, -0.549632, 0.561051 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("MultiMeshInstance/mag:rotation_degrees")
@@ -142,7 +133,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -18.905, 0, 0 ) ]
+"values": [ Vector3( 8.11451e-07, 90, -23.978 ) ]
 }
 
 [sub_resource type="Animation" id=19]
@@ -186,6 +177,45 @@ tracks/2/keys = {
 "values": [ Vector3( -0.0755928, 0, 0.176765 ), Vector3( -0.0755928, 0.0129852, -0.176063 ), Vector3( -0.0755928, 0, 0.176765 ) ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "holster"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MultiMeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2.49166, -1.77369 ), Vector3( 0, -0.472851, 0.119448 ), Vector3( 0, 0.489833, 0.633866 ), Vector3( 0, 0.124457, 0.649775 ), Vector3( 0, -0.223682, 0.617638 ), Vector3( 0, -0.369328, 0.290934 ), Vector3( 0, -0.139073, 0.474602 ), Vector3( 0, 0, 0.479718 ), Vector3( 0, 0, 0.479718 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MultiMeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 77.657, -5.59848e-06, -52.622 ), Vector3( 16.8763, -7.22331e-08, -61.36 ), Vector3( -6.67985, 2.16868e-07, -59.697 ), Vector3( -11.0199, -8.49073e-07, -55.744 ), Vector3( 4.86867, -3.17457e-08, -67.235 ), Vector3( 3.89493, -4.07997e-08, -67.201 ), Vector3( -2.4588, -2.828e-07, -48.558 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MultiMeshInstance/ejector/MeshInstance:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.0755928, 0, 0.176765 ), Vector3( -0.0755928, 0, 0.176765 ), Vector3( -0.0755928, 0, -0.170614 ), Vector3( -0.0755928, 0, 0.176765 ) ]
+}
+
 [sub_resource type="Animation" id=20]
 resource_name = "reload"
 length = 2.8
@@ -223,7 +253,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.1 ),
 "transitions": PoolRealArray( 0.277392, 1, 7.46426, 1, 0.277392 ),
 "update": 0,
-"values": [ Vector3( 0, -0.812084, 0.677782 ), Vector3( 0, -3.75654, 0.733904 ), Vector3( 0, -3.04216, -2.28394 ), Vector3( 0, -1.7763, 0.490264 ), Vector3( 0, -0.812084, 0.677782 ) ]
+"values": [ Vector3( -8.36454e-10, -0.640649, 0.429655 ), Vector3( 0, -3.75654, 0.733904 ), Vector3( 0, -3.04216, -2.28394 ), Vector3( 0, -1.7763, 0.490264 ), Vector3( -8.36454e-10, -0.640649, 0.429655 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("MultiMeshInstance/mag:rotation_degrees")
@@ -235,7 +265,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.1 ),
 "transitions": PoolRealArray( 0.378929, 1, 12.996, 1, 0.378929 ),
 "update": 0,
-"values": [ Vector3( -18.905, 0, 0 ), Vector3( 11.644, 0, 0 ), Vector3( 11.644, 0, 0 ), Vector3( 23.273, 0, 0 ), Vector3( -18.905, 0, 0 ) ]
+"values": [ Vector3( -1.78859e-06, 90, -23.219 ), Vector3( 11.644, 90, 0 ), Vector3( 11.644, 90, 0 ), Vector3( 23.273, 90, 0 ), Vector3( -1.78859e-06, 90, -23.219 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("MultiMeshInstance/ejector/MeshInstance:translation")
@@ -251,15 +281,18 @@ tracks/4/keys = {
 }
 
 [node name="ak47" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118914, 0 )
 collision_layer = 0
 
 [node name="MultiMeshInstance" type="MultiMeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.479718 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0.479718 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 
 [node name="body" type="MeshInstance" parent="MultiMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.168235, 0 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 1 )
@@ -268,6 +301,7 @@ material/0 = ExtResource( 2 )
 
 [node name="curve" type="MeshInstance" parent="MultiMeshInstance/body"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.190569, 0.121564 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 2 )
@@ -276,6 +310,7 @@ material/0 = ExtResource( 2 )
 
 [node name="curve2" type="MeshInstance" parent="MultiMeshInstance/body"]
 transform = Transform( 1, 0, 0, 0, 0.656283, -0.754515, 0, 0.754515, 0.656283, 0, 0.093896, -0.9435 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 3 )
@@ -283,23 +318,17 @@ software_skinning_transform_normals = false
 material/0 = ExtResource( 2 )
 
 [node name="stock" type="MeshInstance" parent="MultiMeshInstance/body/curve2"]
-transform = Transform( -0.0103845, 0.00418861, -0.999937, 0.449155, 0.893454, -0.000921989, 0.893394, -0.449136, -0.0111594, 0, -0.326725, -0.298841 )
+transform = Transform( -0.399975, 0.0039646, 0.00395315, -0.000368783, 0.322692, -0.381929, -0.00446375, -0.381908, -0.322668, -0.0204299, -0.790725, -0.20786 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
-mesh = SubResource( 4 )
-software_skinning_transform_normals = false
-material/0 = ExtResource( 4 )
-
-[node name="tail" type="MeshInstance" parent="MultiMeshInstance/body/curve2"]
-transform = Transform( -0.0103845, 0.00418861, -0.999937, -0.259075, 0.965834, 0.0067363, 0.965802, 0.259128, -0.00894458, -0.00772017, -0.801347, -0.34895 )
-cast_shadow = 0
-generate_lightmap = false
-mesh = SubResource( 5 )
+mesh = ExtResource( 5 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 4 )
 
 [node name="handle" type="MeshInstance" parent="MultiMeshInstance/body"]
 transform = Transform( 1, 0, 0, 0, 0.963537, -0.267575, 0, 0.267575, 0.963537, 0, -0.431974, -0.830317 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 9 )
@@ -308,6 +337,7 @@ material/0 = ExtResource( 4 )
 
 [node name="top" type="MeshInstance" parent="MultiMeshInstance/body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26746, 0.932203 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 13 )
@@ -316,6 +346,7 @@ material/0 = ExtResource( 2 )
 
 [node name="sights_l" type="MeshInstance" parent="MultiMeshInstance/body/top"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.08964, -0.0177318, 0.0780242 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 11 )
@@ -325,6 +356,7 @@ material/0 = ExtResource( 2 )
 
 [node name="sights_r" type="MeshInstance" parent="MultiMeshInstance/body/top"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0859908, -0.0150704, 0.0780242 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 11 )
@@ -334,6 +366,7 @@ material/0 = ExtResource( 2 )
 
 [node name="muzzle" type="MeshInstance" parent="MultiMeshInstance"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.225089, 2.89607 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 10 )
@@ -343,6 +376,7 @@ material/0 = ExtResource( 2 )
 
 [node name="sights_mid" type="MeshInstance" parent="MultiMeshInstance/muzzle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659051, -0.275177 )
+portal_mode = 3
 cast_shadow = 0
 mesh = SubResource( 11 )
 software_skinning_transform_normals = false
@@ -350,6 +384,7 @@ material/0 = ExtResource( 2 )
 
 [node name="muzzle_top" type="MeshInstance" parent="MultiMeshInstance/muzzle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.597573, -0.258867 )
+portal_mode = 3
 cast_shadow = 0
 mesh = SubResource( 12 )
 skeleton = NodePath("../../body")
@@ -358,6 +393,7 @@ material/0 = ExtResource( 2 )
 
 [node name="handle_b" type="MeshInstance" parent="MultiMeshInstance"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.299717, 1.44678 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 6 )
@@ -367,6 +403,7 @@ material/0 = ExtResource( 4 )
 
 [node name="center" type="MeshInstance" parent="MultiMeshInstance/handle_b"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.163785 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 7 )
@@ -375,6 +412,7 @@ material/0 = ExtResource( 4 )
 
 [node name="top" type="MeshInstance" parent="MultiMeshInstance/handle_b/center"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114603, -0.187137 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 8 )
@@ -382,14 +420,16 @@ software_skinning_transform_normals = false
 material/0 = ExtResource( 4 )
 
 [node name="mag" type="MeshInstance" parent="MultiMeshInstance"]
-transform = Transform( 1, 0, 0, 0, 0.946057, 0.324, 0, -0.324, 0.946057, 0, -0.812084, 0.677782 )
+transform = Transform( -3.65557e-08, -3.85872e-09, 0.8, -0.325109, 0.730962, -1.133e-08, -0.730962, -0.325109, -3.49691e-08, -0.012531, -0.549632, 0.561051 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
-mesh = SubResource( 15 )
+mesh = ExtResource( 1 )
 material/0 = ExtResource( 3 )
 
 [node name="ejector" type="MeshInstance" parent="MultiMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111533, 0.0117231, 0.199258 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 16 )
@@ -397,6 +437,7 @@ material/0 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="MultiMeshInstance/ejector"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0755928, 0, 0.176765 )
+portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 17 )
@@ -409,4 +450,5 @@ shape = SubResource( 14 )
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 18 )
 anims/fire = SubResource( 19 )
+anims/holster = SubResource( 21 )
 anims/reload = SubResource( 20 )

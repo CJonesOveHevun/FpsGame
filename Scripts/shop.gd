@@ -14,9 +14,11 @@ var selected_gun : String = ""
 var plr
 
 var gun_price = {"Glock17": 700, "Uzi": 1000, "Sawedoff": 900, "Wm1897": 1350,
-"Ak47": 2500, "Vector": 850,"Revolver":1000}
+"Ak47": 2500, "Vector": 850,"Revolver":1000, "M16": 2500, "Mp5": 1000}
 
 func _ready():
+# warning-ignore:return_value_discarded
+	ServerInfo.connect("matchOver",self, "disable_shop")
 	plr = get_parent()
 
 func _process(_delta):
@@ -43,6 +45,8 @@ func _on_b_back_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	queue_free()
 
+func disable_shop():
+	queue_free()
 
 func _on_buy_b_pressed():
 	if plr != null:
@@ -54,9 +58,7 @@ func _on_buy_b_pressed():
 			match WeaponsInfo.weapon_type[selected_gun]:
 				WeaponsInfo.Handgun:
 					plr.secondary_slot = selected_gun
-					print("secondary")
 				_:
 					plr.primary_slot = selected_gun
-					print("primary")
 			plr.add_new_gun(selected_gun)
 			price_lbl.text = "Remaing: $" + str(plr.money)

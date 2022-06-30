@@ -84,13 +84,16 @@ tracks/1/keys = {
 }
 
 [node name="blood_explode" type="Particles"]
+portal_mode = 3
+cast_shadow = 0
+generate_lightmap = false
 amount = 18
 explosiveness = 1.0
 visibility_aabb = AABB( -1.90164, -2.61049, -2.07603, 3.80328, 5.22098, 4.15206 )
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
 script = ExtResource( 1 )
-max_emit_distance = 80.0
+max_emit_distance = 60.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "anim"

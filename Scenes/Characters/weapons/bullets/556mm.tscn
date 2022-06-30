@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:enabled")
@@ -24,12 +24,12 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 30 ) ]
+"values": [ Vector3( 0, 0, 40 ) ]
 }
 
 [sub_resource type="Animation" id=2]
-resource_name = "time"
-length = 0.5
+resource_name = "anim"
+length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -37,7 +37,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -66,19 +66,17 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 30 ), Vector3( 0, 0, 120 ) ]
+"values": [ Vector3( 0, 0, 40 ), Vector3( 0, 0, 150 ) ]
 }
 
-[node name="9mm" type="RayCast" groups=["bullet"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0119977 )
+[node name="556mm" type="RayCast" groups=["bullet"]]
 enabled = true
-cast_to = Vector3( 0, 0, 30 )
+cast_to = Vector3( 0, 0, 40 )
 collision_mask = 16
 collide_with_areas = true
-debug_shape_custom_color = Color( 1, 0.835294, 0.529412, 1 )
-debug_shape_thickness = 5.0
+debug_shape_thickness = 4.0
 
 [node name="time" type="AnimationPlayer" parent="."]
-autoplay = "time"
-anims/RESET = SubResource( 3 )
-anims/time = SubResource( 2 )
+autoplay = "anim"
+anims/RESET = SubResource( 1 )
+anims/anim = SubResource( 2 )
