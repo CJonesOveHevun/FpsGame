@@ -1,16 +1,16 @@
 extends Node
 
 const default_port = 6969
-const max_clients = 8
+var max_clients = 4
 
 var server = null
 var client = null
 
 var ip_address = ""
 
-onready var main_menu = preload("res://Scenes/Prefabs/Menu.tscn")
-onready var server_browser = preload("res://Scenes/Prefabs/Server_browser.tscn")
-onready var server_lobby = preload("res://Scenes/Prefabs/Lobby.tscn")
+const main_menu = preload("res://Scenes/Prefabs/Menu.tscn")
+const server_browser = preload("res://Scenes/Prefabs/Server_browser.tscn")
+const server_lobby = preload("res://Scenes/Prefabs/Lobby.tscn")
 
 
 func _ready() -> void:
@@ -73,4 +73,5 @@ func reset_server():
 	get_tree().network_peer = null
 	if server != null : server = null;
 	ServerInfo.isMatchStart = false
+	ServerInfo.match_fin = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

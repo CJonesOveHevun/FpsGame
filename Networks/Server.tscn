@@ -1,3 +1,10 @@
 [gd_scene format=2]
 
 [node name="Server" type="Node"]
+
+[node name="StaticBody" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -120, 0 )
+calculate_tangents = false
+use_collision = true
+width = 800.0
+depth = 800.0
