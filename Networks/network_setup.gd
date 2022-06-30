@@ -10,6 +10,7 @@ onready var join_button = $Base/join_b
 onready var lobby_button = $Base/host_b
 onready var training_button = $Base/training_b
 onready var ip_label = $Base/ip_label
+onready var plr_cap = $Base/spin_cap
 #
 func _ready():
 	ip_label.text = Networking.ip_address
@@ -43,13 +44,13 @@ remotesync func _server_disconnected():
 func _connected_to_server():
 	print("someone joined!")
 	var open_lobby = Networking.server_lobby.instance()
-	get_tree().current_scene.add_child(open_lobby, true)
-	open_lobby.timer.start()
-	get_node("Server_browser").queue_free()
-	
-	
-	yield(get_tree().create_timer(0.1),"timeout")
-	instance_player(get_tree().get_network_unique_id())
+	if !get_tree().is_network_server():
+		get_tree().current_scene.add_child(open_lobby, true)
+		open_lobby.timer.start()
+		get_node("Server_browser").queue_free()
+		
+		
+		instance_player(get_tree().get_network_unique_id())
 
 func _connection_failed():
 	print("ehh")
@@ -85,3 +86,8 @@ func _on_training_b_pressed():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene_to(training_map)
 	ServerInfo.isMatchStart = true
+
+
+func _on_spin_cap_value_changed(value):
+	Networking.max_clients = value
+	plr_cap.release_focus()

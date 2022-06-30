@@ -9,7 +9,7 @@ func _on_back_b_pressed():
 	return get_tree().reload_current_scene()
 
 func _on_Server_browser_new_server(gameInfo):
-	var server_node = ServerInfo.instance_node(load("res://autoloads/server_display.tscn"), server_container)
+	var server_node = ServerInfo.instance_node(load("res://Scenes/Prefabs/server_display.tscn"), server_container)
 	server_node.text = "Server" + "%s - %s" % [gameInfo.name, gameInfo.ip]
 	server_node.ip_address = str(gameInfo.ip)
 	pass
@@ -53,3 +53,7 @@ func _on_connection_time_timeout():
 	print("ERR - client : connection failed/timeout!")
 
 
+
+
+func _on_address_bar_text_entered(_new_text):
+	_on_join_dir_pressed()

@@ -32,8 +32,8 @@ func _process(_delta):
 		var server_port = socket_udp.get_packet_port()
 		var array_bytes = socket_udp.get_packet()
 		
-		if server_ip != "" && server_port > 0:
-			if not known_servers.has(server_ip):
+		if server_ip != "" && server_port > 0 && array_bytes.size() > 0:
+			if not known_servers.has(server_ip) && server_ip != null:
 				var serverMessage = array_bytes.get_string_from_ascii()
 				var gameInfo = parse_json(serverMessage)
 				gameInfo.ip = server_ip
