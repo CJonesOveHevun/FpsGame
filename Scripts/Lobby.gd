@@ -13,7 +13,8 @@ var plr_ready : int
 var server_ready : int
 
 onready var maps = {"Cargo" : preload("res://Scenes/Maps/map_cargo.tscn"),
-"Mansion" : preload("res://Scenes/Maps/map_mansion.tscn")}
+"Mansion" : preload("res://Scenes/Maps/map_mansion.tscn"),
+ "Office":preload("res://Scenes/Maps/map_office.tscn")}
 
 func _ready() -> void:
 	if !get_tree().is_network_server():
@@ -91,4 +92,4 @@ sync func change_map(map):
 		print(spawn)
 		for p in Players.get_children():
 			randomize()
-			p.translation = Vector3(rand_range(-40,40), 0, rand_range(-40,40))
+			p.translation = Vector3(rand_range(-10,10), 0, rand_range(-10,10))

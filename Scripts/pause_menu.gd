@@ -5,6 +5,9 @@ onready var resume_b = $resume_b
 onready var player = get_parent().get_parent().get_parent().get_parent().get_parent()
 
 func _ready():
+	if !ServerInfo.is_connected("matchOver", self, "_ready"):
+# warning-ignore:return_value_discarded
+		ServerInfo.connect("matchOver", self,"_ready")
 	hide()
 
 func _input(_event):
@@ -24,7 +27,6 @@ func _on_menu_b_pressed():
 # warning-ignore:return_value_discarded
 		get_tree().change_scene_to(main_scene)
 		Networking.reset_server()
-
 
 func _on_resume_b_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

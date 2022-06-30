@@ -6,6 +6,8 @@ var fixed_seconds : float
 var parent
 
 func _ready():
+# warning-ignore:return_value_discarded
+	ServerInfo.connect("matchOver", self,"abort_timer")
 	parent = get_parent()
 	if parent.is_network_master():
 		var num_plrs = Players.get_child_count()
@@ -14,6 +16,9 @@ func _ready():
 		lbl.text = "Respawning in... %s" % [fixed_seconds]
 	else:
 		call_deferred("queue_free")
+
+func abort_timer():
+	queue_free()
 
 func _on_respawn_time_timeout():
 	if fixed_seconds > 0:
