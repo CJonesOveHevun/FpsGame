@@ -159,7 +159,7 @@ anchor_bottom = 0.647
 margin_left = -320.0
 margin_top = -132.2
 margin_right = -64.0
-margin_bottom = 131.8
+margin_bottom = 123.8
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -188,6 +188,23 @@ margin_right = 256.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
 text = "Office"
+
+[node name="match_mode" type="OptionButton" parent="."]
+anchor_left = 1.0
+anchor_top = 0.393
+anchor_right = 1.0
+anchor_bottom = 0.393
+margin_left = -160.0
+margin_top = -11.8
+margin_right = -72.0
+margin_bottom = 12.2
+disabled = true
+text = "Casual"
+items = [ "Short", null, false, 0, null, "Casual", null, false, 1, null, "Long", null, false, 2, null ]
+selected = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="menu_button" to="." method="_on_menu_button_pressed"]
 [connection signal="timeout" from="interval" to="." method="_on_interval_timeout"]

@@ -62,8 +62,29 @@ __meta__ = {
 }
 
 [node name="connection_time" type="Timer" parent="join_dir"]
-wait_time = 5.0
 one_shot = true
+
+[node name="join_local" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.427
+anchor_right = 1.0
+anchor_bottom = 0.427
+margin_left = -136.0
+margin_top = -8.20001
+margin_right = -53.0
+margin_bottom = 15.8
+text = "Join Locally"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="join_local"]
+margin_left = -184.0
+margin_right = -8.0
+margin_bottom = 24.0
+text = "Join within this device"
+align = 1
+valign = 1
 
 [node name="server_container" type="VBoxContainer" parent="."]
 anchor_left = 0.062
@@ -109,6 +130,7 @@ __meta__ = {
 [connection signal="text_entered" from="address_bar" to="." method="_on_address_bar_text_entered"]
 [connection signal="pressed" from="join_dir" to="." method="_on_join_dir_pressed"]
 [connection signal="timeout" from="join_dir/connection_time" to="." method="_on_connection_time_timeout"]
+[connection signal="pressed" from="join_local" to="." method="_on_join_local_pressed"]
 [connection signal="pressed" from="back_b" to="." method="_on_back_b_pressed"]
 [connection signal="new_server" from="server_listener" to="." method="_on_Server_browser_new_server"]
 [connection signal="remove_server" from="server_listener" to="." method="_on_Server_browser_remove_server"]

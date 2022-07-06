@@ -1,0 +1,115 @@
+[gd_scene format=2]
+
+[node name="mansion_lights" type="Spatial"]
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51.7138, 2.20129, 2.9255 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 15.2539
+omni_attenuation = 0.420448
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 62.9026, 2.20129, -22.891 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 15.2539
+omni_attenuation = 0.420448
+
+[node name="OmniLight3" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6604, 2.20129, -53.3529 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight4" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92852, 3.39046, -53.3529 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight5" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60.2183, 3.39046, -30.1762 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight6" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.2012, 3.95751, -4.4084 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight7" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.4406, 3.95751, 27.3785 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight8" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.5547, 3.95751, 44.6991 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight9" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8482, 3.95751, 44.6991 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight10" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.0384, 3.95751, 88.8297 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight11" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0319891, 3.95751, 88.8297 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight12" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53.6157, 3.95751, 88.8297 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight15" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51.7965, 3.95751, 65.3652 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight13" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.2106, 3.95751, 47.5045 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="OmniLight14" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.2106, 3.95751, 5.92129 )
+light_color = Color( 1, 0.678431, 0.521569, 1 )
+light_energy = 1.2
+omni_range = 16.1771
+omni_attenuation = 0.420448
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.0940562, -0.995567, 5.52014e-09, 0.577166, 0.0545278, 0.814804, -0.811192, -0.0766374, 0.579736, 0, 8.43713, 0 )
+light_color = Color( 1, 0.858824, 0.639216, 1 )
+light_bake_mode = 2
+shadow_enabled = true
+shadow_color = Color( 0.0352941, 0, 0.0862745, 1 )

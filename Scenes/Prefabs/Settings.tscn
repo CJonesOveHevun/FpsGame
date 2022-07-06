@@ -1,0 +1,204 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Settings_menu.gd" type="Script" id=1]
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg_panel" type="Panel" parent="."]
+self_modulate = Color( 0, 0, 0, 0.513726 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tabcont" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 256.0
+margin_top = 80.0
+margin_right = -256.0
+margin_bottom = -80.0
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Control" parent="tabcont"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Mouse" type="Label" parent="tabcont/Controls"]
+margin_left = 4.0
+margin_top = 16.0
+margin_right = 102.0
+margin_bottom = 30.0
+text = "Mouse Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sensitivity" type="HSlider" parent="tabcont/Controls/Mouse"]
+margin_left = 4.0
+margin_top = 16.0
+margin_right = 244.0
+margin_bottom = 32.0
+min_value = 0.02
+max_value = 0.18
+step = 0.02
+value = 0.1
+tick_count = 5
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Video_Settings" type="Control" parent="tabcont"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="lblgeometry" type="Label" parent="tabcont/Video_Settings"]
+margin_left = 4.0
+margin_top = 8.0
+margin_right = 124.0
+margin_bottom = 32.0
+text = "Screen Geometry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullsreen_check" type="CheckBox" parent="tabcont/Video_Settings/lblgeometry"]
+margin_left = 32.0
+margin_top = 24.0
+margin_right = 126.0
+margin_bottom = 48.0
+text = "Fullscreen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stretchmode" type="Label" parent="tabcont/Video_Settings"]
+margin_left = 4.0
+margin_top = 96.0
+margin_right = 108.0
+margin_bottom = 112.0
+text = "Stretch Mode
+	-enabled : This overrides the resolution of the window, but results in 
+	low quality resolution ; This may also improve performance!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="viewport_stretch" type="CheckBox" parent="tabcont/Video_Settings/stretchmode"]
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 182.0
+margin_bottom = 80.0
+text = "Stretch to Viewport"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lod_dist_lbl" type="Label" parent="tabcont/Video_Settings"]
+margin_left = 4.0
+margin_top = 192.0
+margin_right = 92.0
+margin_bottom = 206.0
+text = "Lod Distance"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lod_dist" type="HSlider" parent="tabcont/Video_Settings/lod_dist_lbl"]
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 48.0
+min_value = 67.0
+max_value = 89.0
+value = 78.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Profile" type="Control" parent="tabcont"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="usrname_lbl" type="Label" parent="tabcont/Profile"]
+margin_left = 4.0
+margin_top = 8.0
+margin_right = 112.0
+margin_bottom = 22.0
+text = "Username"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="line_name" type="LineEdit" parent="tabcont/Profile/usrname_lbl"]
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 48.0
+placeholder_text = "New Player"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="feedback" type="Label" parent="tabcont/Profile/usrname_lbl"]
+visible = false
+margin_left = 192.0
+margin_top = 24.0
+margin_right = 248.0
+margin_bottom = 46.0
+text = "Saved!"
+align = 1
+valign = 1
+
+[node name="menu_b" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -48.0
+margin_right = 88.0
+margin_bottom = -8.0
+text = "<Menu"
+
+[node name="save_b" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -112.0
+margin_top = -40.0
+margin_right = -8.0
+margin_bottom = -8.0
+text = "Save"
+
+[connection signal="value_changed" from="tabcont/Controls/Mouse/sensitivity" to="." method="_on_sensitivity_value_changed"]
+[connection signal="toggled" from="tabcont/Video_Settings/lblgeometry/fullsreen_check" to="." method="_on_fullsreen_check_toggled"]
+[connection signal="toggled" from="tabcont/Video_Settings/stretchmode/viewport_stretch" to="." method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="tabcont/Video_Settings/lod_dist_lbl/lod_dist" to="." method="_on_lod_dist_value_changed"]
+[connection signal="text_changed" from="tabcont/Profile/usrname_lbl/line_name" to="." method="_on_line_name_text_changed"]
+[connection signal="text_entered" from="tabcont/Profile/usrname_lbl/line_name" to="." method="_on_line_name_text_entered"]
+[connection signal="pressed" from="menu_b" to="." method="_on_menu_b_pressed"]
+[connection signal="pressed" from="save_b" to="." method="_on_Button_pressed"]
