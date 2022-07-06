@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://Scenes/Characters/weapons/guns/vector.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Characters/weapons/guns/M16.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Characters/weapons/guns/Mp5.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Characters/weapons/guns/ARMGalil.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Characters/weapons/guns/M1014.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -397,6 +399,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4528, -18.8047, 44.3028 )
 
 [node name="wooden_table2" parent="props" instance=ExtResource( 9 )]
 transform = Transform( 0.0772933, 0, 0.997008, 0, 1, 0, -0.997008, 0, 0.0772933, -37.087, -18.9314, 40.1522 )
+
+[node name="wooden_table3" parent="props" instance=ExtResource( 9 )]
+transform = Transform( 0.0772933, 0, 0.997008, 0, 1, 0, -0.997008, 0, 0.0772933, -37.087, -18.9314, 35.6036 )
 
 [node name="uzi" type="Spatial" parent="props"]
 transform = Transform( 0.00215465, -0.399994, 0.000319171, 0.399684, 0.00214041, -0.0157535, 0.0157516, 0.000403777, 0.399689, -37.096, -18.3737, 43.9758 )
@@ -929,7 +934,7 @@ shape = SubResource( 9 )
 transform = Transform( 0.0203105, 0.399366, -0.00971116, -0.399353, 0.0200492, -0.010723, -0.0102192, 0.0102399, 0.399738, -35.6471, -18.3442, 43.6236 )
 
 [node name="Sawedoff" parent="weapons/sawedoff" instance=ExtResource( 14 )]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 mode = 1
 
@@ -937,7 +942,7 @@ mode = 1
 transform = Transform( -1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0, 0.4, -35.0737, -18.4541, 43.911 )
 
 [node name="Wm1897" parent="weapons/wm1897" instance=ExtResource( 15 )]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 mode = 1
 
@@ -968,6 +973,18 @@ mode = 1
 
 [node name="Mp5" parent="weapons/guns" instance=ExtResource( 19 )]
 transform = Transform( 0.999567, -0.0292908, -0.00268721, 0.029053, 0.997443, -0.0652792, 0.00459243, 0.0651725, 0.997864, -0.0211182, -2.4619, -3.44026 )
+collision_layer = 4
+collision_mask = 5
+mode = 1
+
+[node name="ARMGalil" parent="weapons/guns" instance=ExtResource( 20 )]
+transform = Transform( -0.998896, -0.0457075, 0.0107765, -0.0467598, 0.989286, -0.138301, -0.00433961, -0.138653, -0.990332, -0.0512733, 2.27717, -0.117714 )
+collision_layer = 4
+collision_mask = 5
+mode = 1
+
+[node name="M1014" parent="weapons/guns" instance=ExtResource( 21 )]
+transform = Transform( 0.899861, 0.00615288, 0.0145437, 0.00615286, 0.626764, -0.645855, -0.0145437, 0.645855, 0.626626, -0.0471687, 2.0947, -10.0311 )
 collision_layer = 4
 collision_mask = 5
 mode = 1
