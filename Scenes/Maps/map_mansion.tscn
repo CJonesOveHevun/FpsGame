@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=2]
+[gd_scene load_steps=166 format=2]
 
 [ext_resource path="res://Materials/Vfx/water2.tres" type="Shader" id=1]
 [ext_resource path="res://addons/lod/lod_spatial.gd" type="Script" id=2]
@@ -12,10 +12,13 @@
 [ext_resource path="res://Scenes/Props/wooden_table.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Props/sofav1.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Materials/Vfx/building_c2.tres" type="Material" id=12]
+[ext_resource path="res://Materials/Vfx/wood02.tres" type="Material" id=13]
 [ext_resource path="res://Scenes/Props/wooden_dresser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Props/storage_rack.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Props/bookshelf.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Materials/Vfx/bush1.tres" type="Material" id=17]
 [ext_resource path="res://Materials/Vfx/shingled_roof1.tres" type="Material" id=18]
+[ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=19]
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 3 )
@@ -94,7 +97,7 @@ points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5,
 data = PoolVector3Array( -4.5, 4.5, 4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5, -4.5, -4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, 4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5, 4.5, -4.5, -4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, 4.5, -4.5, -4.5, 4.5, -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, -4.5, 4.5, -4.5, 4.5, 4.5, -4.5, -4.5, -4.5, 4.5, 4.5, -4.5, 4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, -4.5 )
 
 [sub_resource type="BoxShape" id=34]
-extents = Vector3( 0.001, 10, 4 )
+extents = Vector3( 0.001, 10, 4.37534 )
 
 [sub_resource type="ConvexPolygonShape" id=36]
 points = PoolVector3Array( -4.5, -4.5, -4.5, 4.5, 4.5, 4.5, 4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, 4.5, 4.5, 4.5, -4.5, -4.5, -4.5, -4.5, 4.5, -4.5, 4.5, -4.5 )
@@ -540,7 +543,7 @@ __meta__ = {
 transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, -4, -1, 0 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 5
 }
@@ -549,7 +552,7 @@ __meta__ = {
 transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 4, -1, 0 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 6
 }
@@ -558,7 +561,7 @@ __meta__ = {
 transform = Transform( -4.37114e-09, 0, 1, 0, 0.2, 0, -0.1, 0, -4.37114e-08, 0, -1, -4 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 7
 }
@@ -586,7 +589,7 @@ transform = Transform( 1.9, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, -1, 8 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 10
 }
@@ -595,7 +598,7 @@ __meta__ = {
 transform = Transform( -8.30516e-08, 0, 0.1, 0, 0.3, 0, -1.9, 0, -4.37114e-09, 8, -1, 0 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 11,
 "apply_volumetrics": false
@@ -606,7 +609,7 @@ transform = Transform( -8.30516e-08, 0, 0.1, 0, 0.3, 0, -1.9, 0, -4.37114e-09, -
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 12,
 "apply_volumetrics": false
@@ -616,7 +619,7 @@ __meta__ = {
 transform = Transform( 1.9, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, -1, -8 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 13,
 "apply_volumetrics": false
@@ -896,7 +899,7 @@ use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="floor2_2" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
 transform = Transform( 15.7, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 8, 94 )
@@ -904,7 +907,7 @@ use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="floor2_5" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
 transform = Transform( 4.2, 0, 0, 0, 0.1, 0, 0, 0, 1.4, 0, 8, 79 )
@@ -912,7 +915,7 @@ use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="floor2_3" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
 transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 14, 56, 8, 22 )
@@ -920,7 +923,7 @@ use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="floor2_4" type="MeshInstance" parent="floors/floor2_floors" groups=["lod"]]
 transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 14, -56, 8, 22 )
@@ -928,24 +931,24 @@ use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="stair-lod1" type="MeshInstance" parent="floors"]
 transform = Transform( 2.27753, 0.0412373, 0, -1.03093, 0.0911015, 0, 0, 0, 1.4, -30.1124, 3.46123, 79 )
 mesh = ExtResource( 4 )
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="stair2-lod1" type="MeshInstance" parent="floors"]
 transform = Transform( -2.27753, -0.0412373, -1.22392e-07, -1.03093, 0.0911015, 0, 1.99108e-07, 3.60508e-09, -1.4, 30.083, 3.46123, 79 )
 mesh = ExtResource( 4 )
 software_skinning_transform_normals = false
-material/0 = null
+material/0 = ExtResource( 18 )
 
 [node name="Gate" type="MeshInstance" parent="floors"]
 transform = Transform( 2.2, 0, 0, 0, 0.9, 0, 0, 0, 0.1, 0, 3, -72 )
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 13 )
 
 [node name="collsion_stairs-lod1" type="CSGBox" parent="floors"]
 transform = Transform( 3.63543, 0.417106, 0, -1.66842, 0.908858, 0, 0, 0, 4, -29.3196, 3.17331, 79.8508 )
@@ -970,7 +973,8 @@ transform = Transform( 0.3, 0, 0, 0, 2, 0, 0, 0, 16, 72, 8, -2 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 40
 }
@@ -980,7 +984,8 @@ transform = Transform( 0.3, 0, 0, 0, 2, 0, 0, 0, 16, -72, 8, -2 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 41
 }
@@ -990,7 +995,8 @@ transform = Transform( 16, 0, 0, 0, 2, 0, 0, 0, 0.2, 0, 8, 104 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 42
 }
@@ -1000,7 +1006,8 @@ transform = Transform( 7, 0, 0, 0, 2, 0, 0, 0, 0.3, 41, 8, -73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 43
 }
@@ -1010,7 +1017,8 @@ transform = Transform( 7, 0, 0, 0, 2, 0, 0, 0, 0.3, -41, 8, -73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 44
 }
@@ -1019,17 +1027,19 @@ __meta__ = {
 transform = Transform( 6.4, 0, 0, 0, 1, 0, 0, 0, 0.3, -43, 3.92409, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 45,
 "apply_volumetrics": false
 }
 
 [node name="wall23" type="MeshInstance" parent="walls" groups=["lod"]]
-transform = Transform( 3.1, 0, 0, 0, 1, 0, 0, 0, 0.3, -28, 13, -40 )
+transform = Transform( 3.1, 0, 0, 0, 1, 0, 0, 0, 0.3, -28, 12.9144, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 45,
 "apply_volumetrics": false
@@ -1039,7 +1049,8 @@ __meta__ = {
 transform = Transform( 3.2, 0, 0, 0, 2, 0, 0, 0, 0.3, 29, 9, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 46
 }
@@ -1048,7 +1059,8 @@ __meta__ = {
 transform = Transform( 3.3, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0, 8, -39.4514 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 46
 }
@@ -1057,7 +1069,8 @@ __meta__ = {
 transform = Transform( 3.3, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0, 8, -72.4514 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 46
 }
@@ -1066,7 +1079,8 @@ __meta__ = {
 transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 0.3, 32, 8, 73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 47
 }
@@ -1075,7 +1089,8 @@ __meta__ = {
 transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 0.3, -32, 8, 73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 48
 }
@@ -1084,7 +1099,8 @@ __meta__ = {
 transform = Transform( 4.1, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 8, 73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 48
 }
@@ -1093,7 +1109,8 @@ __meta__ = {
 transform = Transform( 4.1, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 16, 73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 48
 }
@@ -1102,7 +1119,8 @@ __meta__ = {
 transform = Transform( 3.5, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1, 16, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 48
 }
@@ -1111,7 +1129,8 @@ __meta__ = {
 transform = Transform( -3.49691e-07, 0, -0.3, 0, 1, 0, 8, 0, -1.31134e-08, -40, 4, 18 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1120,7 +1139,8 @@ __meta__ = {
 transform = Transform( -5.46392e-07, 0, -0.1, 0, 0.2, 0, 12.5, 0, -4.37114e-09, -39, 9, 16 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1129,7 +1149,8 @@ __meta__ = {
 transform = Transform( -5.46392e-07, 0, -0.1, 0, 0.2, 0, 12.5, 0, -4.37114e-09, 38, 9, 15 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1138,7 +1159,8 @@ __meta__ = {
 transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, -72, 8, 87 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1147,7 +1169,8 @@ __meta__ = {
 transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, -72, 15, 87 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1156,7 +1179,8 @@ __meta__ = {
 transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, 72, 15, 87 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1165,7 +1189,8 @@ __meta__ = {
 transform = Transform( -1.74846e-07, 0, -0.3, 0, 0.5, 0, 4, 0, -1.31134e-08, 72, 8, 87 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1174,7 +1199,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, -16, 3, -44 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1183,7 +1209,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, -16, 3, -68 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1192,7 +1219,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, 16, 3, -68 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1201,7 +1229,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, 16, 3, -45 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1210,7 +1239,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, 24, 3, 99 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1219,7 +1249,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.1, 0, 1.2, 0, 1, 0, -4.37114e-09, -24, 3, 99 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 49
 }
@@ -1228,7 +1259,8 @@ __meta__ = {
 transform = Transform( -3.49691e-07, 0, -0.3, 0, 1, 0, 8, 0, -1.31134e-08, 39, 4, 17 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1237,7 +1269,8 @@ __meta__ = {
 transform = Transform( -1.74846e-07, 0, -0.2, 0, 1, 0, 4, 0, -8.74228e-09, 57, 3, 56 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1246,7 +1279,8 @@ __meta__ = {
 transform = Transform( -1.09278e-07, 0, -0.2, 0, 1, 0, 2.5, 0, -8.74228e-09, 51, 13, 63 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1255,7 +1289,8 @@ __meta__ = {
 transform = Transform( -8.30516e-08, 0, -0.2, 0, 1, 0, 1.9, 0, -8.74228e-09, 51, 13, 39 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1264,7 +1299,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, -0.2, 0, 1, 0, 2, 0, -8.74228e-09, 51, 13, -5 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1273,7 +1309,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, -0.2, 0, 1, 0, 2, 0, -8.74228e-09, 38, 13, -30 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1282,7 +1319,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, 38, 13, 68 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1291,7 +1329,8 @@ __meta__ = {
 transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, 10, 13, 81 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1300,7 +1339,8 @@ __meta__ = {
 transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, -11, 13, 81 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1309,7 +1349,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, 38, 13, 17 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1318,7 +1359,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, 68 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1327,7 +1369,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, 31 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1336,7 +1379,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, -7 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1345,7 +1389,8 @@ __meta__ = {
 transform = Transform( -4.37114e-08, 0, -0.2, 0, 1, 0, 1, 0, -8.74228e-09, -40, 12, -34 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1354,7 +1399,8 @@ __meta__ = {
 transform = Transform( -2.18557e-07, 0, -0.2, 0, 1, 0, 5, 0, -8.74228e-09, 51, 13, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1363,7 +1409,8 @@ __meta__ = {
 transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, -51, 13, -28 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1372,7 +1419,8 @@ __meta__ = {
 transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, -20, 13, -48 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1381,7 +1429,8 @@ __meta__ = {
 transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, -20, 13, -65 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1390,7 +1439,8 @@ __meta__ = {
 transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, 20, 13, -65 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1399,7 +1449,8 @@ __meta__ = {
 transform = Transform( -6.55671e-08, 0, -0.2, 0, 1, 0, 1.5, 0, -8.74228e-09, 20, 13, -48 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1408,7 +1459,8 @@ __meta__ = {
 transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, -51, 13, 2 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1417,7 +1469,8 @@ __meta__ = {
 transform = Transform( -2.18557e-07, 0, -0.2, 0, 1, 0, 5, 0, -8.74228e-09, -51, 13, 41 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1426,7 +1479,8 @@ __meta__ = {
 transform = Transform( -1.74846e-07, 0, -0.2, 0, 1, 0, 4, 0, -8.74228e-09, -54, 3, 56 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1435,7 +1489,8 @@ __meta__ = {
 transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, -56, 3, 12 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1444,7 +1499,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, -0.2, 0, 1, 0, 2, 0, -8.74228e-09, 57, 3, 25 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1453,7 +1509,8 @@ __meta__ = {
 transform = Transform( -1.31134e-07, 0, -0.2, 0, 1, 0, 3, 0, -8.74228e-09, 57, 3, -1 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1462,7 +1519,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, 64, 3, -14 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1471,7 +1529,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, 64, 3, 25 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1480,7 +1539,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, 64, 3, 68 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1489,7 +1549,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, -63, 3, 69 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1498,7 +1559,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, -49, 3, 30 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1507,7 +1569,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.8, 0, 1, 0, 0.2, 0, -7.86805e-08, -65, 3, 7 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1516,7 +1579,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.6, 0, 1, 0, 0.2, 0, -6.99382e-08, -48, 3, -16 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1525,7 +1589,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.4, 0, 1, 0, 0.2, 0, -6.11959e-08, -65, 3, -16 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1534,7 +1599,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1, 0, 1, 0, 0.2, 0, -4.37114e-08, 44, 3, -14 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1543,7 +1609,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1, 0, 1, 0, 0.2, 0, -4.37114e-08, 44, 3, 30 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1552,7 +1619,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1, 0, 1, 0, 0.2, 0, -4.37114e-08, 44, 3, 52 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1561,7 +1629,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.4, 0, 1, 0, 0.2, 0, -6.11959e-08, 66, 3, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1570,7 +1639,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -0.4, 0, 1.1, 0, 0.2, 0, -1.74846e-08, 53, 12, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1579,7 +1649,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -0.4, 0, 1.1, 0, 0.2, 0, -1.74846e-08, 70, 12, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1588,7 +1659,8 @@ __meta__ = {
 transform = Transform( -5.66937e-08, 0, -2.2, 0, 1, 0, 1.297, 0, -9.61651e-08, 61, 13, -2 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1597,7 +1669,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, 61, 13, 31 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1606,7 +1679,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, 61, 13, 69 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1615,7 +1689,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, -58, 13, 63 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1624,7 +1699,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -2.2, 0, 1, 0, 0.2, 0, -9.61651e-08, -61, 13, 10 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1633,7 +1709,8 @@ __meta__ = {
 transform = Transform( -5.20166e-08, 0, -2.2, 0, 1, 0, 1.19, 0, -9.61651e-08, -61, 13, -36 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1642,7 +1719,8 @@ __meta__ = {
 transform = Transform( -8.74228e-09, 0, -1.4, 0, 1, 0, 0.2, 0, -6.11959e-08, 49, 3, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 50
 }
@@ -1651,7 +1729,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 39, 4, 63 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 51
 }
@@ -1660,7 +1739,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -40, 4, 63 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 52
 }
@@ -1669,7 +1749,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -40, 4, -25 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 53
 }
@@ -1678,7 +1759,8 @@ __meta__ = {
 transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, -40, 8, -28 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 53
 }
@@ -1687,7 +1769,8 @@ __meta__ = {
 transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, -40, 8, 62 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 53
 }
@@ -1696,7 +1779,8 @@ __meta__ = {
 transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, 39, 8, 62 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 53
 }
@@ -1705,7 +1789,8 @@ __meta__ = {
 transform = Transform( -1.04907e-07, 0, -0.3, 0, 0.12, 0, 2.4, 0, -1.31134e-08, 39, 8, -28 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 53
 }
@@ -1714,7 +1799,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -31, 3.64358, -25 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 54
 }
@@ -1723,7 +1809,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -31, 3.64358, -7 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 55
 }
@@ -1732,7 +1819,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -31, 3.64358, 30 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 56
 }
@@ -1741,7 +1829,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 32, 4, 31 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 57
 }
@@ -1750,7 +1839,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 32, 4, -7 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 58
 }
@@ -1759,7 +1849,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 32, 4, -25 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1768,7 +1859,8 @@ __meta__ = {
 transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, 20, 15, -56 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1777,7 +1869,8 @@ __meta__ = {
 transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, -20, 15, -56 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1786,7 +1879,8 @@ __meta__ = {
 transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, -51, 15, -13 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1795,7 +1889,8 @@ __meta__ = {
 transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, -51, 15, 17 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1804,7 +1899,8 @@ __meta__ = {
 transform = Transform( -2.18557e-08, 0, -0.2, 0, 0.35, 0, 0.5, 0, -8.74228e-09, 51, 15, -16 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1813,7 +1909,8 @@ __meta__ = {
 transform = Transform( -2.52215e-08, 0, -0.2, 0, 0.35, 0, 0.577, 0, -8.74228e-09, 51, 15, 50 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1822,7 +1919,8 @@ __meta__ = {
 transform = Transform( 0.577, 0, 0, 0, 0.35, 0, 0, 0, 0.2, -69, 15, 63 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1831,7 +1929,8 @@ __meta__ = {
 transform = Transform( -2.52215e-08, 0, 0.2, 0, 0.35, 0, -0.577, 0, -8.74228e-09, -56, 6, 28 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1840,16 +1939,18 @@ __meta__ = {
 transform = Transform( -0.577, 0, -1.74846e-08, 0, 0.35, 0, 5.04429e-08, 0, -0.2, -57, 6, -16 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
 
 [node name="wall34-lod10" type="MeshInstance" parent="walls" groups=["lod"]]
-transform = Transform( -0.577, 0, -1.74846e-08, 0, 0.35, 0, 5.04429e-08, 0, -0.2, 58, 6, -40 )
+transform = Transform( -0.577, 0, -1.74846e-08, 0, 0.35, 0, 5.04429e-08, 0, -0.2, 57.5516, 6, -40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1858,7 +1959,8 @@ __meta__ = {
 transform = Transform( 7.56644e-08, 0, -0.2, 0, 0.35, 0, 0.577, 0, 2.62268e-08, 57, 6, 14 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1867,7 +1969,8 @@ __meta__ = {
 transform = Transform( 7.56644e-08, 0, -0.2, 0, 0.35, 0, 0.577, 0, 2.62268e-08, 57, 6, 36 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 59
 }
@@ -1876,7 +1979,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, -40, 4, -33 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 60
 }
@@ -1885,7 +1989,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 39, 4, -33 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 61
 }
@@ -1894,7 +1999,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 1, 0, 0.3, 0, -1.31134e-08, 39, 4, -25 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 62
 }
@@ -1903,7 +2009,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, -11, 8, 73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 63
 }
@@ -1912,7 +2019,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, -11, 8, 88 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 64
 }
@@ -1921,7 +2029,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, -11, 8, 101 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 65
 }
@@ -1930,7 +2039,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, 10, 8, 73 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 66
 }
@@ -1939,7 +2049,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, 10, 8, 88 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 67
 }
@@ -1948,7 +2059,8 @@ __meta__ = {
 transform = Transform( -1.31134e-08, 0, -0.3, 0, 2, 0, 0.3, 0, -1.31134e-08, 10, 8, 101 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 68
 }
@@ -1957,7 +2069,8 @@ __meta__ = {
 transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, -15, 1, -24 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 69
 }
@@ -1966,7 +2079,8 @@ __meta__ = {
 transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 15, 1, -24 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 70,
 "apply_volumetrics": false
@@ -1976,7 +2090,8 @@ __meta__ = {
 transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 15, 1, 40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 71
 }
@@ -1985,7 +2100,8 @@ __meta__ = {
 transform = Transform( 2, 0, 0, 0, 0.3, 0, 0, 0, 0.1, -15, 1, 40 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 72
 }
@@ -1994,7 +2110,8 @@ __meta__ = {
 transform = Transform( 4, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, 1, 57 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 73
 }
@@ -2003,7 +2120,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, -24, 1, 31 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 74
 }
@@ -2012,7 +2130,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, -24, 1, -15 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 75
 }
@@ -2021,7 +2140,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, 24, 1, -15 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 76
 }
@@ -2030,7 +2150,8 @@ __meta__ = {
 transform = Transform( -8.74228e-08, 0, 0.1, 0, 0.3, 0, -2, 0, -4.37114e-09, 24, 1, 31 )
 use_in_baked_light = true
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 12 )
 __meta__ = {
 "_vol_id": 77
 }
@@ -2065,22 +2186,26 @@ material/0 = ExtResource( 18 )
 [node name="MeshInstance" type="MeshInstance" parent="roofs/3rd_floor_roof"]
 transform = Transform( 16, 0, 0, 0, 0.1, 0, 0, 0, 4, 0, 17, 72 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 18 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="roofs/3rd_floor_roof"]
 transform = Transform( 16, 0, 0, 0, 0.1, 0, 0, 0, 4, 0, 17, -75 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 18 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="roofs/3rd_floor_roof"]
 transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 12.5, -56, 17, -2 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 18 )
 
 [node name="MeshInstance4" type="MeshInstance" parent="roofs/3rd_floor_roof"]
 transform = Transform( 3.5, 0, 0, 0, 0.1, 0, 0, 0, 12.5, 55, 17, -2 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 18 )
 
 [node name="top_roof" type="MeshInstance" parent="roofs/3rd_floor_roof"]
 transform = Transform( 20, 0, 0, 0, 5, 0, 0, 0, 90, -55, 22, -2 )
@@ -2107,6 +2232,7 @@ mesh = ExtResource( 9 )
 material/0 = ExtResource( 18 )
 
 [node name="props" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0330734, 0.147743, -0.146561 )
 script = ExtResource( 2 )
 lod_0_max_distance = 41.0
 lod_1_max_distance = 150.0
@@ -2347,42 +2473,48 @@ transform = Transform( -1, 0, -4.37114e-07, 0, 1, 0, 4.37114e-07, 0, -1, -29, 8,
 [node name="bush" type="MeshInstance" parent="props/bounds"]
 transform = Transform( 1, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 78, 2, 68 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 17 )
 
 [node name="bush6" type="MeshInstance" parent="props/bounds"]
-transform = Transform( 1, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -80, 2, 68 )
+transform = Transform( 1, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -80.3563, 2, 68 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 17 )
 
 [node name="bush2" type="MeshInstance" parent="props/bounds"]
 transform = Transform( 2, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 81, 2, 105 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 17 )
 
 [node name="bush5" type="MeshInstance" parent="props/bounds"]
 transform = Transform( 2, 0, 0, 0, 0.4, 0, 0, 0, 0.5, -80.9788, 2, 105 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 17 )
 
 [node name="bush3" type="MeshInstance" parent="props/bounds"]
 transform = Transform( -2.18557e-07, 0, 0.5, 0, 0.4, 0, -5, 0, -2.18557e-08, 92, 2, 86 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 17 )
 
 [node name="bush4" type="MeshInstance" parent="props/bounds"]
 transform = Transform( -2.18557e-07, 0, 0.5, 0, 0.4, 0, -5, 0, -2.18557e-08, -87, 2, 86 )
 mesh = ExtResource( 4 )
-material/0 = null
+software_skinning_transform_normals = false
+material/0 = ExtResource( 17 )
 
 [node name="safety" type="MeshInstance" parent="props/bounds"]
 transform = Transform( 3.2, 0, 0, 0, 0.2, 0, 0, 0, 0.05, 0, 9, -39 )
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 19 )
 
 [node name="safety2" type="MeshInstance" parent="props/bounds"]
 transform = Transform( 3.2, 0, 0, 0, 0.2, 0, 0, 0, 0.05, 0, 9.28668, -72 )
 mesh = ExtResource( 4 )
-material/0 = null
+material/0 = ExtResource( 19 )
 
 [node name="solid_walls" type="StaticBody" parent="."]
 transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0 )
@@ -2433,11 +2565,11 @@ shape = SubResource( 33 )
 [node name="inner_walls" type="Spatial" parent="solid_walls"]
 
 [node name="wall" type="CollisionShape" parent="solid_walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 12, 21.75 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9.98434, 21.75 )
 shape = SubResource( 34 )
 
 [node name="wall2" type="CollisionShape" parent="solid_walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, 12, 21.75 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, 9.81059, 21.75 )
 shape = SubResource( 34 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="solid_walls"]
@@ -2929,6 +3061,7 @@ bounces = 2
 use_hdr = false
 environment_mode = 1
 environment_min_light = Color( 0.0470588, 0, 0.0980392, 1 )
+capture_quality = 0
 light_data = ExtResource( 7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
