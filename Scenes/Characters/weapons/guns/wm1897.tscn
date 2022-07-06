@@ -430,7 +430,7 @@ cast_shadow = 0
 mesh = SubResource( 12 )
 material/0 = null
 
-[node name="collider" type="CollisionShape" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.516027 )
 shape = SubResource( 9 )
 

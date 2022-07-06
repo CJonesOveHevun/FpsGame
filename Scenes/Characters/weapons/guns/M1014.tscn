@@ -1,0 +1,302 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Materials/Models/iron_sight1.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://Materials/Models/M1014_stock.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://Materials/Models/M1014_body.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://Materials/Vfx/metal_gun02.tres" type="Material" id=4]
+[ext_resource path="res://Materials/Vfx/common.tres" type="Shader" id=5]
+[ext_resource path="res://Materials/Sfx/fpsgame-sounds_shotgun_ammo_load.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Materials/Models/Material.material" type="Material" id=7]
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.0
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/Color = Color( 1, 0, 0, 1 )
+shader_param/Metallic = 0.9
+shader_param/Roughness = null
+shader_param/Specular = 0.9
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.29438, 0.728947, 3.45885 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.685167 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/shell:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.330935, 1.19209e-07 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/shell:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("body/stock:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.182545, -1.00395, -5.8314 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("body/stock:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fire"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.35 ),
+"transitions": PoolRealArray( 0.138696, 1, 3.24901, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.685167 ), Vector3( 0, 0.19331, 0.0184785 ), Vector3( 0, 0.217528, -0.0624846 ), Vector3( 0, 0, 0.685167 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.35 ),
+"transitions": PoolRealArray( 0.138696, 1, 3.24901, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1.28, 0, 0 ), Vector3( -0.853002, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "holster"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.374195, -6.57338 ), Vector3( 0, 0.214474, -1.4955 ), Vector3( 0, 0.235547, 0.719255 ), Vector3( 0, 1.12311, 0.566529 ), Vector3( 0, 0.917438, 0.635906 ), Vector3( 0, 0.917438, 0.635906 ), Vector3( 4.76837e-07, -0.103375, 0.724662 ), Vector3( 0, 0, 0.685167 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 50.73, 0, 0 ), Vector3( 23.113, 0, 0 ), Vector3( 1.65088, 0, 0 ), Vector3( -16.7905, 0, 0 ), Vector3( -12.7678, 0, 0 ), Vector3( -12.7678, 0, 0 ), Vector3( 1.98108, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/stock:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.182545, -0.69638, -4.53387 ), Vector3( -0.182545, -0.69638, -4.53387 ), Vector3( -0.182545, -1.00395, -5.8314 ), Vector3( -0.182545, -1.00395, -5.8314 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/stock:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "reload"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.685167 ), Vector3( 0, 0.154267, 0.686778 ), Vector3( 0, 0.161489, 0.686667 ), Vector3( 0, 0.0869099, 0.688009 ), Vector3( 0, 0, 0.685167 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4.202, 0, 0 ), Vector3( 0.681, 0, 0 ), Vector3( -1.694, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/shell:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2.46842, -0.987564 ), Vector3( 0, -1.10156, -0.169397 ), Vector3( 0, -0.488432, 0.492027 ), Vector3( 0, -0.330935, 1.19209e-07 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/shell:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -166.295, 0, 0 ), Vector3( -135.74, 0, 0 ), Vector3( -93.2475, 0, 0 ), Vector3( -90, 0, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("sfx")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[node name="M1014" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13989, 0.567933 )
+
+[node name="body" type="MeshInstance" parent="."]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0.685167 )
+portal_mode = 3
+cast_shadow = 0
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="stock" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182545, -1.00395, -5.8314 )
+portal_mode = 3
+cast_shadow = 0
+mesh = ExtResource( 2 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 7 )
+
+[node name="iron_sight" type="MeshInstance" parent="body"]
+transform = Transform( -1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 3.17323e-08, 0.959006, 9.60434 )
+portal_mode = 3
+cast_shadow = 0
+generate_lightmap = false
+mesh = ExtResource( 1 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 4 )
+
+[node name="shell" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.330935, 1.19209e-07 )
+portal_mode = 3
+cast_shadow = 0
+generate_lightmap = false
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.300547, 1.22572 )
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/fire = SubResource( 5 )
+anims/holster = SubResource( 7 )
+anims/reload = SubResource( 6 )
+
+[node name="sfx" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_db = 5.0
+unit_size = 4.0
+max_db = 5.0
+pitch_scale = 2.0

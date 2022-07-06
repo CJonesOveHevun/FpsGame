@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Materials/Vfx/metal_gun02.tres" type="Material" id=1]
 [ext_resource path="res://Materials/Vfx/metal01.tres" type="Material" id=2]
 [ext_resource path="res://Materials/Vfx/metal_gun03.tres" type="Material" id=3]
+[ext_resource path="res://Materials/Models/iron_sight1.tres" type="ArrayMesh" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.336, 0.705, 1.574 )
@@ -320,7 +321,7 @@ mesh = SubResource( 9 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 1 )
 
-[node name="sights2" type="MeshInstance" parent="body"]
+[node name="railing" type="MeshInstance" parent="body"]
 transform = Transform( 1, 0, 0, 0, 0.97457, -0.224084, 0, 0.224084, 0.97457, 0, 0.510672, -0.592464 )
 portal_mode = 3
 cast_shadow = 0
@@ -329,7 +330,7 @@ mesh = SubResource( 10 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 1 )
 
-[node name="sights3" type="MeshInstance" parent="body/sights2"]
+[node name="railing" type="MeshInstance" parent="body/railing"]
 transform = Transform( 1, 0, 0, 0, 0.980233, 0.197846, 0, -0.197846, 0.980233, 0, 0.245002, 0.474916 )
 portal_mode = 3
 cast_shadow = 0
@@ -338,12 +339,21 @@ mesh = SubResource( 11 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 1 )
 
-[node name="sights_front" type="MeshInstance" parent="body/sights2/sights3"]
+[node name="railing_front" type="MeshInstance" parent="body/railing/railing"]
 transform = Transform( 1, 0, 0, 0, 0.997477, 0.0709926, 0, -0.0709926, 0.997477, 0, -0.12571, 0.593671 )
 portal_mode = 3
 cast_shadow = 0
 generate_lightmap = false
 mesh = SubResource( 12 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 1 )
+
+[node name="ironsights" type="MeshInstance" parent="body/railing"]
+transform = Transform( -7.85922e-09, -0.000694611, 0.0999975, -0.0224084, 0.0974547, 0.000676936, -0.097457, -0.0224079, -0.000155658, 0, 0.241117, -0.0554402 )
+portal_mode = 3
+cast_shadow = 0
+generate_lightmap = false
+mesh = ExtResource( 4 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 1 )
 

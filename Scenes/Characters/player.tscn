@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://Materials/Vfx/character.tres" type="Material" id=2]
 [ext_resource path="res://Scenes/effects/injured_hud3.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/pause_menu.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Prefabs/pause_menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Prefabs/leaderboards.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Materials/Vfx/crosshair1.png" type="Texture" id=6]
 [ext_resource path="res://Materials/anims/Modelschar_leg_walk_forward.tres" type="Animation" id=7]
@@ -665,7 +665,7 @@ nodes/sprint_spd/node = SubResource( 46 )
 nodes/sprint_spd/position = Vector2( -320, -60 )
 nodes/stand_state/node = SubResource( 47 )
 nodes/stand_state/position = Vector2( -120, -160 )
-node_connections = [ "output", 0, "blendState", "stand_state", 0, "leg_idle", "stand_state", 1, "sprint_spd", "sprint_spd", 0, "leg_walk", "isReloading", 0, "gun_idle", "isReloading", 1, "gun_reload", "is_crouching", 0, "stand_state", "is_crouching", 1, "crouch_state", "blendState", 0, "isReloading", "blendState", 1, "is_crouching", "crouch_state", 0, "crouch_idle", "crouch_state", 1, "crouch_walk" ]
+node_connections = [ "output", 0, "blendState", "stand_state", 0, "leg_idle", "stand_state", 1, "sprint_spd", "blendState", 0, "isReloading", "blendState", 1, "is_crouching", "sprint_spd", 0, "leg_walk", "crouch_state", 0, "crouch_idle", "crouch_state", 1, "crouch_walk", "is_crouching", 0, "stand_state", "is_crouching", 1, "crouch_state", "isReloading", 0, "gun_idle", "isReloading", 1, "gun_reload" ]
 
 [sub_resource type="BoxShape" id=22]
 extents = Vector3( 0.479963, 1.28173, 0.35333 )
@@ -677,6 +677,8 @@ extents = Vector3( 0.249096, 0.253638, 0.223412 )
 collision_layer = 0
 collision_mask = 17
 script = ExtResource( 1 )
+speed = 550
+def_speed = 550
 
 [node name="Bounding_box" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129143, 0 )
@@ -847,6 +849,9 @@ far = 120.0
 [node name="Ik_target" type="Position3D" parent="camera"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.02058e-09, 0, 0.244 )
 
+[node name="model_weapon_pos" type="Position3D" parent="camera/Ik_target"]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.475549, 1.2863 )
+
 [node name="model_view" type="Spatial" parent="camera"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.68506, 0 )
 
@@ -968,60 +973,7 @@ __meta__ = {
 
 [node name="layer" type="CanvasLayer" parent="camera/model_view/gui"]
 
-[node name="pause_menu" type="Control" parent="camera/model_view/gui/layer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="camera/model_view/gui/layer/pause_menu"]
-modulate = Color( 0, 0, 0, 0.133333 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel2" type="Panel" parent="camera/model_view/gui/layer/pause_menu"]
-modulate = Color( 0, 0, 0, 0.498039 )
-anchor_bottom = 1.0
-margin_left = 40.0
-margin_top = 96.0
-margin_right = 256.0
-margin_bottom = -32.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="menu_b" type="Button" parent="camera/model_view/gui/layer/pause_menu"]
-anchor_top = 0.36
-anchor_bottom = 0.36
-margin_left = 64.0
-margin_top = -16.0
-margin_right = 216.0
-margin_bottom = 16.0
-text = "< Quit Match"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="resume_b" type="Button" parent="camera/model_view/gui/layer/pause_menu"]
-anchor_top = 0.28
-anchor_bottom = 0.28
-margin_left = 64.0
-margin_top = -16.0
-margin_right = 216.0
-margin_bottom = 16.0
-text = "Resume"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="pause_menu" parent="camera/model_view/gui/layer" instance=ExtResource( 4 )]
 
 [node name="usrname" type="Label" parent="camera/model_view/gui"]
 anchor_left = 0.5
@@ -1032,8 +984,11 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.0
 margin_bottom = -42.0
+align = 1
+valign = 1
 
 [node name="leaderboards" parent="camera/model_view/gui" instance=ExtResource( 5 )]
+visible = false
 
 [node name="pickup_ray" type="RayCast" parent="camera"]
 enabled = true
@@ -1090,8 +1045,6 @@ process_mode = 0
 wait_time = 0.2
 one_shot = true
 
-[connection signal="pressed" from="camera/model_view/gui/layer/pause_menu/menu_b" to="camera/model_view/gui/layer/pause_menu" method="_on_menu_b_pressed"]
-[connection signal="pressed" from="camera/model_view/gui/layer/pause_menu/resume_b" to="camera/model_view/gui/layer/pause_menu" method="_on_resume_b_pressed"]
 [connection signal="animation_finished" from="animation" to="." method="_on_anim_finished"]
 [connection signal="timeout" from="fire_rate_cd" to="." method="_on_fire_rate_cd_timeout"]
 [connection signal="area_entered" from="torso_hitbox" to="." method="_on_torso_hitbox_area_entered"]

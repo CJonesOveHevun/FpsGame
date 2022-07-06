@@ -4,6 +4,7 @@
 [ext_resource path="res://Materials/Vfx/metal_gun01.tres" type="Material" id=2]
 [ext_resource path="res://Materials/Vfx/metal_gun03.tres" type="Material" id=3]
 [ext_resource path="res://Materials/scene/smg_mag.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Materials/Models/iron_sight1.tres" type="ArrayMesh" id=5]
 [ext_resource path="res://Materials/Sfx/fpsgame-sounds_sub_machinegun_mag_reload.mp3" type="AudioStream" id=6]
 
 [sub_resource type="CubeMesh" id=1]
@@ -28,9 +29,6 @@ rings = 1
 
 [sub_resource type="CubeMesh" id=8]
 size = Vector3( 0.099, 0.059, 0.292 )
-
-[sub_resource type="CubeMesh" id=9]
-size = Vector3( 0.003, 0.049, 0.066 )
 
 [sub_resource type="CylinderMesh" id=10]
 top_radius = 0.07
@@ -334,33 +332,11 @@ mesh = SubResource( 8 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 2 )
 
-[node name="outside_sight" type="CSGCylinder" parent="base/center/Muzzle/front"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00820303, -0.211832 )
+[node name="iron_sight" type="MeshInstance" parent="base/center/Muzzle/front"]
+transform = Transform( -8.74228e-09, -8.74228e-09, 0.2, -0.2, -8.74228e-09, -8.74228e-09, 8.74228e-09, -0.2, -8.74228e-09, 0, 0, -0.25154 )
 portal_mode = 3
 cast_shadow = 0
-generate_lightmap = false
-calculate_tangents = false
-radius = 0.0759122
-height = 0.0716798
-smooth_faces = false
-material = ExtResource( 2 )
-
-[node name="inside_sights" type="CSGCylinder" parent="base/center/Muzzle/front/outside_sight"]
-portal_mode = 3
-cast_shadow = 0
-generate_lightmap = false
-operation = 2
-calculate_tangents = false
-radius = 0.0558549
-height = 0.118603
-smooth_faces = false
-
-[node name="sights" type="MeshInstance" parent="base/center/Muzzle/front"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.185056 )
-portal_mode = 3
-cast_shadow = 0
-generate_lightmap = false
-mesh = SubResource( 9 )
+mesh = ExtResource( 5 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 2 )
 

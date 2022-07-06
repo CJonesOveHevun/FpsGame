@@ -244,7 +244,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=20]
 resource_name = "reload"
-length = 2.8
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("MultiMeshInstance:translation")
 tracks/0/interp = 1
@@ -252,8 +252,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.9, 1, 1.1, 1.2, 1.4, 1.6, 1.7, 1.8, 1.9, 2.4, 2.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.9, 1, 1.1, 1.2, 1.4, 1.6, 1.7, 1.8, 1.9, 2.1, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 2.82843, 1, 1, 1, 1, 0.68302, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0.106175, -0.0709782 ), Vector3( 0, 0.279112, -0.0709782 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0, 0.366483, -0.101413 ), Vector3( 0, 0.388391, -0.145071 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0, 0.331986, -0.0709782 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0.697989, 0.266312, -0.486345 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0.75162, 0.301125, -0.216238 ), Vector3( 0, 0.106175, -0.0709782 ) ]
 }
@@ -264,8 +264,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.9, 1, 1.1, 1.2, 1.4, 1.6, 2.3, 2.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 0.840896, 2.92817, 2.37841, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.9, 1, 1.1, 1.2, 1.4, 1.6, 2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 2.07053, 0.25, 2.82842, 1 ),
 "update": 0,
 "values": [ Vector3( -2.10772, 0, 0 ), Vector3( -9.76872, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -16.6387, 0, 0 ), Vector3( -25.2977, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -13.3177, 0, 0 ), Vector3( -7.20487, 11.2303, -57.7213 ), Vector3( -7.205, 11.23, -23 ), Vector3( 0, 0, 0 ) ]
 }
@@ -510,7 +510,7 @@ generate_lightmap = false
 mesh = SubResource( 17 )
 material/0 = null
 
-[node name="collider" type="CollisionShape" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.488118, 1.16839 )
 shape = SubResource( 14 )
 

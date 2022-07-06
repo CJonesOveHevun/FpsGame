@@ -394,7 +394,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="collider" type="CollisionShape" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.695545, 0.542532 )
 shape = SubResource( 10 )
 
