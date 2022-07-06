@@ -2,7 +2,6 @@
 
 [resource]
 flags_vertex_lighting = true
-flags_world_triplanar = true
 vertex_color_use_as_albedo = true
 albedo_color = Color( 0.329412, 0.329412, 0.329412, 1 )
 metallic = 0.66

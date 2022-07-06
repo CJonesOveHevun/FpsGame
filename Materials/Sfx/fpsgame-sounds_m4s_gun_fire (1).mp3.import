@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fpsgame-sounds_m4s_gun_fire (1).mp3-869e2db6193b5a4743f6cc8b31c2dd0b.mp3str"
+
+[deps]
+
+source_file="res://Materials/Sfx/fpsgame-sounds_m4s_gun_fire (1).mp3"
+dest_files=[ "res://.import/fpsgame-sounds_m4s_gun_fire (1).mp3-869e2db6193b5a4743f6cc8b31c2dd0b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

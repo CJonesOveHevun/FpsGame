@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fpsgame-sounds_glock17_gun_fire (1).mp3-435ab6b2b947f2a1b3732d466e148b51.mp3str"
+
+[deps]
+
+source_file="res://Materials/Sfx/fpsgame-sounds_glock17_gun_fire (1).mp3"
+dest_files=[ "res://.import/fpsgame-sounds_glock17_gun_fire (1).mp3-435ab6b2b947f2a1b3732d466e148b51.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
