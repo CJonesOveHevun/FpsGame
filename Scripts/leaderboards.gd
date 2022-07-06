@@ -17,7 +17,7 @@ sync func update_board():
 		for e in Players.get_children():
 			var new_label = Label.new()
 			var new_score_l = Label.new()
-			new_label.text = e.name
+			new_label.text = e.username
 			new_label.align = Label.ALIGN_CENTER
 			new_score_l.align = Label.ALIGN_CENTER
 			new_score_l.text = str(e.dm_kills) + "    :    " + str(0)

@@ -13,8 +13,9 @@ onready var ars = vbox_cat.find_node("ar")
 var selected_gun : String = ""
 var plr
 
-var gun_price = {"Glock17": 700, "Uzi": 1000, "Sawedoff": 900, "Wm1897": 1350,
-"Ak47": 2500, "Vector": 850,"Revolver":1000, "M16": 2500, "Mp5": 1000}
+var gun_price = {"Glock17": 700, "Uzi": 1300, "Sawedoff": 900, "Wm1897": 1350,
+"Ak47": 2500, "Vector": 850,"Revolver":1000, "M16": 2500, "Mp5": 1000,
+ "ARMGalil":2800,"M1014":2300}
 
 func _ready():
 # warning-ignore:return_value_discarded

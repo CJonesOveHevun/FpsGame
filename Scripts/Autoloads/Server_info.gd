@@ -65,7 +65,7 @@ remotesync func update_plr():
 		 plr.anim_tree.get("parameters/stand_state/blend_amount"),
 		 plr.anim_tree.get("parameters/isReloading/blend_amount"),
 		 plr.anim_tree.get("parameters/sprint_spd/scale"),
-		 plr.camera.rotation.x, plr.camera.rotation.x, plr.isCrouching)
+		 plr.camera.rotation.x, plr.camera.rotation.x, plr.isCrouching, plr.username)
 
 sync func update_bullets():
 	for bl in get_tree().get_nodes_in_group("bullet"):
@@ -96,14 +96,14 @@ remote func dm_score_update(id, killerid):
 			i.gain_money()
 			rpc("add_score", killerid)
 			if i.dm_kills >= dm_kill_limit:
-				rpc("reset_scores", killerid)
+				rpc("reset_scores", i.username)
 	rpc("instance_ragdoll", id)
 
 sync func instance_ragdoll(id):
-	for i in Players.get_children():
-		if i.name == str(id):
+	if Players.has_node(str(id)):
+		var plrn = Players.get_node(str(id))
 # warning-ignore:return_value_discarded
-			instance_node_location(ragdoll, get_tree().current_scene, i.translation)
+		instance_node_location(ragdoll, get_tree().current_scene, plrn.translation)
 
 sync func add_score(killer):
 	for i in Players.get_children():
@@ -120,7 +120,7 @@ sync func reset_scores(winnerid):
 		plr.isDead = false
 		plr.velo += Vector3(0.1,-5,0.1)
 		match_fin = true
-		winner = str(winnerid)
+		winner = winnerid
 		yield(get_tree().create_timer(1),"timeout")
 # warning-ignore:return_value_discarded
 		ServerInfo.instance_node(vote_map, plr);

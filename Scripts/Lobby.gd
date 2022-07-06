@@ -9,6 +9,7 @@ onready var start_b = $start_b
 onready var map_name = $map_name
 onready var map_container = $maps_container
 onready var deathmatch_maps = $maps_container/deathmatch_maps
+onready var match_mode = $match_mode
 var plr_ready : int
 var server_ready : int
 
@@ -36,13 +37,14 @@ sync func update_players():
 			i.queue_free()
 		for e in Players.get_children():
 			var new_label = Label.new()
-			new_label.text = str(e.name)
+			new_label.text = str(e.username)
 			container.add_child(new_label, true)
 		
 		num_of_plr = Players.get_child_count() - 1
 		ready_label.text = "No. of players ready: %s/%s" % [plr_ready,num_of_plr]
 	if get_tree().is_network_server():
 		mode_option.disabled = false
+		match_mode.disabled = false
 		map_container.show()
 		server_ready = plr_ready
 		if plr_ready == num_of_plr && plr_ready > 0:
@@ -82,6 +84,13 @@ func _on_start_b_pressed():
 		rpc("change_map", map_name.text)
 		start_b.disabled = true
 
+sync func short_match():
+	ServerInfo.dm_kill_limit = 8 #8
+sync func casual_match():
+	ServerInfo.dm_kill_limit = 15 #15
+sync func long_match():
+	ServerInfo.dm_kill_limit = 25 #25
+
 sync func change_map(map):
 	var spawn = get_tree().get_nodes_in_group("dm_pos")
 	ServerInfo.servertype = mode_option.selected
@@ -93,3 +102,10 @@ sync func change_map(map):
 		for p in Players.get_children():
 			randomize()
 			p.translation = Vector3(rand_range(-10,10), 0, rand_range(-10,10))
+		if get_tree().is_network_server():
+			if match_mode.selected == 0:
+				rpc("short_match")
+			elif match_mode.selected == 1:
+				rpc("casual_match")
+			else:
+				rpc("long_match")

@@ -15,6 +15,7 @@ onready var primary_lbl = $camera/model_view/gui/primary_label
 onready var secondary_lbl = $camera/model_view/gui/secondary_label
 onready var ik_target = $camera/Ik_target
 onready var skeletonik = $character_fps/skeleton_game_rig/Skeleton/SkeletonIK
+onready var model_weapon_pos = $camera/Ik_target/model_weapon_pos
 onready var model = $character_fps
 
 onready var camera = $camera
@@ -70,14 +71,19 @@ var ammo_pool2: int = WeaponsInfo.weapon_ammo_pool[current_gun]
 
 func _ready():
 	var spawn = glock.instance()
-	spawn.get_node("collider").disabled = true
+	spawn.get_node("CollisionShape").disabled = true
 	spawn.set_mode(1)
 	model_pos.add_child(spawn, true)
 	skeletonik.start()
 	_update_ammo()
 
+remotesync func _set_name():
+	if is_network_master():
+		username = Settings.username
+
 func _process(_delta):
-	usr_lbl.text = name
+	model_weapon_pos.visible = player_model.visible
+	usr_lbl.text = username
 	if is_network_master() && get_tree().network_peer != null:
 		if ServerInfo.isMatchStart && !isDead && !ServerInfo.match_fin:
 			shop()
@@ -97,11 +103,12 @@ func _physics_process(delta):
 		if ServerInfo.isMatchStart && !isDead:
 			movement(delta)
 			gravity_fall(delta)
+			cam_shake(0.05, 0.05, delta)
 			torso_hb.name = str(plr.name) + "torso"
 			head_hb.name = str(plr.name) + "head"
 		if health > 35:
 			hurt_hud.modulate.a = lerp(hurt_hud.modulate.a, 1 - (health * 0.01), 0.1)
-		lod_to_distance()
+		lod_to_distance() #calling to cull objects
 	else:
 		return;
 
@@ -130,6 +137,14 @@ func movement(delta):
 	else:
 		return;
 
+func cam_shake(amplitude, freq, time):
+	if velo != Vector3.ZERO: #camera shake
+		time += time
+		camera.v_offset = lerp(camera.v_offset,cos(time * freq) * amplitude,0.1)
+	else:
+		time = 0
+		camera.v_offset = lerp(camera.v_offset,0, 0.1)
+	
 func gravity_fall(delta):
 	if canMove:
 		if !is_on_floor():
@@ -139,6 +154,7 @@ func gravity_fall(delta):
 			gravity = move_and_slide(gravity, Vector3.UP, true)
 		elif is_on_floor() && jBuffer.is_stopped():
 			gravity = Vector3.ZERO
+			velo = Vector3.ZERO
 			gravity.y = -weight
 		if Input.is_action_pressed("crouch"):
 			bound_box.scale.y = 0.7
@@ -168,12 +184,20 @@ func _input(event):
 		camera.current = true
 		isPlayer = true
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			camera.rotate_x(deg2rad(event.relative.y * 0.1))
-			rotate_y(deg2rad(-event.relative.x * 0.1))
+			camera.rotate_x(deg2rad(event.relative.y * Settings.mouse_sensitivty))
+			rotate_y(deg2rad(-event.relative.x * Settings.mouse_sensitivty))
 			camera.rotation.x = clamp(camera.rotation.x,deg2rad(-89),deg2rad(89))
 			camera.rotation.y = deg2rad(180)
 			camera.rotation.z = 0
 			ik_target.rotation.x = camera.rotation.x
+			var drag_event = -event.relative.x
+			var w_model = $camera/model_view
+			if drag_event > 5: #below here is weapon sway
+				w_model.rotation_degrees.z = lerp_angle(w_model.rotation_degrees.z, 5, 0.1)
+			elif drag_event < -5:
+				w_model.rotation_degrees.z = lerp_angle(w_model.rotation_degrees.z, -5, 0.1)
+			else:
+				w_model.rotation_degrees.z = lerp_angle(w_model.rotation_degrees.z, 0, 0.1)
 		_update_ammo()
 	else:
 		return
@@ -295,7 +319,7 @@ func fov_update():
 ###########
 remote func update_pos(pos : Vector3, rot : float,
  w:float, r:float, s:float,
- ik: float, camx: float, isc : bool):
+ ik: float, camx: float, isc : bool, usr: String):
 	if camera.current:
 		return
 	else:
@@ -321,9 +345,11 @@ remote func update_pos(pos : Vector3, rot : float,
 			anim_tree.set("parameters/is_crouching/blend_amount", 1)
 		else:
 			anim_tree.set("parameters/is_crouching/blend_amount", 0)
+		if usr != "":
+			username = usr
 
 remote func onDeath(killer):
-	var killed = usr_lbl.text
+	var killed = name
 	isDead = true
 	canMove = false
 	is_ads = false
@@ -345,6 +371,15 @@ func gain_money():
 	money += 350
 	injure_feedback()
 	
+
+remote func update_weapon_model(gun):
+	for i in model_weapon_pos.get_children():
+		i.queue_free()
+
+	var new_gun = WeaponsInfo.models[gun].instance()
+	new_gun.set_mode(1)
+	new_gun.get_node("CollisionShape").disabled = true
+	model_weapon_pos.add_child(new_gun, true)
 ###########
 
 func _on_fire_rate_cd_timeout():
@@ -411,6 +446,7 @@ func instance_weapons(gun:String):
 	if !new_model.get_node("anim").is_connected("animation_finished", self, "_on_anim_finished"):
 		new_model.get_node("anim").connect("animation_finished",self ,"_on_anim_finished")
 		new_model.get_node("anim").play("holster")
+	rpc("update_weapon_model", gun)
 
 func _interact():
 	if Input.is_action_just_pressed("interact"):
@@ -539,7 +575,7 @@ func lod_to_distance()-> void:
 	for e in get_tree().get_nodes_in_group("lod"):
 		get_nodes = e
 		distance = root_camera.global_transform.origin.distance_to(get_nodes.global_transform.origin)
-		e.visible = distance < 76;
+		e.visible = distance < Settings.lod_distance;
 		if e == null:
 			break
 			return
