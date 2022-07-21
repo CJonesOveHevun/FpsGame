@@ -3,7 +3,7 @@ extends KinematicBody
 var username : String = ""
 #####inventory#####
 var primary_slot : String = ""
-var secondary_slot : String = "Glock17"
+var secondary_slot : String = "M1911"
 var equipment_slot : String = ""
 
 var current_gun = secondary_slot
@@ -17,6 +17,9 @@ onready var ik_target = $camera/Ik_target
 onready var skeletonik = $character_fps/skeleton_game_rig/Skeleton/SkeletonIK
 onready var model_weapon_pos = $camera/Ik_target/model_weapon_pos
 onready var model = $character_fps
+
+onready var plr_color = $character_fps/skeleton_game_rig/Skeleton/whole_body
+var skin_color = Settings.plr_color
 
 onready var camera = $camera
 onready var gui = $camera/model_view/gui
@@ -40,8 +43,11 @@ onready var anim_tree = $anim_tree
 ##########################
 ###KILLS###
 var dm_kills : int = 0
+
+###TEAM###
+var team : int = 0
 ###########
-onready var glock = WeaponsInfo.models["Glock17"]
+onready var s_gun = WeaponsInfo.models.M1911.instance()
 
 export var health : int = 100
 export var speed = 500
@@ -55,6 +61,7 @@ export var weight = 5.6
 var isPlayer = false
 var canFire = true
 var canReload = true
+var stored_fall_damge : int = 0
 
 var canMove = true
 var is_ads = false
@@ -70,11 +77,11 @@ var ammo_pool2: int = WeaponsInfo.weapon_ammo_pool[current_gun]
 ################
 
 func _ready():
-	var spawn = glock.instance()
-	spawn.get_node("CollisionShape").disabled = true
-	spawn.set_mode(1)
-	model_pos.add_child(spawn, true)
+	s_gun.get_node("CollisionShape").disabled = true
+	s_gun.set_mode(1)
+	model_pos.add_child(s_gun, true)
 	skeletonik.start()
+	plr_color.get("material/0").albedo_color = Settings.plr_color
 	_update_ammo()
 
 remotesync func _set_name():
@@ -89,28 +96,32 @@ func _process(_delta):
 			shop()
 			animate_model();
 			ads()
-			fov_update()
-			weapon_fire(current_gun)
+			call_deferred("fov_update");
+			weapon_fire(current_gun);
 			show_leaderboards()
 			if Input.is_action_just_pressed("reload") && !isDead:
 				if ammo_pool1 > 0 && current_gun == primary_slot|| ammo_pool2 > 0 && current_gun == secondary_slot:
 					reload_anim()
+		plr_color.get("material/0").albedo_color = skin_color
+		rpc_unreliable("set_skin_clr", skin_color)
 	else:
 		return
 
 func _physics_process(delta):
+	if get_tree().network_peer == null:
+		return
 	if is_network_master() && get_tree().network_peer != null:
 		if ServerInfo.isMatchStart && !isDead:
 			movement(delta)
 			gravity_fall(delta)
-			cam_shake(0.05, 0.05, delta)
-			torso_hb.name = str(plr.name) + "torso"
-			head_hb.name = str(plr.name) + "head"
+			torso_hb.set_deferred("name" , str(plr.name) + "torso")
+			head_hb.set_deferred( "name" , str(plr.name) + "head")
 		if health > 35:
 			hurt_hud.modulate.a = lerp(hurt_hud.modulate.a, 1 - (health * 0.01), 0.1)
-		lod_to_distance() #calling to cull objects
-	else:
-		return;
+		call_deferred("lod_to_distance") #calling to cull objects
+
+remote func set_skin_clr(clr):
+	plr_color.get("material/0").albedo_color = clr
 
 func movement(delta):
 	if canMove:
@@ -132,15 +143,27 @@ func movement(delta):
 			if (!jBuffer.is_stopped() && is_on_floor()):
 				gravity.y = 14
 				velo.y = 1
+			if Input.is_action_pressed("crouch"):
+				bound_box.scale.y = 0.7
+				bound_box.translation.y = lerp(bound_box.translation.y,0.711, 0.6)
+				isCrouching = true
+			else:
+				bound_box.scale.y = lerp(bound_box.scale.y,1, 0.1)
+				bound_box.translation.y = lerp(bound_box.translation.y, 0.129, 0.1)
+				isCrouching = false
+		cam_shake(0.05, 0.5, delta)
 		velo = velo.normalized()
 		velo = move_and_slide(velo * delta * speed, Vector3.UP, true)
 	else:
 		return;
 
 func cam_shake(amplitude, freq, time):
+	var it : float = 0
+	it += time
+	var wave = amplitude * sin(it * speed * freq)
 	if velo != Vector3.ZERO: #camera shake
 		time += time
-		camera.v_offset = lerp(camera.v_offset,cos(time * freq) * amplitude,0.1)
+		camera.v_offset = lerp(camera.v_offset, wave, 0.1) #lerp(camera.v_offset,cos(time * freq) * amplitude,0.1)
 	else:
 		time = 0
 		camera.v_offset = lerp(camera.v_offset,0, 0.1)
@@ -152,20 +175,22 @@ func gravity_fall(delta):
 			velo.z = velo.z * 1.1
 			gravity.y -= sqrt(delta + weight) * 0.3
 			gravity = move_and_slide(gravity, Vector3.UP, true)
+			if jBuffer.is_stopped():
+				if gravity.y <= -50 && !ServerInfo.match_fin:
+					stored_fall_damge += int(gravity.y * 0.1)
 		elif is_on_floor() && jBuffer.is_stopped():
+			velo = Vector3(0,0,0)
+			gravity = move_and_slide_with_snap(gravity,Vector3(0,-5,0), Vector3.UP, true)
 			gravity = Vector3.ZERO
-			velo = Vector3.ZERO
-			gravity.y = -weight
-		if Input.is_action_pressed("crouch"):
-			bound_box.scale.y = 0.7
-			bound_box.translation.y = lerp(bound_box.translation.y,0.711, 0.6)
-			isCrouching = true
-		else:
-			bound_box.scale.y = lerp(bound_box.scale.y,1, 0.1)
-			bound_box.translation.y = lerp(bound_box.translation.y, 0.129, 0.1)
-			isCrouching = false
+			if stored_fall_damge != 0:
+				health += stored_fall_damge
+				stored_fall_damge = 0
+				update_stats(health, null)
+				injure_feedback()
 
 func _input(event):
+	if get_tree().network_peer == null:
+		return
 	if is_network_master() && ServerInfo.isMatchStart && get_tree().network_peer != null:
 		if !is_ads && !isDead && !Input.is_action_pressed("fire"):
 			switch_gun()
@@ -178,27 +203,27 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event is InputEventMouseMotion && is_network_master() && get_tree().network_peer != null:
 		if ServerInfo.isMatchStart && !isDead:
-			gui.visible = true # load player gui
+			gui.set_deferred("visible" ,true) # load player gui
 		model_pos.visible = true if !isDead else false;
-		player_model.visible = false
-		camera.current = true
-		isPlayer = true
+		player_model.set_deferred("visible" , false)# unload plr model
+		camera.current = true#set camera
+		isPlayer = true#check if puppet or not
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			camera.rotate_x(deg2rad(event.relative.y * Settings.mouse_sensitivty))
-			rotate_y(deg2rad(-event.relative.x * Settings.mouse_sensitivty))
-			camera.rotation.x = clamp(camera.rotation.x,deg2rad(-89),deg2rad(89))
+			camera.rotate_x(deg2rad(event.relative.y * Settings.mouse_sensitivty))#X rotation of camera
+			rotate_y(deg2rad(-event.relative.x * Settings.mouse_sensitivty))#rotaion of plr
+			camera.rotation.x = clamp(camera.rotation.x,deg2rad(-89),deg2rad(89))#limit rotation degrees
 			camera.rotation.y = deg2rad(180)
 			camera.rotation.z = 0
-			ik_target.rotation.x = camera.rotation.x
+			ik_target.rotation.x = camera.rotation.x # rotate the body of plr relative to cameraX
 			var drag_event = -event.relative.x
 			var w_model = $camera/model_view
-			if drag_event > 5: #below here is weapon sway
+			if drag_event > 5: #below here is weapon sway system
 				w_model.rotation_degrees.z = lerp_angle(w_model.rotation_degrees.z, 5, 0.1)
 			elif drag_event < -5:
 				w_model.rotation_degrees.z = lerp_angle(w_model.rotation_degrees.z, -5, 0.1)
 			else:
 				w_model.rotation_degrees.z = lerp_angle(w_model.rotation_degrees.z, 0, 0.1)
-		_update_ammo()
+		call_deferred("_update_ammo")
 	else:
 		return
 ##############AMMO###################
@@ -244,25 +269,25 @@ func weapon_fire(gun:String):
 	var withdraw: float = 1
 	if Input.is_action_pressed("fire") && canFire && !is_sprinting && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if current_gun == primary_slot && current_ammo1 > 0 || current_gun == secondary_slot && current_ammo2 > 0:
-			withdraw += 5.5
-			camera.fov += 2
-			#add magnitude
-			magnitude += Vector3(camera.rotation_degrees.x + (recoil_rate * 1.3),(rotation_degrees.y * rand_range(-withdraw, withdraw)),0)
-			#horizontal recoil
-			rotation_degrees.y = lerp_angle(rotation_degrees.y , magnitude.y * recoil_rate, 0.5)
-			#vertical recoil
-			camera.rotation_degrees.x = lerp_angle(camera.rotation_degrees.x,magnitude.x * recoil_rate,0.7)
+			withdraw += 0.1
+			camera.fov += 4
+			rpc("instance_bullets",WeaponsInfo.ammo_use[gun])
+			WeaponsInfo.rpc_unreliable("emit_fire_sound",current_gun,translation)
 			#for guns to animate itself, it must be named anim.
 			model_pos.get_child(0).get_node("anim").play("fire")
 			fire_rate_cd.start()
 			canReload = false
 			canFire = false
+			#add magnitude
+			magnitude = Vector3(camera.rotation_degrees.x + withdraw,(rotation_degrees.y * rand_range(-withdraw, withdraw) * 0.5),0)
+			#horizontal recoil
+			rotation_degrees.y = lerp_angle(rotation_degrees.y , magnitude.y * recoil_rate, 0.5)
+			#vertical recoil
+			camera.rotation_degrees.x = lerp_angle(camera.rotation_degrees.x,magnitude.x,0.5)
 			#limit the rcoil to avoid bugs
 			camera.rotation.x = clamp(camera.rotation.x,deg2rad(-89),deg2rad(89))
 			camera.rotation.y = deg2rad(180)
 			camera.rotation.z = 0
-			rpc("instance_bullets",WeaponsInfo.ammo_use[gun])
-			WeaponsInfo.rpc_unreliable("emit_fire_sound",current_gun,translation)
 			match current_gun:
 				primary_slot:
 					if current_ammo1 > 0:
@@ -308,7 +333,7 @@ func reload_anim():
 
 func fov_update():
 	if is_ads:
-		camera.fov = lerp(camera.fov, 50, 0.5)
+		camera.fov = lerp(camera.fov, WeaponsInfo.weapon_fov[current_gun], 0.5)
 	else:
 		camera.fov = lerp(camera.fov, 80, 0.5)
 	if is_sprinting:
@@ -348,8 +373,7 @@ remote func update_pos(pos : Vector3, rot : float,
 		if usr != "":
 			username = usr
 
-remote func onDeath(killer):
-	var killed = name
+remote func onDeath():
 	isDead = true
 	canMove = false
 	is_ads = false
@@ -357,15 +381,13 @@ remote func onDeath(killer):
 	model_pos.visible = false
 	model.visible = false
 	animation.play_backwards("sprint")
-	torso_hb.get_child(0).disabled = true
-	head_hb.get_child(0).disabled = true
+	torso_hb.get_child(0).set_deferred("disabled" , true)
+	head_hb.get_child(0).set_deferred("disabled" , true)
 # warning-ignore:return_value_discarded
-	ServerInfo.instance_node(ServerInfo.effects["blood_ex"],self)
+	ServerInfo.call_deferred("instance_node",ServerInfo.effects["blood_ex"],self)
 # warning-ignore:return_value_discarded
 	ServerInfo.instance_node(ServerInfo.respawn_timer, self)
-	for i in get_tree().get_network_connected_peers():
-		if i == int(killer):
-			ServerInfo.rpc("dm_score_update", int(killed), i)
+	ServerInfo.instance_ragdoll(name, plr_color.get("material/0").albedo_color)
 
 func gain_money():
 	money += 350
@@ -379,7 +401,7 @@ remote func update_weapon_model(gun):
 	var new_gun = WeaponsInfo.models[gun].instance()
 	new_gun.set_mode(1)
 	new_gun.get_node("CollisionShape").disabled = true
-	model_weapon_pos.add_child(new_gun, true)
+	model_weapon_pos.call_deferred("add_child", new_gun, true)
 ###########
 
 func _on_fire_rate_cd_timeout():
@@ -522,14 +544,18 @@ sync func instance_bullets(type):
 				s.translation = bullet_pos.translation
 				s.translation.y += rand_range(-0.01,0.01)
 				s.translation.x += rand_range(-0.01,0.01)
-				bullet_pos.add_child(s, true)
+				bullet_pos.call_deferred("add_child", s, true)
 				s.set_as_toplevel(true)
+				if ServerInfo.servertype == 1:
+					s.add_to_group(str(plr.team))
 		_:
 			new_b.rotation.y = camera.rotation.y
 			new_b.translation = bullet_pos.translation
 			new_b.name = str(plr.name) + "b" + str(type)
-			bullet_pos.add_child(new_b, true)
+			bullet_pos.call_deferred("add_child", new_b, true)
 			new_b.set_as_toplevel(true)
+			if ServerInfo.servertype == 1:
+				new_b.add_to_group(str(plr.team))
 
 func _on_torso_hitbox_area_entered(area):
 	if area.is_in_group("bullet") && !area.name.begins_with(name +"b"):
@@ -556,6 +582,9 @@ sync func plr_hurt(bullet, ishead: bool=false):
 		if "556mm" in bullet:
 			health -= WeaponsInfo.bullet_dmg["556mm"] * (2 if ishead else 1)
 			hitter = bullet.trim_suffix("b556mm")
+		if "45acp"in bullet:
+			health -= WeaponsInfo.bullet_dmg["45acp"] * (2 if ishead else 1)
+			hitter = bullet.trim_suffix("b45acp")
 		update_stats(health,hitter)
 		injure_feedback()
 
@@ -566,7 +595,23 @@ func injure_feedback():
 func update_stats(current_hp: float, hitter=""):
 	hp_bar.value = current_hp
 	if health <= 0 && !isDead:
-		rpc("onDeath", hitter)
+		onDeath()
+		if ServerInfo.servertype == 0:
+			ServerInfo.add_score(int(hitter))
+			ServerInfo.dm_score_update(int(name),int(hitter))
+			ServerInfo.rpc("dm_score_update", int(name), int(hitter))
+			for i in Players.get_children():
+				if i.name == hitter:
+					i.gain_money()
+					return
+		elif ServerInfo.servertype == 1:
+			ServerInfo.update_team_score(int(hitter))
+			ServerInfo.dm_score_update(int(name),int(hitter))
+			ServerInfo.rpc("dm_score_update", int(name), int(hitter))
+			for i in Players.get_children():
+				if i.name == hitter:
+					i.gain_money()
+					return
 
 func lod_to_distance()-> void:
 	var root_camera = get_viewport().get_camera()
@@ -575,16 +620,25 @@ func lod_to_distance()-> void:
 	for e in get_tree().get_nodes_in_group("lod"):
 		get_nodes = e
 		distance = root_camera.global_transform.origin.distance_to(get_nodes.global_transform.origin)
-		e.visible = distance < Settings.lod_distance;
+		e.set_deferred("visible", distance < Settings.lod_distance);
 		if e == null:
 			break
 			return
 
 sync func respawn(type):
+	var invi = preload("res://Scenes/effects/invincibilty.tscn").instance()
 	match type:
 		0:#deathmatch
 			translation = Vector3(rand_range(-10,10), 0, rand_range(-10,10));
 			health = 100
+		1:#teammatch
+			health = 100
+			if team == 1:
+				for i in get_tree().get_nodes_in_group("team1pos"):
+					translation = i.translation
+			elif team ==2:
+				for y in get_tree().get_nodes_in_group("team2pos"):
+					translation = y.translation
 
 		_:
 			pass;
@@ -600,23 +654,27 @@ sync func respawn(type):
 	if secondary_slot != "":
 		current_ammo2 = WeaponsInfo.weapon_max_ammo[secondary_slot]
 		ammo_pool2 = WeaponsInfo.weapon_ammo_pool[secondary_slot]
-	torso_hb.get_child(0).disabled = false;
-	head_hb.get_child(0).disabled = false;
+	add_child(invi, true)
 	animation.play_backwards("ads")
 	update_stats(health);
+	yield(get_tree().create_timer(5),"timeout")
+	torso_hb.get_child(0).disabled = false;
+	head_hb.get_child(0).disabled = false;
 
 func shop():
-	if ServerInfo.servertype == 0:
+	if ServerInfo.servertype == 0 || ServerInfo.servertype == 1:
 		if Input.is_action_just_pressed("shop") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 # warning-ignore:return_value_discarded
 			ServerInfo.instance_node(ServerInfo.shop_module, self)
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 remotesync func state_reset():
+	var invi = preload("res://Scenes/effects/invincibilty.tscn").instance()
 	is_ads = false
 	isDead = false
 	canMove = true
 	is_sprinting = false
+	stored_fall_damge = 0
 	animation.play_backwards("ads")
 	if is_network_master(): model_pos.visible = true
 	model.visible = true
@@ -626,7 +684,8 @@ remotesync func state_reset():
 	hp_bar.value = health
 	speed = 500
 	current_gun = secondary_slot
-	add_new_gun("Glock17")
+	add_new_gun("M1911")
 	primary_slot = ""
 	money = 1000
+	add_child(invi, true)
 	_update_ammo()

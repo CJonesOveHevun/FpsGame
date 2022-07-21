@@ -7,6 +7,8 @@ onready var feedback = $tabcont/Profile/usrname_lbl/feedback
 onready var fullscreen = $tabcont/Video_Settings/lblgeometry/fullsreen_check
 onready var vp_mode = $tabcont/Video_Settings/stretchmode/viewport_stretch
 onready var lod_slider = $tabcont/Video_Settings/lod_dist_lbl/lod_dist
+onready var color_picker = $tabcont/Profile/plr_color_lbl/player_color
+onready var vsync_check = $tabcont/Video_Settings/vsync_lbl/vsync_check
 
 func _on_menu_b_pressed():
 	return get_tree().change_scene_to(menu)
@@ -17,6 +19,8 @@ func _ready():
 	fullscreen.pressed = Settings.isFullscreen
 	vp_mode.pressed = Settings.viewportmode
 	lod_slider.value = Settings.lod_distance
+	color_picker.color = Settings.plr_color
+	vsync_check.pressed = Settings.vsync
 
 func _on_Button_pressed():
 	print("Coming soon")
@@ -55,3 +59,16 @@ func _on_CheckBox_toggled(button_pressed):
 
 func _on_lod_dist_value_changed(value):
 	Settings.lod_distance = value
+
+
+func _on_player_color_color_changed(color):
+	Settings.plr_color = color
+
+
+func _on_vsync_check_toggled(button_pressed):
+	if button_pressed:
+		OS.vsync_enabled = true
+		Settings.vsync = true
+	else:
+		OS.vsync_enabled = false
+		Settings.vsync = false

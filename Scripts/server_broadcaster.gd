@@ -1,7 +1,7 @@
 extends Node
 
 export (float) var broadcast_interval = 1.0
-var server_info = {"name" : "LAN Game"}
+var server_info = { "username": "","ip" : "LAN Game"}
 
 var socket_udp
 var broadcast_timer = Timer.new()
@@ -22,7 +22,8 @@ func _enter_tree():
 		
 
 func broadcast():
-	server_info.name = Networking.ip_address
+	server_info.ip = Networking.ip_address
+	server_info.username = Settings.username
 	var packet_msg = to_json(server_info)
 	var packet = packet_msg.to_ascii()
 	socket_udp.put_packet(packet)
@@ -37,6 +38,5 @@ func _notification(what):
 		broadcast_timer.stop()
 		if socket_udp != null:
 			socket_udp.close()
-			print("closing server")
 	else:
 		return

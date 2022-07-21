@@ -7,6 +7,7 @@ onready var settings = $Settings
 #################################
 onready var mouse_sensi = $Settings/ms/m_sensitivity
 onready var viewp_m = $Settings/resolution/v_m
+onready var full_screen = $Settings/fs_lbl/fullscreen
 
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 		ServerInfo.connect("matchOver", self,"_ready")
 	mouse_sensi.value = Settings.mouse_sensitivty
 	viewp_m.pressed = Settings.viewportmode
+	full_screen.pressed = Settings.isFullscreen
 	hide()
 
 func _input(_event):

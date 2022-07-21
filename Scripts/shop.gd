@@ -9,13 +9,14 @@ onready var hgs = vbox_cat.find_node("hg")
 onready var smgs = vbox_cat.find_node("smg")
 onready var sgs = vbox_cat.find_node("sg")
 onready var ars = vbox_cat.find_node("ar")
+onready var srs = vbox_cat.find_node("sr")
 
 var selected_gun : String = ""
 var plr
 
 var gun_price = {"Glock17": 700, "Uzi": 1300, "Sawedoff": 900, "Wm1897": 1350,
-"Ak47": 2500, "Vector": 850,"Revolver":1000, "M16": 2500, "Mp5": 1000,
- "ARMGalil":2800,"M1014":2300}
+"Ak47": 2500, "Vector": 900,"Revolver":1000, "M16": 2500, "Mp5": 1000,
+ "ARMGalil":2800,"M1014":2300, "M1911": 850,"kar98k": 2000}
 
 func _ready():
 # warning-ignore:return_value_discarded
@@ -34,6 +35,7 @@ func _process(_delta):
 			smgs.visible = ct.name == "Smg"
 			sgs.visible = ct.name == "Sg"
 			ars.visible = ct.name == "Ar"
+			srs.visible = ct.name == "Sr"
 	for guns in vbox_cat.get_children():
 		for w in guns.get_children():
 			if w.pressed:
@@ -44,10 +46,10 @@ func _process(_delta):
 
 func _on_b_back_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	queue_free()
+	call_deferred("queue_free")
 
 func disable_shop():
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_buy_b_pressed():
 	if plr != null:
