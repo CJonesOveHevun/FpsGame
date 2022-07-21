@@ -16,6 +16,8 @@ const server_lobby = preload("res://Scenes/Prefabs/Lobby.tscn")
 func _ready() -> void:
 	if OS.get_name() == "Windows":
 		ip_address = IP.get_local_addresses()[3]
+	elif OS.get_name() == "Android":
+		ip_address = IP.get_local_addresses()[0]
 	else:
 		ip_address = IP.get_local_addresses()[3]
 	
@@ -39,19 +41,19 @@ func _player_disconnected(id):
 func create_server() -> void:
 	server = NetworkedMultiplayerENet.new()
 	server.create_server(default_port, max_clients)
+	server.transfer_mode = NetworkedMultiplayerPeer.TRANSFER_MODE_RELIABLE
 	get_tree().set_network_peer(server)
-	server.transfer_mode = NetworkedMultiplayerPeer.TRANSFER_MODE_UNRELIABLE_ORDERED
 	OS.set_window_title("FPS GAME - SERVER")
 
 func join_server() -> void:
 	client = NetworkedMultiplayerENet.new()
 	client.create_client(ip_address, default_port)
 	get_tree().set_network_peer(client)
-	print(get_tree().network_peer.get_connection_status(), "connection")
 	OS.set_window_title("FPS GAME - CLIENT")
 
 func _connected_to_server() -> void:
-	print("connected")
+	pass
+
 
 func _connection_failed():
 	print("Connection failed!")
@@ -69,9 +71,13 @@ func reset_server():
 	for i in Players.get_children():
 		i.set_physics_process(false)
 		i.set_process(false)
+		i.team = 0
 		i.queue_free()
 	get_tree().network_peer = null
 	if server != null : server = null;
+	ServerInfo.servertype = 0
 	ServerInfo.isMatchStart = false
 	ServerInfo.match_fin = false
+	ServerInfo.team_score["team 1"] = 0
+	ServerInfo.team_score["team 2"] = 0
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

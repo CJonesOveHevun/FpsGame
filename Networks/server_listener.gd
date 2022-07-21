@@ -35,12 +35,15 @@ func _process(_delta):
 		if server_ip != "" && server_port > 0 && array_bytes.size() > 0:
 			if not known_servers.has(server_ip) && server_ip != null:
 				var serverMessage = array_bytes.get_string_from_ascii()
+				if serverMessage == null:
+					return
 				var gameInfo = parse_json(serverMessage)
+				if gameInfo == null:
+					return
 				gameInfo.ip = server_ip
 				gameInfo.lastSeen = OS.get_unix_time()
 				known_servers[server_ip] = gameInfo
 				emit_signal("new_server", gameInfo)
-				print(socket_udp.get_packet_ip())
 			else:
 				var gameInfo = known_servers[server_ip]
 				gameInfo.lastSeen = OS.get_unix_time()
